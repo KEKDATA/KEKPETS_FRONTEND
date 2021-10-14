@@ -1,8 +1,9 @@
-import { attach, combine, createEvent, createStore, guard } from 'effector';
+import { combine, createEvent, createStore, guard, sample } from 'effector';
+import { PagesPaths } from 'shared/enums/pages_paths';
+import { SearchSettingsFields } from 'shared/enums/search_settings_fields';
 
-import { api } from 'api/index';
-
-import { getQueryString } from 'shared/lib/query_string';
+import { getQueryString } from 'shared/lib/url/query_string';
+import { getUrlWithQs } from 'shared/lib/url/with_qs';
 
 import { breedModel } from './breed/model';
 import { shadeModel } from './shade/model';
@@ -15,34 +16,35 @@ const formSubmitted = createEvent();
 const formActivated = createEvent();
 
 const $isDisabledForm = createStore(true).on(formActivated, () => false);
-const $selectedSettings = combine({
-  type: typeModel.$value,
-  tail: tailModel.$value,
-  shade: shadeModel.$value,
-  breed: breedModel.$value,
+const $settingsQueryString = combine({
+  [SearchSettingsFields.Type]: typeModel.$value,
+  [SearchSettingsFields.Tail]: tailModel.$value,
+  [SearchSettingsFields.Shade]: shadeModel.$value,
+  [SearchSettingsFields.Breed]: breedModel.$value,
 }).map(settings => {
   const selectedSettings = Object.fromEntries(
     Object.entries(settings).filter(([key, value]) => isSettingExist(value)),
   );
 
-  return selectedSettings;
+  return getQueryString(selectedSettings);
 });
 const $requiredSettings = combine({
   type: typeModel.$value,
 });
 
-const startSearch = attach({
-  source: $selectedSettings,
-  effect: selectedSettings => api.search(getQueryString(selectedSettings)),
-});
-
-startSearch.doneData.watch(console.log);
-
-guard({
+sample({
+  source: $settingsQueryString,
   clock: formSubmitted,
-  source: $isDisabledForm,
-  filter: isDisabled => !isDisabled,
-  target: startSearch,
+  fn: settingsQueryString => {
+    window.history.pushState(
+      '',
+      '',
+      getUrlWithQs({
+        url: PagesPaths.Results,
+        queryString: settingsQueryString,
+      }),
+    );
+  },
 });
 
 guard({
@@ -55,4 +57,5 @@ guard({
 export const model = {
   formSubmitted,
   $isDisabledForm,
+  $settingsQueryString,
 };

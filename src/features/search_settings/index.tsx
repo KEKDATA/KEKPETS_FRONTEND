@@ -2,9 +2,7 @@ import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import { useStore } from 'effector-react';
-import React from 'react';
-import { UrlPaths } from 'shared/enums/url_paths';
-import { useLocation } from 'wouter';
+import React, { useMemo } from 'react';
 
 import { Title } from 'shared/ui/title';
 
@@ -15,17 +13,32 @@ import { Tail } from './tail';
 import { Type } from './type';
 
 export const SearchSettings = () => {
-  const [_, setLocation] = useLocation();
-
   const isDisabledForm = useStore(model.$isDisabledForm);
 
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
 
-    setLocation(UrlPaths.Results);
-
     model.formSubmitted();
   };
+
+  const Settings = useMemo(() => {
+    return (
+      <>
+        <Grid item xs={6}>
+          <Type />
+        </Grid>
+        <Grid item xs={6}>
+          <Shade />
+        </Grid>
+        <Grid item xs={6}>
+          <Tail />
+        </Grid>
+        <Grid item xs={6}>
+          <Breed />
+        </Grid>
+      </>
+    );
+  }, []);
 
   return (
     <>
@@ -39,18 +52,7 @@ export const SearchSettings = () => {
             direction="column"
             alignItems="center"
             justifyContent="center">
-            <Grid item xs={6}>
-              <Type />
-            </Grid>
-            <Grid item xs={6}>
-              <Shade />
-            </Grid>
-            <Grid item xs={6}>
-              <Tail />
-            </Grid>
-            <Grid item xs={6}>
-              <Breed />
-            </Grid>
+            {Settings}
             <Grid item xs={6}>
               <Button
                 type="submit"
