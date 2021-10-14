@@ -1,0 +1,19 @@
+{
+  "trailingComma": "all",
+  "printWidth": 80,
+  "singleQuote": true,
+  "endOfLine": "lf",
+  "arrowParens": "always",
+  "semi": true,
+  "importOrder": [
+    "^api/(.*)$",
+    "^contracts/(.*)$",
+    "^features/(.*)$",
+    "^lib/(.*)$",
+    "^models/(.*)$",
+    "^pages/(.*)$",
+    "^typings/(.*)$",
+    "^ui/(.*)$",
+    "^assets/(.*)$","^[./]"],
+  "importOrderSeparation": true
+}

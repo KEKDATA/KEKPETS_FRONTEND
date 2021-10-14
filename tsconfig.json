@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "allowJs": false,
+    "skipLibCheck": false,
+    "esModuleInterop": false,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react",
+    "baseUrl": "./",
+    "paths": {
+      "api/*": ["./src/api/*"],
+      "contracts/*": ["./src/contracts/*"],
+      "features/*": ["./src/features/*"],
+      "lib/*": ["./src/lib/*"],
+      "models/*": ["./src/models/*"],
+      "pages/*": ["./src/pages/*"],
+      "typings/*": ["./src/typings/*"],
+      "ui/*": ["./src/ui/*"],
+      "assets/*": ["./src/assets/*"]
+    }
+  },
+  "include": ["./src"],
+  "exclude": [
+    "dist",
+    "node_modules",
+    "build",
+    "scripts"
+  ],
+  "filesGlob": ["!node_modules/**"]
+}
