@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Results } from 'features/results';
+
 export const ResultsPage = () => {
-  return <div> lol kek</div>;
+  return <Results />;
 };

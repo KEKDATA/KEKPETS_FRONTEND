@@ -3,10 +3,6 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import { useStore } from 'effector-react';
 import React, { useMemo } from 'react';
-import { PagesPaths } from 'shared/enums/pages_paths';
-import { useLocation } from 'wouter';
-
-import { getUrlWithQs } from 'shared/lib/url/with_qs';
 
 import { Title } from 'shared/ui/title';
 
@@ -17,20 +13,10 @@ import { Tail } from './tail';
 import { Type } from './type';
 
 export const SearchSettings = () => {
-  const [_, setLocation] = useLocation();
-
   const isDisabledForm = useStore(model.$isDisabledForm);
-  const settingsQueryString = useStore(model.$settingsQueryString);
 
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
-
-    setLocation(
-      getUrlWithQs({
-        url: PagesPaths.Results,
-        queryString: settingsQueryString,
-      }),
-    );
 
     model.formSubmitted();
   };

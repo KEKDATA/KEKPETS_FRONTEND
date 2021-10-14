@@ -1,8 +1,9 @@
-import { attach, combine, createEvent, createStore, guard } from 'effector';
-
-import { api } from 'api/index';
+import { combine, createEvent, createStore, guard, sample } from 'effector';
+import { PagesPaths } from 'shared/enums/pages_paths';
+import { SearchSettingsFields } from 'shared/enums/search_settings_fields';
 
 import { getQueryString } from 'shared/lib/url/query_string';
+import { getUrlWithQs } from 'shared/lib/url/with_qs';
 
 import { breedModel } from './breed/model';
 import { shadeModel } from './shade/model';
@@ -16,10 +17,10 @@ const formActivated = createEvent();
 
 const $isDisabledForm = createStore(true).on(formActivated, () => false);
 const $settingsQueryString = combine({
-  type: typeModel.$value,
-  tail: tailModel.$value,
-  shade: shadeModel.$value,
-  breed: breedModel.$value,
+  [SearchSettingsFields.Type]: typeModel.$value,
+  [SearchSettingsFields.Tail]: tailModel.$value,
+  [SearchSettingsFields.Shade]: shadeModel.$value,
+  [SearchSettingsFields.Breed]: breedModel.$value,
 }).map(settings => {
   const selectedSettings = Object.fromEntries(
     Object.entries(settings).filter(([key, value]) => isSettingExist(value)),
@@ -31,18 +32,19 @@ const $requiredSettings = combine({
   type: typeModel.$value,
 });
 
-const startSearch = attach({
+sample({
   source: $settingsQueryString,
-  effect: settingsQs => api.search(settingsQs),
-});
-
-startSearch.doneData.watch(console.log);
-
-guard({
   clock: formSubmitted,
-  source: $isDisabledForm,
-  filter: isDisabled => !isDisabled,
-  target: startSearch,
+  fn: settingsQueryString => {
+    window.history.pushState(
+      '',
+      '',
+      getUrlWithQs({
+        url: PagesPaths.Results,
+        queryString: settingsQueryString,
+      }),
+    );
+  },
 });
 
 guard({
