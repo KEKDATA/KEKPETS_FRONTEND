@@ -2,7 +2,7 @@ import { attach, combine, createEvent, createStore, guard } from 'effector';
 
 import { api } from 'api/index';
 
-import { getQueryString } from 'shared/lib/query_string';
+import { getQueryString } from 'shared/lib/url/query_string';
 
 import { breedModel } from './breed/model';
 import { shadeModel } from './shade/model';
@@ -15,7 +15,7 @@ const formSubmitted = createEvent();
 const formActivated = createEvent();
 
 const $isDisabledForm = createStore(true).on(formActivated, () => false);
-const $selectedSettings = combine({
+const $settingsQueryString = combine({
   type: typeModel.$value,
   tail: tailModel.$value,
   shade: shadeModel.$value,
@@ -25,15 +25,15 @@ const $selectedSettings = combine({
     Object.entries(settings).filter(([key, value]) => isSettingExist(value)),
   );
 
-  return selectedSettings;
+  return getQueryString(selectedSettings);
 });
 const $requiredSettings = combine({
   type: typeModel.$value,
 });
 
 const startSearch = attach({
-  source: $selectedSettings,
-  effect: selectedSettings => api.search(getQueryString(selectedSettings)),
+  source: $settingsQueryString,
+  effect: settingsQs => api.search(settingsQs),
 });
 
 startSearch.doneData.watch(console.log);
@@ -55,4 +55,5 @@ guard({
 export const model = {
   formSubmitted,
   $isDisabledForm,
+  $settingsQueryString,
 };

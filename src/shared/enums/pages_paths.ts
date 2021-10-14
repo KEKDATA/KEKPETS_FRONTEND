@@ -1,4 +1,4 @@
-export enum UrlPaths {
+export enum PagesPaths {
   SearchSettings = '/',
   Results = '/results',
 }
