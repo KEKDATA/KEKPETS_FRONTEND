@@ -4,6 +4,7 @@ import path from 'path';
 import { defineConfig } from 'vite';
 import viteCompression from 'vite-plugin-compression';
 import { VitePWA } from 'vite-plugin-pwa';
+import tsconfigPaths from 'vite-tsconfig-paths';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -19,6 +20,7 @@ export default defineConfig({
     }),
     viteCompression(),
     VitePWA(),
+    tsconfigPaths(),
   ],
   resolve: {
     alias: {

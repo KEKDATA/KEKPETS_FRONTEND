@@ -1,6 +1,19 @@
+import { StyledEngineProvider } from '@mui/material/styles';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { Application } from './application';
+import { makeFakeServer } from 'api/fake';
 
-ReactDOM.hydrate(<Application />, document.querySelector('#root'));
+import { Application } from './application';
+import './styles.pcss';
+
+if (import.meta.env.DEV) {
+  makeFakeServer();
+}
+
+ReactDOM.hydrate(
+  <StyledEngineProvider injectFirst>
+    <Application />
+  </StyledEngineProvider>,
+  document.querySelector('#root'),
+);
