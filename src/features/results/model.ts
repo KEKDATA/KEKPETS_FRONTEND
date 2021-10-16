@@ -17,13 +17,13 @@ import { requiredSettingsIncluded } from './lib/required_settings_included';
 interface SearchSettingsFormUrl {
   [SearchSettingsFieldsKeys.Type]?: string;
   [SearchSettingsFieldsKeys.Breed]?: string;
-  [SearchSettingsFieldsKeys.Shade]?: string;
+  [SearchSettingsFieldsKeys.Color]?: string;
   [SearchSettingsFieldsKeys.Tail]?: string;
 }
 
 const ResultsGate = createGate();
 
-const getSearchResultsFx = createEffect(api.search);
+const getSearchResultsFx = createEffect(api.videcamFrame);
 
 const fieldsFromSearchParsed = sample({
   clock: ResultsGate.open,

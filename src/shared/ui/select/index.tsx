@@ -5,6 +5,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import MuiSelect, { SelectChangeEvent } from '@mui/material/Select';
 import React from 'react';
+
 import { SelectValues } from 'shared/typings/select';
 
 interface Props {
@@ -29,9 +30,9 @@ export const Select = ({
   isRequired,
 }: Props) => {
   return (
-    <Box sx={{ minWidth: 250 }}>
+    <Box sx={{ minWidth: 150 }}>
       <FormControl
-        sx={{ m: 1, minWidth: 250 }}
+        sx={{ m: 1, minWidth: 150 }}
         error={isError}
         required={isRequired}>
         <InputLabel id={label}>{label}</InputLabel>
