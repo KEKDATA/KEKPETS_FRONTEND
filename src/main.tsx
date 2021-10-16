@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom';
 import { makeFakeServer } from 'api/fake';
 
 import { Application } from './application';
-import './styles.pcss';
+import './styles.css';
 
 if (import.meta.env.DEV) {
   makeFakeServer();

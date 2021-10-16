@@ -1,3 +1,5 @@
 import React from 'react';
 
-export const Characteristics = () => {};
+export const Characteristics = () => {
+  return null;
+};

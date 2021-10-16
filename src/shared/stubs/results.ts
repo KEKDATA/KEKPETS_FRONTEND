@@ -5,9 +5,6 @@ export const getResultsStub = () =>
     .fill(75)
     .map(() => ({
       id: faker.datatype.uuid(),
-      photoUrl: faker.image.imageUrl(),
-      mapParams: {
-        lat: faker.address.latitude(),
-        lon: faker.address.longitude(),
-      },
+      image: faker.image.imageUrl(),
+      bbox: '0.1,0.2,0.3,0.4',
     }));

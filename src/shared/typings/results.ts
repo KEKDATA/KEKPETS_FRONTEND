@@ -1,10 +1,10 @@
 export interface Result {
   id: string;
-  photoUrl: string;
-  mapParams: {
-    lat: string;
-    lon: string;
-  };
+  image: string;
+  /**
+   * string -> left,top,width,height
+   */
+  bbox: string;
 }
 
 export type Results = Array<Result> | null;

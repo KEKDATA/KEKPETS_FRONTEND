@@ -1,3 +1,4 @@
+import styled from '@emotion/styled';
 import PetsIcon from '@mui/icons-material/Pets';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
@@ -5,12 +6,21 @@ import Grid from '@mui/material/Grid';
 import { useStore } from 'effector-react';
 import React, { useMemo } from 'react';
 
-import { Title } from 'shared/ui/title';
+import { AnimatedDog } from 'shared/ui/animated_dog';
 
 import { Color } from './color';
 import { model } from './model';
 import { Tail } from './tail';
 import { Type } from './type';
+
+const SettingsContainer = styled(Grid)`
+  height: 100vh;
+`;
+
+const DogContainer = styled.div`
+  position: absolute;
+  top: 100px;
+`;
 
 export const SearchSettings = () => {
   const isDisabledForm = useStore(model.$isDisabledForm);
@@ -38,8 +48,10 @@ export const SearchSettings = () => {
   }, []);
 
   return (
-    <>
-      <Title text="Заполните основную информацию" />
+    <SettingsContainer container justifyContent="center" alignContent="center">
+      <DogContainer>
+        <AnimatedDog />
+      </DogContainer>
       <Container maxWidth="lg">
         <form onSubmit={handleSubmit}>
           <Grid
@@ -49,7 +61,7 @@ export const SearchSettings = () => {
             alignItems="center"
             justifyContent="center">
             {Settings}
-            <Grid item>
+            <Grid item marginLeft={1}>
               <Button
                 type="submit"
                 variant="contained"
@@ -62,6 +74,6 @@ export const SearchSettings = () => {
           </Grid>
         </form>
       </Container>
-    </>
+    </SettingsContainer>
   );
 };
