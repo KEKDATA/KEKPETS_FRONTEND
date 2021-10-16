@@ -1,6 +1,7 @@
 import { babel } from '@rollup/plugin-babel';
 import reactRefresh from '@vitejs/plugin-react-refresh';
 import path from 'path';
+import { visualizer } from 'rollup-plugin-visualizer';
 import { defineConfig } from 'vite';
 import viteCompression from 'vite-plugin-compression';
 import { VitePWA } from 'vite-plugin-pwa';
