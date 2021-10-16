@@ -1,5 +1,5 @@
-import { getSearchStubs } from './search';
+import { getResultsStub } from './results';
 
 export const getStubs = {
-  search: getSearchStubs,
+  results: getResultsStub,
 };

@@ -16,6 +16,9 @@
     "^typings/(.*)$",
     "^shared/lib(.*)$",
     "^shared/ui(.*)$",
+    "^shared/enums(.*)$",
+    "^shared/stubs(.*)$",
+    "^shared/typings(.*)$",
     "^assets/(.*)$","^[./]"],
   "importOrderSeparation": true
 }

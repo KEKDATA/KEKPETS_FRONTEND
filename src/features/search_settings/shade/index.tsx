@@ -4,6 +4,8 @@ import React from 'react';
 
 import { Select } from 'shared/ui/select';
 
+import { SearchSettingsFieldsTranslates } from 'shared/enums/search_settings_fields/translates';
+
 import { shadeModel } from './model';
 import { options } from './options';
 
@@ -17,7 +19,7 @@ export const Shade = () => {
   return (
     <Select
       value={value}
-      label="Оттенок"
+      label={SearchSettingsFieldsTranslates.Shade}
       handleChange={handleChange}
       items={options}
     />
