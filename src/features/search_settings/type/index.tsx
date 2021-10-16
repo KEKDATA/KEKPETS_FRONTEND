@@ -4,6 +4,8 @@ import React from 'react';
 
 import { Select } from 'shared/ui/select';
 
+import { SearchSettingsFieldsTranslates } from 'shared/enums/search_settings_fields/translates';
+
 import { typeModel } from './model';
 import { options } from './options';
 
@@ -17,7 +19,7 @@ export const Type = () => {
   return (
     <Select
       value={value}
-      label="Тип"
+      label={SearchSettingsFieldsTranslates.Type}
       handleChange={handleChange}
       items={options}
       isRequired

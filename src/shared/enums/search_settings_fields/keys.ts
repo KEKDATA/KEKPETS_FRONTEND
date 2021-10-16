@@ -1,4 +1,4 @@
-export enum SearchSettingsFields {
+export enum SearchSettingsFieldsKeys {
   Type = 'type',
   Tail = 'tail',
   Shade = 'shade',

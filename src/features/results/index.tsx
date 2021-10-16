@@ -1,31 +1,36 @@
-import styled from '@emotion/styled';
-import Box from '@mui/material/Box';
-import CircularProgress from '@mui/material/CircularProgress';
 import { useGate, useStore } from 'effector-react';
 import React from 'react';
 
-import { resultsModel } from './model';
+import { Result } from 'features/results/result';
 
-const LoaderContainer = styled(Box)`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-`;
+import { Loader } from 'shared/ui/loader';
+
+import { resultsModel } from './model';
 
 export const Results = () => {
   const results = useStore(resultsModel.$results);
   const isLoading = useStore(resultsModel.$isResultsLoading);
+  const isSearchParamsExist = useStore(resultsModel.$isSearchParamsExist);
 
   useGate(resultsModel.ResultsGate);
 
-  if (isLoading) {
-    return (
-      <LoaderContainer>
-        <CircularProgress />
-      </LoaderContainer>
-    );
+  if (!isSearchParamsExist) {
+    return <div> Че за хуйню ты ввел </div>;
   }
 
-  return <h1> kek </h1>;
+  if (isLoading) {
+    return <Loader />;
+  }
+
+  if (!results) {
+    return <div> Ниче не нашли </div>;
+  }
+
+  return (
+    <div>
+      {results.map(result => (
+        <Result key={result.id} result={result} />
+      ))}
+    </div>
+  );
 };

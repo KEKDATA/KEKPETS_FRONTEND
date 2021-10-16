@@ -9,7 +9,7 @@ export function makeFakeServer() {
     routes() {
       this.urlPrefix = prefixUrl;
 
-      this.get(Paths.Search, getStubs.search);
+      this.get(Paths.Search, getStubs.results);
     },
   });
 }

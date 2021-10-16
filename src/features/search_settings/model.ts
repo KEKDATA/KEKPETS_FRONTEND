@@ -1,9 +1,10 @@
 import { combine, createEvent, createStore, guard, sample } from 'effector';
-import { PagesPaths } from 'shared/enums/pages_paths';
-import { SearchSettingsFields } from 'shared/enums/search_settings_fields';
 
 import { getQueryString } from 'shared/lib/url/query_string';
 import { getUrlWithQs } from 'shared/lib/url/with_qs';
+
+import { PagesPaths } from 'shared/enums/pages_paths';
+import { SearchSettingsFieldsKeys } from 'shared/enums/search_settings_fields/keys';
 
 import { breedModel } from './breed/model';
 import { shadeModel } from './shade/model';
@@ -17,10 +18,10 @@ const formActivated = createEvent();
 
 const $isDisabledForm = createStore(true).on(formActivated, () => false);
 const $settingsQueryString = combine({
-  [SearchSettingsFields.Type]: typeModel.$value,
-  [SearchSettingsFields.Tail]: tailModel.$value,
-  [SearchSettingsFields.Shade]: shadeModel.$value,
-  [SearchSettingsFields.Breed]: breedModel.$value,
+  [SearchSettingsFieldsKeys.Type]: typeModel.$value,
+  [SearchSettingsFieldsKeys.Tail]: tailModel.$value,
+  [SearchSettingsFieldsKeys.Shade]: shadeModel.$value,
+  [SearchSettingsFieldsKeys.Breed]: breedModel.$value,
 }).map(settings => {
   const selectedSettings = Object.fromEntries(
     Object.entries(settings).filter(([key, value]) => isSettingExist(value)),
