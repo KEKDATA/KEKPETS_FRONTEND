@@ -1,6 +1,6 @@
 export enum SearchSettingsFieldsTranslates {
   Type = 'Тип',
-  Tail = 'Порода',
-  Shade = 'Хвост',
-  Breed = 'Цвет',
+  Tail = 'Хвост',
+  Color = 'Цвет',
+  Breed = 'Порода',
 }

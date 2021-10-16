@@ -6,20 +6,20 @@ import { Select } from 'shared/ui/select';
 
 import { SearchSettingsFieldsTranslates } from 'shared/enums/search_settings_fields/translates';
 
-import { shadeModel } from './model';
+import { colorModel } from './model';
 import { options } from './options';
 
-export const Shade = () => {
-  const value = useStore(shadeModel.$value);
+export const Color = () => {
+  const value = useStore(colorModel.$value);
 
   const handleChange = (event: SelectChangeEvent) => {
-    shadeModel.valueChanged(event.target.value);
+    colorModel.valueChanged(event.target.value);
   };
 
   return (
     <Select
       value={value}
-      label={SearchSettingsFieldsTranslates.Shade}
+      label={SearchSettingsFieldsTranslates.Color}
       handleChange={handleChange}
       items={options}
     />

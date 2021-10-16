@@ -1,6 +1,6 @@
 export const options = [
   {
-    value: 'bright',
+    value: 'white',
     text: 'Светлый',
   },
   {

@@ -7,7 +7,7 @@ import { PagesPaths } from 'shared/enums/pages_paths';
 import { SearchSettingsFieldsKeys } from 'shared/enums/search_settings_fields/keys';
 
 import { breedModel } from './breed/model';
-import { shadeModel } from './shade/model';
+import { colorModel } from './color/model';
 import { tailModel } from './tail/model';
 import { typeModel } from './type/model';
 
@@ -20,7 +20,7 @@ const $isDisabledForm = createStore(true).on(formActivated, () => false);
 const $settingsQueryString = combine({
   [SearchSettingsFieldsKeys.Type]: typeModel.$value,
   [SearchSettingsFieldsKeys.Tail]: tailModel.$value,
-  [SearchSettingsFieldsKeys.Shade]: shadeModel.$value,
+  [SearchSettingsFieldsKeys.Color]: colorModel.$value,
   [SearchSettingsFieldsKeys.Breed]: breedModel.$value,
 }).map(settings => {
   const selectedSettings = Object.fromEntries(

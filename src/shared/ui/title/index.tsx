@@ -7,7 +7,7 @@ interface Props {
 
 export const Title = ({ text }: Props) => {
   return (
-    <Typography variant="h4" component="h1" gutterBottom align="center">
+    <Typography variant="h5" component="h1" gutterBottom align="center">
       {text}
     </Typography>
   );

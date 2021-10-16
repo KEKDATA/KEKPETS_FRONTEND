@@ -1,3 +1,4 @@
+import PetsIcon from '@mui/icons-material/Pets';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
@@ -6,9 +7,8 @@ import React, { useMemo } from 'react';
 
 import { Title } from 'shared/ui/title';
 
-import { Breed } from './breed';
+import { Color } from './color';
 import { model } from './model';
-import { Shade } from './shade';
 import { Tail } from './tail';
 import { Type } from './type';
 
@@ -24,17 +24,14 @@ export const SearchSettings = () => {
   const Settings = useMemo(() => {
     return (
       <>
-        <Grid item xs={6}>
+        <Grid item>
           <Type />
         </Grid>
-        <Grid item xs={6}>
-          <Shade />
+        <Grid item>
+          <Color />
         </Grid>
-        <Grid item xs={6}>
+        <Grid item>
           <Tail />
-        </Grid>
-        <Grid item xs={6}>
-          <Breed />
         </Grid>
       </>
     );
@@ -43,22 +40,22 @@ export const SearchSettings = () => {
   return (
     <>
       <Title text="Заполните основную информацию" />
-      <Container maxWidth="sm">
+      <Container maxWidth="lg">
         <form onSubmit={handleSubmit}>
           <Grid
             container
             rowSpacing={1}
-            columnSpacing={{ xs: 1, sm: 2, md: 3 }}
-            direction="column"
+            direction="row"
             alignItems="center"
             justifyContent="center">
             {Settings}
-            <Grid item xs={6}>
+            <Grid item>
               <Button
                 type="submit"
                 variant="contained"
                 size="large"
-                disabled={isDisabledForm}>
+                disabled={isDisabledForm}
+                endIcon={<PetsIcon />}>
                 Поиск
               </Button>
             </Grid>

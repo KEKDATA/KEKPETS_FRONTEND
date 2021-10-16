@@ -1,4 +1,5 @@
 import { createServer } from 'miragejs';
+
 import { getStubs } from 'shared/stubs';
 
 import { prefixUrl } from './config';
@@ -9,7 +10,7 @@ export function makeFakeServer() {
     routes() {
       this.urlPrefix = prefixUrl;
 
-      this.get(Paths.Search, getStubs.results);
+      this.get(Paths.videcamframe, getStubs.results);
     },
   });
 }
