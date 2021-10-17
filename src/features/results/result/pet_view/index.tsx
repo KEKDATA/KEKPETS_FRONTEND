@@ -1,5 +1,7 @@
-import Skeleton from '@mui/material/Skeleton';
 import React from 'react';
+
+import Skeleton from '@mui/material/Skeleton';
+import { styled } from '@mui/material/styles';
 
 import { BBox } from 'shared/ui/bbox';
 import { BBoxContainer } from 'shared/ui/bbox_container';
@@ -12,13 +14,17 @@ interface Props {
   bbox: string;
 }
 
+const Container = styled('div')`
+  margin: 8px 0;
+`;
+
 export const PetView = ({ image, bbox }: Props) => {
   const { isImageLoaded, containerRef } = useImageLoadedStatus({
     image,
   });
 
   return (
-    <div ref={containerRef}>
+    <Container ref={containerRef}>
       {!isImageLoaded && (
         <Skeleton
           variant="rectangular"
@@ -33,6 +39,6 @@ export const PetView = ({ image, bbox }: Props) => {
           <BBox coordinates={bbox} />
         </BBoxContainer>
       )}
-    </div>
+    </Container>
   );
 };

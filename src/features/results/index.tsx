@@ -1,7 +1,8 @@
-import Grid from '@mui/material/Grid';
 import { useStore } from 'effector-react';
 import React from 'react';
 import { searchModel } from 'shared/models/search';
+
+import Grid from '@mui/material/Grid';
 
 import { ResultsLoader } from './loader';
 import { resultsModel } from './model';
@@ -32,7 +33,8 @@ export const Results = () => {
       flexDirection="column"
       justifyContent="center"
       alignContent="center"
-      flexWrap="wrap">
+      flexWrap="wrap"
+    >
       {results.map(result => (
         <Result key={result.id} result={result} />
       ))}

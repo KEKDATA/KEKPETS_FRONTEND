@@ -1,3 +1,5 @@
+import React, { useEffect } from 'react';
+
 import MuiBox from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Checkbox from '@mui/material/Checkbox';
@@ -6,14 +8,15 @@ import Grid from '@mui/material/Grid';
 import MuiModal from '@mui/material/Modal';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
-import React, { useState } from 'react';
 
 import { SearchSettingsFields } from '../types';
 import hiDogGif from './hi_dog.gif';
 
 interface Props {
   open: boolean;
+  showSubmitMessage: boolean;
   handleClose: () => void;
+  handleShowSubmitMessage: () => void;
   searchSettingsFields: SearchSettingsFields;
 }
 
@@ -38,16 +41,26 @@ const CheckboxWrapper = styled('div')`
   display: flex;
 `;
 
-export const Modal = ({ open, handleClose, searchSettingsFields }: Props) => {
-  const [showSubmitMessage, setStatusShowSubmitMessage] = useState(false);
-
+export const Modal = ({
+  open,
+  handleClose,
+  searchSettingsFields,
+  handleShowSubmitMessage,
+  showSubmitMessage,
+}: Props) => {
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
 
-    setStatusShowSubmitMessage(true);
-
-    setTimeout(handleClose, 5000);
+    handleShowSubmitMessage();
   };
+
+  useEffect(() => {
+    const timeoutId = setTimeout(handleClose, 6000);
+
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [showSubmitMessage]);
 
   return (
     <MuiModal

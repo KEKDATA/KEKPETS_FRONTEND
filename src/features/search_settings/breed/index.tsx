@@ -1,6 +1,7 @@
-import { SelectChangeEvent } from '@mui/material/Select';
 import { useStore } from 'effector-react';
 import React from 'react';
+
+import { SelectChangeEvent } from '@mui/material/Select';
 
 import { Select } from 'shared/ui/select';
 

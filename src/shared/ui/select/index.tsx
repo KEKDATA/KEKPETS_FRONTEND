@@ -1,10 +1,11 @@
+import React from 'react';
+
 import Box from '@mui/material/Box';
 import MuiFormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import MuiSelect, { SelectChangeEvent } from '@mui/material/Select';
 import { styled } from '@mui/material/styles';
-import React from 'react';
 
 import { SelectValues } from 'shared/typings/select';
 

@@ -1,6 +1,7 @@
+import React, { useMemo, VFC } from 'react';
+
 import { styled } from '@mui/material/styles';
 import { alpha } from '@mui/system/colorManipulator';
-import React, { useMemo, VFC } from 'react';
 
 const Shape = styled('div')(({ theme }) => ({
   position: 'absolute',

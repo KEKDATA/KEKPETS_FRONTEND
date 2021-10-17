@@ -1,7 +1,8 @@
+import React from 'react';
+
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
-import React from 'react';
 
 import sadParrotGif from './sad_parrot.gif';
 
@@ -11,7 +12,8 @@ export const NotFound = () => {
       container
       justifyContent="center"
       flexDirection="column"
-      alignItems="center">
+      alignItems="center"
+    >
       <Grid item>
         <img src={sadParrotGif} loading="lazy" alt="Грустный попугай" />
       </Grid>

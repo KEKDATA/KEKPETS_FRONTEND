@@ -1,5 +1,8 @@
-import Grid from '@mui/material/Grid';
 import React from 'react';
+
+import Grid from '@mui/material/Grid';
+
+import { DownloadImage } from 'features/results/result/download_image';
 
 import { Result as ResultType } from 'shared/typings/results';
 
@@ -14,7 +17,14 @@ export const Result = ({ result }: Props) => {
   return (
     <Grid item>
       <PetView image={result.image} bbox={result.bbox} />
-      <Characteristics />
+      <Grid container spacing={2}>
+        <Grid item>
+          <Characteristics />
+        </Grid>
+        <Grid item>
+          <DownloadImage image={result.image} />
+        </Grid>
+      </Grid>
     </Grid>
   );
 };

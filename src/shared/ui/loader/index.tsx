@@ -1,7 +1,8 @@
 import { keyframes } from '@emotion/react';
+import React from 'react';
+
 import Box from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
-import React from 'react';
 
 const Rotator = keyframes`
   0% {
