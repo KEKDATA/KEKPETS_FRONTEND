@@ -1,9 +1,9 @@
 # Created by .ignore support plugin (hsz.mobi)
 build
+dist
 build-tmp
 node_modules
 *.log
-*.lock
 *.rar
 *.zip
 .idea
@@ -17,4 +17,3 @@ Thumbs.db
 cache
 .now
 dist
-stats.html
