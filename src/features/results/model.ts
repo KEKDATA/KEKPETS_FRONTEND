@@ -9,7 +9,7 @@ const $isResultsLoading = createStore(true).on(
 );
 const $results = createStore<Results>(null).on(
   searchModel.getSearchResultsFx.doneData,
-  (_, results) => results,
+  (_, response) => response.results,
 );
 
 export const resultsModel = {
