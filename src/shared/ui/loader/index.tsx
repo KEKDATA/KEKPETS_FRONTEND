@@ -1,6 +1,6 @@
 import { keyframes } from '@emotion/react';
-import styled from '@emotion/styled';
 import Box from '@mui/material/Box';
+import { styled } from '@mui/material/styles';
 import React from 'react';
 
 const Rotator = keyframes`
@@ -32,21 +32,21 @@ const LoaderContainer = styled(Box)`
   width: 200px;
 `;
 
-const Svg = styled.svg`
+const Svg = styled('svg')`
   position: absolute;
   animation: ${Rotator} 1.4s linear infinite;
   left: -10px;
   z-index: -1;
 `;
 
-const LoaderDog = styled.svg`
+const LoaderDog = styled('svg')`
   left: 10px;
   bottom: 10px;
   width: 186px;
   height: auto;
 `;
 
-const Path = styled.circle`
+const Path = styled('circle')`
   stroke-dasharray: 622;
   stroke-dashoffset: 0;
   transform-origin: center;

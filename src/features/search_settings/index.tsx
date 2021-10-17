@@ -1,8 +1,8 @@
-import styled from '@emotion/styled';
 import PetsIcon from '@mui/icons-material/Pets';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
+import { styled } from '@mui/material/styles';
 import { useStore } from 'effector-react';
 import React, { useMemo } from 'react';
 import { searchModel } from 'shared/models/search';
@@ -23,7 +23,7 @@ const SettingsContainer = styled(Grid)`
   }
 `;
 
-const DogContainer = styled.div`
+const DogContainer = styled('div')`
   position: absolute;
   top: 100px;
 `;

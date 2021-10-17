@@ -2,7 +2,7 @@ import { getSearchParams } from 'shared/lib/url/search_params';
 
 import { SearchSettingsFieldsKeys } from 'shared/enums/search_settings_fields/keys';
 
-export const getSearchSettingsFromUrl = () => {
+export const getFieldsKeysFromUrl = () => {
   const searchSettings = Object.values(SearchSettingsFieldsKeys);
 
   const searchParams = getSearchParams(window.location.search);
