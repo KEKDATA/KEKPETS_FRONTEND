@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import { styled } from '@mui/material/styles';
 import { useStore } from 'effector-react';
 import React from 'react';
 import { searchModel } from 'shared/models/search';
@@ -9,7 +9,7 @@ import { Loader } from 'shared/ui/loader';
 
 import { resultsModel } from './model';
 
-const LoaderWrapper = styled.div`
+const LoaderWrapper = styled('div')`
   position: absolute;
   top: 50%;
   left: 50%;

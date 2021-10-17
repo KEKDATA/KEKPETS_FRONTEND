@@ -12,7 +12,7 @@ export const createSettingModel = ({ settingType }: Arguments) => {
   const $value = createStore('')
     .on(valueChanged, (_, changedValue) => changedValue)
     .on(
-      searchModel.$searchSettingsFromUrl.updates,
+      searchModel.$searchSettingsFieldsFromUrl.updates,
       (state, searchSettingsFromUrl) => {
         if (!searchSettingsFromUrl || !searchSettingsFromUrl[settingType]) {
           return state;
@@ -20,7 +20,7 @@ export const createSettingModel = ({ settingType }: Arguments) => {
 
         const optionValueFromUrl = searchSettingsFromUrl[settingType];
 
-        return optionValueFromUrl;
+        return optionValueFromUrl?.value ?? state;
       },
     );
 
