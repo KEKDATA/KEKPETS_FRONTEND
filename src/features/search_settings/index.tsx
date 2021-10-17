@@ -25,8 +25,8 @@ const SettingsContainer = styled(Grid)`
 `;
 
 const DogContainer = styled('div')`
-  position: absolute;
-  top: 100px;
+  position: relative;
+  margin: -100px 0 -50px 0;
 `;
 
 export const SearchSettings = () => {
@@ -60,8 +60,7 @@ export const SearchSettings = () => {
       container
       justifyContent="center"
       alignContent="center"
-      data-search-params-exist={isSearchParamsExist}
-    >
+      data-search-params-exist={isSearchParamsExist}>
       {!isSearchParamsExist && (
         <DogContainer>
           <AnimatedDog />
@@ -74,8 +73,7 @@ export const SearchSettings = () => {
             rowSpacing={1}
             direction="row"
             alignItems="center"
-            justifyContent="center"
-          >
+            justifyContent="center">
             {Settings}
             <Grid item marginLeft={1}>
               <Button
@@ -83,8 +81,7 @@ export const SearchSettings = () => {
                 variant="contained"
                 size="large"
                 disabled={isDisabledForm}
-                endIcon={<PetsIcon />}
-              >
+                endIcon={<PetsIcon />}>
                 Поиск
               </Button>
             </Grid>
