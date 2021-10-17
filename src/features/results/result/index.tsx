@@ -33,9 +33,6 @@ export const Result = ({ result }: Props) => {
         sx={{ cursor: 'zoom-in', display: 'inline-flex' }}
         onClick={showPreview}>
         <PetView image={result.image} bbox={result.bbox} width={500} />
-        <ImagePreview open={previewVisible} onClose={hidePreview}>
-          <PetView image={result.image} bbox={result.bbox} />
-        </ImagePreview>
       </Box>
       <Grid container spacing={2}>
         <Grid item>
@@ -45,6 +42,10 @@ export const Result = ({ result }: Props) => {
           <DownloadImage image={result.image} />
         </Grid>
       </Grid>
+
+      <ImagePreview open={previewVisible} onClose={hidePreview}>
+        <PetView image={result.image} bbox={result.bbox} />
+      </ImagePreview>
     </Grid>
   );
 };
