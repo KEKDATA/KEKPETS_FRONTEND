@@ -16,7 +16,7 @@ import { Type } from './type';
 
 const SettingsContainer = styled(Grid)`
   height: 100vh;
-  transition: height 0.1s ease-out;
+  transition: height 0.2s ease-out;
 
   &[data-search-params-exist='true'] {
     height: 150px;

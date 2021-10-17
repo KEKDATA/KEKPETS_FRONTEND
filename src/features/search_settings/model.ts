@@ -1,4 +1,4 @@
-import { combine, createEvent, createStore, guard, sample } from 'effector';
+import { combine, createEvent, createStore, sample } from 'effector';
 import { searchModel } from 'shared/models/search';
 
 import { getUrlWithQs } from 'shared/lib/url/with_qs';
@@ -14,18 +14,20 @@ import { tailModel } from './tail/model';
 import { typeModel } from './type/model';
 
 const formSubmitted = createEvent();
-const formActivated = createEvent();
 
-const $isDisabledForm = createStore(true).on(formActivated, () => false);
+const $isDisabledForm = combine({
+  type: typeModel.$value,
+}).map(
+  requiredSettings => !Object.values(requiredSettings).every(isSettingExist),
+);
+
 const $settingsQueryString = combine({
   [SearchSettingsFieldsKeys.Type]: typeModel.$value,
   [SearchSettingsFieldsKeys.Tail]: tailModel.$value,
   [SearchSettingsFieldsKeys.Color]: colorModel.$value,
   [SearchSettingsFieldsKeys.Breed]: breedModel.$value,
 }).map(getQueryBySelectedSettings);
-const $requiredSettings = combine({
-  type: typeModel.$value,
-});
+
 const $isSubmittedForm = createStore(false).on(formSubmitted, () => true);
 
 sample({
@@ -47,13 +49,6 @@ sample({
   source: $settingsQueryString,
   clock: formSubmitted,
   target: searchModel.getSearchResultsFx,
-});
-
-guard({
-  clock: $requiredSettings,
-  filter: requiredSettings =>
-    Object.values(requiredSettings).every(isSettingExist),
-  target: formActivated,
 });
 
 export const model = {
