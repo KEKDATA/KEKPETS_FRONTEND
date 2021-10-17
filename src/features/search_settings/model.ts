@@ -1,6 +1,7 @@
 import { combine, createEvent, createStore, sample } from 'effector';
 import { searchModel } from 'shared/models/search';
 
+import { pushSearchParams } from 'shared/lib/url/push_search_params';
 import { getUrlWithQs } from 'shared/lib/url/with_qs';
 
 import { PagesPaths } from 'shared/enums/pages_paths';
@@ -26,7 +27,7 @@ const $settingsQueryString = combine({
   [SearchSettingsFieldsKeys.Tail]: tailModel.$value,
   [SearchSettingsFieldsKeys.Color]: colorModel.$value,
   [SearchSettingsFieldsKeys.Breed]: breedModel.$value,
-}).map(getQueryBySelectedSettings);
+}).map(settings => getQueryBySelectedSettings({ ...settings, page: '1' }));
 
 const $isSubmittedForm = createStore(false).on(formSubmitted, () => true);
 
@@ -34,14 +35,10 @@ sample({
   source: $settingsQueryString,
   clock: formSubmitted,
   fn: settingsQueryString => {
-    window.history.pushState(
-      '',
-      '',
-      getUrlWithQs({
-        url: PagesPaths.Search,
-        queryString: settingsQueryString,
-      }),
-    );
+    pushSearchParams({
+      url: PagesPaths.Search,
+      queryString: settingsQueryString,
+    });
   },
 });
 

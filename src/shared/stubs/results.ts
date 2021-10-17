@@ -1,9 +1,9 @@
 import faker from 'faker';
 
 export const getResultsStub = () => ({
-  count: 60,
-  results: Array(75)
-    .fill(75)
+  count: 2,
+  results: Array(30)
+    .fill(30)
     .map(() => ({
       id: faker.datatype.uuid(),
       image: faker.image.imageUrl(),

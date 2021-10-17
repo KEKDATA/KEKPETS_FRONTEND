@@ -1,4 +1,10 @@
-import { createEffect, createEvent, createStore, sample } from 'effector';
+import {
+  createEffect,
+  createEvent,
+  createStore,
+  restore,
+  sample,
+} from 'effector';
 import { createGate } from 'effector-react';
 import { condition } from 'patronum';
 import { getSearchSettingsFields } from 'shared/models/search/lib/search_settings_fields';
@@ -20,6 +26,12 @@ const searchParamsNotFounded = createEvent();
 
 const getSearchResultsFx = createEffect(api.videcamFrame);
 
+const searchResultsReceived = getSearchResultsFx.doneData;
+
+const countReceived = searchResultsReceived.map(response => response.count);
+
+const resultsReceived = searchResultsReceived.map(response => response.results);
+
 const $searchSettingsFieldsFromUrl = createStore<null | SearchSettingsFormUrl>(
   null,
 ).on([SearchGate.open, getSearchResultsFx.pending], getSearchSettingsFields);
@@ -27,6 +39,10 @@ const $searchSettingsFieldsFromUrl = createStore<null | SearchSettingsFormUrl>(
 const $isSearchParamsExist = createStore(false)
   .on(searchParamsNotFounded, () => false)
   .on(getSearchResultsFx.pending, () => true);
+
+const $count = restore(countReceived, null);
+
+const $results = restore(resultsReceived, null);
 
 const fieldsFromSearchParsed = sample({
   clock: SearchGate.open,
@@ -56,5 +72,9 @@ export const searchModel = {
   SearchGate,
   $searchSettingsFieldsFromUrl,
   $isSearchParamsExist,
+  $count,
+  $results,
+  countReceived,
+  resultsReceived,
   getSearchResultsFx,
 };

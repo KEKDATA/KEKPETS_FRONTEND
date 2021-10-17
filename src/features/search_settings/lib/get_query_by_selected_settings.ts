@@ -7,6 +7,7 @@ interface Arguments {
   tail: string;
   color: string;
   breed: string;
+  page: string;
 }
 
 export const getQueryBySelectedSettings = (settings: Arguments) =>
