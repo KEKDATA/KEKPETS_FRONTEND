@@ -1,10 +1,11 @@
+import React from 'react';
+
 import Box from '@mui/material/Box';
 import MuiFormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import MuiSelect, { SelectChangeEvent } from '@mui/material/Select';
 import { styled } from '@mui/material/styles';
-import React from 'react';
 
 import { SelectValues } from 'shared/typings/select';
 
@@ -34,13 +35,15 @@ export const Select = ({
       <FormControl
         sx={{ m: 1, minWidth: 150 }}
         error={isError}
-        required={isRequired}>
+        required={isRequired}
+      >
         <InputLabel id={label}>{label}</InputLabel>
         <MuiSelect
           labelId={label}
           value={value}
           label={label}
-          onChange={handleChange}>
+          onChange={handleChange}
+        >
           {items.map(({ text, value }) => (
             <MenuItem key={value} value={value}>
               {text}

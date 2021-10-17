@@ -1,7 +1,8 @@
 import { keyframes } from '@emotion/react';
+import React from 'react';
+
 import Box from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
-import React from 'react';
 
 const Rotator = keyframes`
   0% {
@@ -62,7 +63,8 @@ export const Loader = () => {
         width="200"
         height="200"
         viewBox="0 0 206 206"
-        xmlns="http://www.w3.org/2000/svg">
+        xmlns="http://www.w3.org/2000/svg"
+      >
         <defs>
           <clipPath id="cut-off-bottom">
             <rect x="0" y="0" width="200" height="100" fill="#000" />
@@ -81,7 +83,8 @@ export const Loader = () => {
       <LoaderDog
         id="scottie-loader"
         xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 207.95 211.52">
+        viewBox="0 0 207.95 211.52"
+      >
         <defs>
           <radialGradient
             id="a"
@@ -89,7 +92,8 @@ export const Loader = () => {
             cy="111.94"
             r="146.5"
             gradientTransform="matrix(.68 0 0 .68 31.58 35.11)"
-            gradientUnits="userSpaceOnUse">
+            gradientUnits="userSpaceOnUse"
+          >
             <stop offset=".51" stopColor="#bedeea" />
             <stop offset=".68" stopColor="#bcdce7" />
             <stop offset=".79" stopColor="#b5d4df" />

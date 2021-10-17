@@ -8,6 +8,7 @@
   "jsxBracketSameLine": true,
   "arrowParens": "avoid",
   "importOrder": [
+    "^@mui/(.*)$",
     "^api/(.*)$",
     "^contracts/(.*)$",
     "^features/(.*)$",
@@ -19,6 +20,7 @@
     "^shared/enums(.*)$",
     "^shared/stubs(.*)$",
     "^shared/typings(.*)$",
-    "^assets/(.*)$","^[./]"],
+    "^assets/(.*)$","^[./]",
+    "^[./]"],
   "importOrderSeparation": true
 }
