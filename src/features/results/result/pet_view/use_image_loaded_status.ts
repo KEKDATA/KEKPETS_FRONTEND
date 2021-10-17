@@ -1,19 +1,13 @@
-import Skeleton from '@mui/material/Skeleton';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { loadImage } from 'shared/lib/image/load';
 import { checkIsInViewPort } from 'shared/lib/view_port/is_in_view_port';
 
-import { BBox } from 'shared/ui/bbox';
-import { BBoxContainer } from 'shared/ui/bbox_container';
-import { ImageView } from 'shared/ui/image_view';
-
 interface Props {
   image: string;
-  bbox: string;
 }
 
-export const PetView = ({ image, bbox }: Props) => {
+export const useImageLoadedStatus = ({ image }: Props) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   const [isImageLoaded, setImageLoadedStatus] = useState(false);
@@ -62,22 +56,5 @@ export const PetView = ({ image, bbox }: Props) => {
     };
   }, [image, isImageLoaded, loadImageInViewPort]);
 
-  return (
-    <div ref={containerRef}>
-      {!isImageLoaded && (
-        <Skeleton
-          variant="rectangular"
-          animation="wave"
-          width={500}
-          height={300}
-        />
-      )}
-      {isImageLoaded && (
-        <BBoxContainer>
-          <ImageView url={image} loading="lazy" width={500} />
-          <BBox coordinates={bbox} />
-        </BBoxContainer>
-      )}
-    </div>
-  );
+  return { isImageLoaded, containerRef };
 };
