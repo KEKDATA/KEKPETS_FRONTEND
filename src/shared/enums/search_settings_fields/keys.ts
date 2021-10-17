@@ -3,4 +3,5 @@ export enum SearchSettingsFieldsKeys {
   Tail = 'tail',
   Color = 'color',
   Breed = 'breed',
+  Page = 'page',
 }

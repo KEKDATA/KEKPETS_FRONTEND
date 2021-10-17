@@ -2,6 +2,7 @@ import { useGate } from 'effector-react';
 import React from 'react';
 import { searchModel } from 'shared/models/search';
 
+import { Pagination } from 'features/pagination';
 import { Results } from 'features/results';
 import { SearchSettings } from 'features/search_settings';
 
@@ -12,6 +13,7 @@ export const SearchPage = () => {
     <>
       <SearchSettings />
       <Results />
+      <Pagination />
     </>
   );
 };

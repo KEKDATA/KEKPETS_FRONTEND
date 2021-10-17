@@ -5,7 +5,7 @@ import { SearchSettingsFieldsKeys } from 'shared/enums/search_settings_fields/ke
 export const getFieldsKeysFromUrl = () => {
   const searchSettings = Object.values(SearchSettingsFieldsKeys);
 
-  const searchParams = getSearchParams(window.location.search);
+  const searchParams = getSearchParams();
 
   return searchSettings.reduce(
     (acc: { [key: string]: string }, searchSetting) => {

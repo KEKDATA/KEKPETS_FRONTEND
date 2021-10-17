@@ -1,1 +1,2 @@
-export const getSearchParams = (value: string) => new URLSearchParams(value);
+export const getSearchParams = () =>
+  new URLSearchParams(window.location.search);
