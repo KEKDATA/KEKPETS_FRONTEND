@@ -8,13 +8,12 @@ const Shape = styled('div')(({ theme }) => ({
   border: `2px solid ${theme.palette.common.white}`,
   borderRadius: theme.shape.borderRadius,
   boxShadow: theme.shadows[4],
-  cursor: 'pointer',
   outlineColor: 'transparent',
   transition: theme.transitions.create(['outline-color'], {
     duration: theme.transitions.duration.short,
   }),
 
-  '&:hover, &:focus': {
+  '&:hover, &:focus-visible': {
     outline: `9999px solid ${alpha(theme.palette.common.black, 0.7)}`,
   },
 }));
