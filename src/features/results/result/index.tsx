@@ -28,23 +28,26 @@ export const Result = ({ result }: Props) => {
   };
 
   return (
-    <Grid item>
-      <Box
-        sx={{ cursor: 'zoom-in', display: 'inline-flex' }}
-        onClick={showPreview}>
-        <PetView image={result.image} bbox={result.bbox} width={500} />
-        <ImagePreview open={previewVisible} onClose={hidePreview}>
-          <PetView image={result.image} bbox={result.bbox} />
-        </ImagePreview>
-      </Box>
-      <Grid container spacing={2}>
-        <Grid item>
-          <Characteristics />
-        </Grid>
-        <Grid item>
-          <DownloadImage image={result.image} />
+    <>
+      <Grid item>
+        <Box
+          sx={{ cursor: 'zoom-in', display: 'inline-flex' }}
+          onClick={showPreview}>
+          <PetView image={result.image} bbox={result.bbox} width={500} />
+        </Box>
+        <Grid container spacing={2}>
+          <Grid item>
+            <Characteristics />
+          </Grid>
+          <Grid item>
+            <DownloadImage image={result.image} />
+          </Grid>
         </Grid>
       </Grid>
-    </Grid>
+
+      <ImagePreview open={previewVisible} onClose={hidePreview}>
+        <PetView image={result.image} bbox={result.bbox} />
+      </ImagePreview>
+    </>
   );
 };
