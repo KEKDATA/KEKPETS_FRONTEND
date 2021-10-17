@@ -11,13 +11,8 @@ const $results = createStore<Results>(null).on(
   searchModel.getSearchResultsFx.doneData,
   (_, results) => results,
 );
-const $isSearchParamsExist = createStore(true).on(
-  searchModel.searchParamsNotFounded,
-  () => false,
-);
 
 export const resultsModel = {
   $isResultsLoading,
   $results,
-  $isSearchParamsExist,
 };
