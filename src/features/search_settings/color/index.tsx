@@ -1,13 +1,15 @@
-import { SelectChangeEvent } from '@mui/material/Select';
 import { useStore } from 'effector-react';
 import React from 'react';
+
+import { SelectChangeEvent } from '@mui/material/Select';
 
 import { Select } from 'shared/ui/select';
 
 import { SearchSettingsFieldsTranslates } from 'shared/enums/search_settings_fields/translates';
 
+import { searchSettingsOptions } from 'shared/stubs/search_settings_options';
+
 import { colorModel } from './model';
-import { options } from './options';
 
 export const Color = () => {
   const value = useStore(colorModel.$value);
@@ -21,7 +23,7 @@ export const Color = () => {
       value={value}
       label={SearchSettingsFieldsTranslates.Color}
       handleChange={handleChange}
-      items={options}
+      items={searchSettingsOptions.colors}
     />
   );
 };

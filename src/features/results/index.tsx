@@ -1,20 +1,13 @@
-import { styled } from '@mui/material/styles';
 import { useStore } from 'effector-react';
 import React from 'react';
 import { searchModel } from 'shared/models/search';
 
-import { Result } from 'features/results/result';
+import Grid from '@mui/material/Grid';
 
-import { Loader } from 'shared/ui/loader';
-
+import { ResultsLoader } from './loader';
 import { resultsModel } from './model';
-
-const LoaderWrapper = styled('div')`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-`;
+import { NotFound } from './not_found';
+import { Result } from './result';
 
 export const Results = () => {
   const results = useStore(resultsModel.$results);
@@ -26,22 +19,25 @@ export const Results = () => {
   }
 
   if (isLoading) {
-    return (
-      <LoaderWrapper>
-        <Loader />
-      </LoaderWrapper>
-    );
+    return <ResultsLoader />;
   }
 
   if (!results) {
-    return <div> Ниче не нашли </div>;
+    return <NotFound />;
   }
 
   return (
-    <div>
+    <Grid
+      rowSpacing={3}
+      container
+      flexDirection="column"
+      justifyContent="center"
+      alignContent="center"
+      flexWrap="wrap"
+    >
       {results.map(result => (
         <Result key={result.id} result={result} />
       ))}
-    </div>
+    </Grid>
   );
 };
