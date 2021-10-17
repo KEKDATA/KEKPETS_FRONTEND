@@ -1,11 +1,11 @@
-import { Box } from '@mui/material';
 import React, { useState } from 'react';
 
-import { ImagePreview } from 'shared/ui/image_preview';
-
+import { Box } from '@mui/material';
 import Grid from '@mui/material/Grid';
 
 import { DownloadImage } from 'features/results/result/download_image';
+
+import { ImagePreview } from 'shared/ui/image_preview';
 
 import { Result as ResultType } from 'shared/typings/results';
 
@@ -32,7 +32,7 @@ export const Result = ({ result }: Props) => {
       <Box
         sx={{ cursor: 'zoom-in', display: 'inline-flex' }}
         onClick={showPreview}>
-        <PetView image={result.image} bbox={result.bbox} />
+        <PetView image={result.image} bbox={result.bbox} width={500} />
         <ImagePreview open={previewVisible} onClose={hidePreview}>
           <PetView image={result.image} bbox={result.bbox} />
         </ImagePreview>
