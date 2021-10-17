@@ -59,7 +59,6 @@ condition({
 
 export const searchModel = {
   SearchGate,
-  searchParamsNotFounded,
   $searchSettingsFromUrl,
   $isSearchParamsExist,
   getSearchResultsFx,
