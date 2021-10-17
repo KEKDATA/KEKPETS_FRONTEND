@@ -12,7 +12,7 @@ interface Props {
 export const Result = ({ result }: Props) => {
   return (
     <div>
-      <PetView image={result.image} />
+      <PetView image={result.image} bbox={result.bbox} />
       <Characteristics />
     </div>
   );
