@@ -59,6 +59,10 @@ export const Result = ({ result }: Props) => {
           <DownloadImage image={result.image} />
         </Grid>
       </Grid>
+
+      <ImagePreview open={previewVisible} onClose={hidePreview}>
+        <PetView image={result.image} bbox={result.bbox} />
+      </ImagePreview>
     </Grid>
   );
 };
