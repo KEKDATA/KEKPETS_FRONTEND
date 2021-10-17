@@ -2,20 +2,15 @@ import { StyledEngineProvider } from '@mui/material/styles';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import makeFakeServer from './api/fake';
 import { Application } from './application';
 import './styles.css';
 
 if (import.meta.env.DEV) {
-  const generateMakeFakeServer = async () => {
-    const makeFakeServer = await import('api/fake');
-
-    makeFakeServer.default();
-  };
-
-  generateMakeFakeServer();
+  makeFakeServer();
 }
 
-ReactDOM.hydrate(
+ReactDOM.render(
   <StyledEngineProvider injectFirst>
     <Application />
   </StyledEngineProvider>,
