@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
-import { useGate, useStore } from 'effector-react';
+import { useStore } from 'effector-react';
 import React from 'react';
+import { searchModel } from 'shared/models/search';
 
 import { Result } from 'features/results/result';
 
@@ -18,12 +19,10 @@ const LoaderWrapper = styled.div`
 export const Results = () => {
   const results = useStore(resultsModel.$results);
   const isLoading = useStore(resultsModel.$isResultsLoading);
-  const isSearchParamsExist = useStore(resultsModel.$isSearchParamsExist);
-
-  useGate(resultsModel.ResultsGate);
+  const isSearchParamsExist = useStore(searchModel.$isSearchParamsExist);
 
   if (!isSearchParamsExist) {
-    return <div> Че за хуйню ты ввел </div>;
+    return null;
   }
 
   if (isLoading) {

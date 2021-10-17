@@ -6,16 +6,16 @@ import { Application } from './application';
 import './styles.css';
 
 if (import.meta.env.DEV) {
-  const generateMakeFakeServer = async () => {
+  const createDynamicImportMakeFakeServer = async () => {
     const makeFakeServer = await import('api/fake');
 
     makeFakeServer.default();
   };
 
-  generateMakeFakeServer();
+  createDynamicImportMakeFakeServer();
 }
 
-ReactDOM.hydrate(
+ReactDOM.render(
   <StyledEngineProvider injectFirst>
     <Application />
   </StyledEngineProvider>,

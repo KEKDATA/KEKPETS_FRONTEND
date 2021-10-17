@@ -5,6 +5,7 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import { useStore } from 'effector-react';
 import React, { useMemo } from 'react';
+import { searchModel } from 'shared/models/search';
 
 import { AnimatedDog } from 'shared/ui/animated_dog';
 
@@ -15,6 +16,11 @@ import { Type } from './type';
 
 const SettingsContainer = styled(Grid)`
   height: 100vh;
+  transition: height 0.1s ease-out;
+
+  &[data-search-params-exist='true'] {
+    height: 150px;
+  }
 `;
 
 const DogContainer = styled.div`
@@ -23,6 +29,7 @@ const DogContainer = styled.div`
 `;
 
 export const SearchSettings = () => {
+  const isSearchParamsExist = useStore(searchModel.$isSearchParamsExist);
   const isDisabledForm = useStore(model.$isDisabledForm);
 
   const handleSubmit = (e: React.SyntheticEvent) => {
@@ -48,10 +55,16 @@ export const SearchSettings = () => {
   }, []);
 
   return (
-    <SettingsContainer container justifyContent="center" alignContent="center">
-      <DogContainer>
-        <AnimatedDog />
-      </DogContainer>
+    <SettingsContainer
+      container
+      justifyContent="center"
+      alignContent="center"
+      data-search-params-exist={isSearchParamsExist}>
+      {!isSearchParamsExist && (
+        <DogContainer>
+          <AnimatedDog />
+        </DogContainer>
+      )}
       <Container maxWidth="lg">
         <form onSubmit={handleSubmit}>
           <Grid
