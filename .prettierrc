@@ -19,6 +19,7 @@
     "^shared/enums(.*)$",
     "^shared/stubs(.*)$",
     "^shared/typings(.*)$",
-    "^assets/(.*)$","^[./]"],
+    "^assets/(.*)$","^[./]",
+    "^[./]"],
   "importOrderSeparation": true
 }

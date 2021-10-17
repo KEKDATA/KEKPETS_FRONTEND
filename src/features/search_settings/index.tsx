@@ -59,7 +59,8 @@ export const SearchSettings = () => {
       container
       justifyContent="center"
       alignContent="center"
-      data-search-params-exist={isSearchParamsExist}>
+      data-search-params-exist={isSearchParamsExist}
+    >
       {!isSearchParamsExist && (
         <DogContainer>
           <AnimatedDog />
@@ -72,7 +73,8 @@ export const SearchSettings = () => {
             rowSpacing={1}
             direction="row"
             alignItems="center"
-            justifyContent="center">
+            justifyContent="center"
+          >
             {Settings}
             <Grid item marginLeft={1}>
               <Button
@@ -80,7 +82,8 @@ export const SearchSettings = () => {
                 variant="contained"
                 size="large"
                 disabled={isDisabledForm}
-                endIcon={<PetsIcon />}>
+                endIcon={<PetsIcon />}
+              >
                 Поиск
               </Button>
             </Grid>

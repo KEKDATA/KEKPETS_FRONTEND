@@ -6,8 +6,9 @@ import { Select } from 'shared/ui/select';
 
 import { SearchSettingsFieldsTranslates } from 'shared/enums/search_settings_fields/translates';
 
+import { searchSettingsOptions } from 'shared/stubs/search_settings_options';
+
 import { typeModel } from './model';
-import { options } from './options';
 
 export const Type = () => {
   const value = useStore(typeModel.$value);
@@ -21,7 +22,7 @@ export const Type = () => {
       value={value}
       label={SearchSettingsFieldsTranslates.Type}
       handleChange={handleChange}
-      items={options}
+      items={searchSettingsOptions.types}
       isRequired
     />
   );

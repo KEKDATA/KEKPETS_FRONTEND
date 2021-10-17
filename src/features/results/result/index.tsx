@@ -1,3 +1,4 @@
+import Grid from '@mui/material/Grid';
 import React from 'react';
 
 import { Result as ResultType } from 'shared/typings/results';
@@ -11,9 +12,9 @@ interface Props {
 
 export const Result = ({ result }: Props) => {
   return (
-    <div>
+    <Grid item>
       <PetView image={result.image} bbox={result.bbox} />
       <Characteristics />
-    </div>
+    </Grid>
   );
 };

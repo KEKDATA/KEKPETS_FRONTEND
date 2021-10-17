@@ -1,3 +1,4 @@
+import Grid from '@mui/material/Grid';
 import { styled } from '@mui/material/styles';
 import { useStore } from 'effector-react';
 import React from 'react';
@@ -38,10 +39,16 @@ export const Results = () => {
   }
 
   return (
-    <div>
+    <Grid
+      rowSpacing={3}
+      container
+      flexDirection="column"
+      justifyContent="center"
+      alignContent="center"
+      flexWrap="wrap">
       {results.map(result => (
         <Result key={result.id} result={result} />
       ))}
-    </div>
+    </Grid>
   );
 };

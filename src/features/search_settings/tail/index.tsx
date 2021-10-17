@@ -6,8 +6,9 @@ import { Select } from 'shared/ui/select';
 
 import { SearchSettingsFieldsTranslates } from 'shared/enums/search_settings_fields/translates';
 
+import { searchSettingsOptions } from 'shared/stubs/search_settings_options';
+
 import { tailModel } from './model';
-import { options } from './options';
 
 export const Tail = () => {
   const value = useStore(tailModel.$value);
@@ -21,7 +22,7 @@ export const Tail = () => {
       value={value}
       label={SearchSettingsFieldsTranslates.Tail}
       handleChange={handleChange}
-      items={options}
+      items={searchSettingsOptions.tails}
     />
   );
 };

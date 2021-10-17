@@ -24,7 +24,7 @@ const $searchSettingsFieldsFromUrl = createStore<null | SearchSettingsFormUrl>(
   null,
 ).on([SearchGate.open, getSearchResultsFx.pending], getSearchSettingsFields);
 
-const $isSearchParamsExist = createStore(true)
+const $isSearchParamsExist = createStore(false)
   .on(searchParamsNotFounded, () => false)
   .on(getSearchResultsFx.pending, () => true);
 

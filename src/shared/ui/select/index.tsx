@@ -34,13 +34,15 @@ export const Select = ({
       <FormControl
         sx={{ m: 1, minWidth: 150 }}
         error={isError}
-        required={isRequired}>
+        required={isRequired}
+      >
         <InputLabel id={label}>{label}</InputLabel>
         <MuiSelect
           labelId={label}
           value={value}
           label={label}
-          onChange={handleChange}>
+          onChange={handleChange}
+        >
           {items.map(({ text, value }) => (
             <MenuItem key={value} value={value}>
               {text}
