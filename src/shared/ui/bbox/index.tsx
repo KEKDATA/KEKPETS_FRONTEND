@@ -18,14 +18,14 @@ const Shape = styled('div')(({ theme }) => ({
   },
 }));
 
-export type BBoxProps = {
+export interface BBoxProps {
   coordinates: string;
-};
+}
 
 export const BBox: VFC<BBoxProps> = props => {
   const { coordinates } = props;
 
-  const [top, left, width, height] = useMemo(() => {
+  const [left, top, width, height] = useMemo(() => {
     return coordinates
       .split(',')
       .map(c => (Number(c) * 100).toFixed(2).concat('%'));
