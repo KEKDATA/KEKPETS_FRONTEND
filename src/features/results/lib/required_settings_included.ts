@@ -21,13 +21,5 @@ export const requiredSettingsIncluded = ({
     }
   }
 
-  requiredSettings.forEach(requiredSetting => {
-    const isRequiredSettingFounded = Boolean(searchSettings[requiredSetting]);
-
-    if (!isRequiredSettingFounded) {
-      isIncluded = false;
-    }
-  });
-
   return isIncluded;
 };
