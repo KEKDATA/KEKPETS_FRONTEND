@@ -26,7 +26,7 @@ const SettingsContainer = styled(Grid)`
 
 const DogContainer = styled('div')`
   position: relative;
-  margin: -100px 0 -50px 0;
+  margin: -160px 0 -60px 0;
 `;
 
 export const SearchSettings = () => {
@@ -58,6 +58,8 @@ export const SearchSettings = () => {
   return (
     <SettingsContainer
       container
+      flexDirection="column"
+      alignItems="center"
       justifyContent="center"
       alignContent="center"
       data-search-params-exist={isSearchParamsExist}>
