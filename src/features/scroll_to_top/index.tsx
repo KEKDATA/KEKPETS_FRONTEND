@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
-import MuiButton from '@mui/material/Button';
 import Fab from '@mui/material/Fab';
 import { styled } from '@mui/material/styles';
 

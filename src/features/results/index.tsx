@@ -47,8 +47,7 @@ export const Results = () => {
         flexDirection="column"
         justifyContent="center"
         alignContent="center"
-        flexWrap="wrap"
-      >
+        flexWrap="wrap">
         {results.map(result => (
           <Result key={result.id} result={result} />
         ))}

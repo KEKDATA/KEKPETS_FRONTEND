@@ -12,8 +12,23 @@ node_modules
 org.eclipse*
 .settings
 .DS_Store
-report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
-Thumbs.db
-cache
-.now
-dist
+.env\*
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log\*
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# gatsby
+.cache/
+public/
+

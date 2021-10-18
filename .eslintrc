@@ -34,7 +34,9 @@
   "rules": {
     "@typescript-eslint/no-unnecessary-condition": 0,
     "@typescript-eslint/ban-ts-comment": "warn",
-    "import/no-anonymous-default-export": "warn"
+    "import/no-anonymous-default-export": "warn",
+    "unicorn/prefer-add-event-listener": "warn",
+    "react/jsx-props-no-spreading": "warn"
   },
   "settings": {
     "import/resolver": {

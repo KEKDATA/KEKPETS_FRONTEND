@@ -12,8 +12,7 @@ export const NotFound = () => {
       container
       justifyContent="center"
       flexDirection="column"
-      alignItems="center"
-    >
+      alignItems="center">
       <Grid item>
         <img src={sadParrotGif} loading="lazy" alt="Грустный попугай" />
       </Grid>
