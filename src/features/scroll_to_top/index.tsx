@@ -4,6 +4,7 @@ import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import Fab from '@mui/material/Fab';
 import { styled } from '@mui/material/styles';
 
+import { isBrowser } from 'shared/lib/browser/is_browser';
 import { scrollToTop } from 'shared/lib/scroll/to_top';
 
 interface Props {
@@ -21,6 +22,10 @@ export const ScrollToTop = ({ scrollPositionThreshold }: Props) => {
 
   useEffect(() => {
     const onScroll = () => {
+      if (!isBrowser) {
+        return null;
+      }
+
       setVisibleStatus(scrollPositionThreshold < window.scrollY);
     };
 

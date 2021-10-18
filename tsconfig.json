@@ -15,7 +15,7 @@
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
-      "api/*": ["./src/api/*"],
+      "requests/*": ["./src/requests/*"],
       "contracts/*": ["./src/contracts/*"],
       "features/*": ["./src/features/*"],
       "shared/*": ["./src/shared/*"],

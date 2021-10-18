@@ -1,3 +1,4 @@
+import { isBrowser } from 'shared/lib/browser/is_browser';
 import { getUrlWithQs } from 'shared/lib/url/with_qs';
 
 interface Arguments {
@@ -5,7 +6,11 @@ interface Arguments {
   queryString: string;
 }
 
-export const pushSearchParams = ({ url, queryString }: Arguments) =>
+export const pushSearchParams = ({ url, queryString }: Arguments) => {
+  if (!isBrowser) {
+    return null;
+  }
+
   window.history.pushState(
     '',
     '',
@@ -14,3 +19,4 @@ export const pushSearchParams = ({ url, queryString }: Arguments) =>
       queryString,
     }),
   );
+};

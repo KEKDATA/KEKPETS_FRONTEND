@@ -1,12 +1,11 @@
 import { PageProps } from 'gatsby';
 import React from 'react';
 
-import makeFakeServer from 'api/fake';
-
 import { ScrollToTop } from 'features/scroll_to_top';
 
 import { SearchPage } from 'pages/search';
 
+import makeFakeServer from '../requests/fake';
 import '../styles.css';
 
 makeFakeServer();

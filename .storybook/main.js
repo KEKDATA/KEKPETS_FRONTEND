@@ -9,7 +9,7 @@ module.exports = {
   webpackFinal: async (config, { configType }) => {
     config.resolve.alias = {
       ...config.resolve.alias,
-      api: path.resolve(__dirname, '../src/api'),
+      requests: path.resolve(__dirname, '../src/requests'),
       features: path.resolve(__dirname, '../src/features'),
       shared: path.resolve(__dirname, '../src/shared'),
       models: path.resolve(__dirname, '../src/models'),

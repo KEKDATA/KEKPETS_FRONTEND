@@ -9,12 +9,11 @@ import { createGate } from 'effector-react';
 import { condition } from 'patronum';
 import { getSearchSettingsFields } from 'shared/models/search/lib/search_settings_fields';
 
-import { api } from 'api/index';
-
 import { getQueryString } from 'shared/lib/url/query_string';
 
 import { SearchSettingsFieldsKeys } from 'shared/enums/search_settings_fields/keys';
 
+import { api } from '../../../requests/index';
 import { getFieldsKeysFromUrl } from './lib/fields_keys_from_url';
 import { isSearchParamsExist } from './lib/is_search_params_exist';
 import { requiredSettingsIncluded } from './lib/required_settings_included';
