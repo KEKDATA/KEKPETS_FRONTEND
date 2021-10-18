@@ -1,9 +1,7 @@
 import React from 'react';
 
-import Skeleton from '@mui/material/Skeleton';
+import MuiSkeleton from '@mui/material/Skeleton';
 import { styled } from '@mui/material/styles';
-
-import { useIsMobile } from 'shared/lib/screen_type/is_mobile';
 
 import { BBox } from 'shared/ui/bbox';
 import { BBoxContainer } from 'shared/ui/bbox_container';
@@ -21,19 +19,20 @@ const Container = styled('div')`
   width: 100%;
 `;
 
-export const PetView = ({ image, bbox, width, isImageLoaded }: Props) => {
-  const isMobile = useIsMobile();
+const Skeleton = styled(MuiSkeleton)(({ theme }) => ({
+  [theme.breakpoints.down('sm')]: {
+    height: 200,
+  },
+  [theme.breakpoints.up('sm')]: {
+    width: 500,
+    height: 300,
+  },
+}));
 
+export const PetView = ({ image, bbox, width, isImageLoaded }: Props) => {
   return (
     <Container>
-      {!isImageLoaded && (
-        <Skeleton
-          variant="rectangular"
-          animation="wave"
-          width={isMobile ? undefined : 500}
-          height={isMobile ? 200 : 300}
-        />
-      )}
+      {!isImageLoaded && <Skeleton variant="rectangular" animation="wave" />}
       {isImageLoaded && (
         <BBoxContainer>
           <ImageView url={image} loading="lazy" width={width} />

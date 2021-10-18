@@ -14,7 +14,6 @@ interface Props {
   handleChange: (event: SelectChangeEvent) => void;
   items: SelectValues;
   value: string;
-  isNative?: boolean;
   isError?: boolean;
   isRequired?: boolean;
 }
