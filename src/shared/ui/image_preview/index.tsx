@@ -1,3 +1,6 @@
+import React, { FC, VFC } from 'react';
+import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch';
+
 import { Close } from '@mui/icons-material';
 import {
   Backdrop,
@@ -8,8 +11,6 @@ import {
   useTheme,
 } from '@mui/material';
 import { alpha } from '@mui/system/colorManipulator';
-import React, { FC, VFC } from 'react';
-import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch';
 
 const CLoseButton: VFC<ButtonProps> = props => {
   const { sx, ...rest } = props;

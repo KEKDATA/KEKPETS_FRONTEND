@@ -55,10 +55,16 @@ export const Modal = ({
   };
 
   useEffect(() => {
-    const timeoutId = setTimeout(handleClose, 6000);
+    let timeoutId: NodeJS.Timer | null = null;
+
+    if (showSubmitMessage) {
+      timeoutId = setTimeout(handleClose, 6000);
+    }
 
     return () => {
-      clearTimeout(timeoutId);
+      if (showSubmitMessage && timeoutId) {
+        clearTimeout(timeoutId);
+      }
     };
   }, [showSubmitMessage]);
 

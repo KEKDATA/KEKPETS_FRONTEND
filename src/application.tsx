@@ -12,7 +12,7 @@ export const Application = () => {
   return (
     <Layout>
       <Pages />
-      <ScrollToTop scrollPositionThreshold={500} />
+      <ScrollToTop scrollPositionThreshold={700} />
     </Layout>
   );
 };
