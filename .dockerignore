@@ -33,5 +33,11 @@ yarn-error.log\*
 public/
 
 #env
-.env
 .env.*
+.env
+
+# Common
+README.md
+CHANGELOG.md
+docker-compose.yml
+Dockerfile
