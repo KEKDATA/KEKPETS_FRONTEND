@@ -22,11 +22,7 @@ export const ScrollToTop = ({ scrollPositionThreshold }: Props) => {
 
   useEffect(() => {
     const onScroll = () => {
-      if (scrollPositionThreshold < window.scrollY) {
-        setVisibleStatus(true);
-
-        document.removeEventListener('scroll', onScroll);
-      }
+      setVisibleStatus(scrollPositionThreshold < window.scrollY);
     };
 
     document.addEventListener('scroll', onScroll);
@@ -43,8 +39,7 @@ export const ScrollToTop = ({ scrollPositionThreshold }: Props) => {
       color="primary"
       aria-label="На верх страницы"
       onClick={scrollToTop}
-      size="small"
-    >
+      size="small">
       <ArrowUpwardIcon />
     </ToTop>
   );

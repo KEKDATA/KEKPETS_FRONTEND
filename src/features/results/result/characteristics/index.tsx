@@ -43,13 +43,15 @@ export const Characteristics = () => {
           </Fab>
         </Tooltip>
       )}
-      <Modal
-        open={open}
-        handleClose={handleClose}
-        searchSettingsFields={searchSettingsFields}
-        handleShowSubmitMessage={handleShowSubmitMessage}
-        showSubmitMessage={showSubmitMessage}
-      />
+      {open && (
+        <Modal
+          open={open}
+          handleClose={handleClose}
+          searchSettingsFields={searchSettingsFields}
+          handleShowSubmitMessage={handleShowSubmitMessage}
+          showSubmitMessage={showSubmitMessage}
+        />
+      )}
     </div>
   );
 };

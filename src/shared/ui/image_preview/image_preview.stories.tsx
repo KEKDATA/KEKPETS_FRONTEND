@@ -1,7 +1,8 @@
-import { Box } from '@mui/material';
 import { Story } from '@storybook/react';
 import faker from 'faker';
 import React, { useState } from 'react';
+
+import Box from '@mui/material/Box';
 
 import { PetView } from 'features/results/result/pet_view';
 
@@ -16,7 +17,11 @@ const Template: Story = () => {
   const [open, setOpen] = useState(false);
 
   const Pet = (
-    <PetView image={faker.image.imageUrl()} bbox={'0.2,0.2,0.2,0.2'} />
+    <PetView
+      image={faker.image.imageUrl()}
+      bbox={'0.2,0.2,0.2,0.2'}
+      isImageLoaded={false}
+    />
   );
 
   return (
