@@ -14,6 +14,10 @@ const ResultsContainer = styled('div')`
   min-height: 80vh;
 `;
 
+const ResultsGrid = styled(Grid)(({ theme }) => ({
+  marginTop: theme.spacing(4),
+}));
+
 export const Results = () => {
   const results = useStore(searchModel.$results);
   const isFetching = useStore(searchModel.getSearchResultsFx.pending);
@@ -41,7 +45,7 @@ export const Results = () => {
 
   return (
     <ResultsContainer>
-      <Grid
+      <ResultsGrid
         rowSpacing={3}
         container
         flexDirection="column"
@@ -51,7 +55,7 @@ export const Results = () => {
         {results.map(result => (
           <Result key={result.id} result={result} />
         ))}
-      </Grid>
+      </ResultsGrid>
     </ResultsContainer>
   );
 };

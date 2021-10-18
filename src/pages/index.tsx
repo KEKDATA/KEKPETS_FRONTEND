@@ -1,6 +1,7 @@
 import { useGate } from 'effector-react';
 import { PageProps } from 'gatsby';
 import React from 'react';
+import { Helmet } from 'react-helmet';
 import { searchModel } from 'shared/models/search';
 
 import { Pagination } from 'features/pagination';
@@ -18,6 +19,14 @@ const Search: React.FC<PageProps> = () => {
 
   return (
     <main>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>KEKPETS</title>
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+        />
+      </Helmet>
       <SearchSettings />
       <Results />
       <Pagination />

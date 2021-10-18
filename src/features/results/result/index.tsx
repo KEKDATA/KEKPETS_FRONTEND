@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
+import { styled } from '@mui/material/styles';
 
 import { SaveImage } from 'features/results/result/save_image';
 
@@ -18,6 +19,13 @@ import { useImageLoadedStatus } from './use_image_loaded_status';
 interface Props {
   result: ResultType;
 }
+
+const Container = styled(Grid)(({ theme }) => ({
+  padding: theme.spacing(4),
+  backgroundColor: theme.palette.common.white,
+  marginBottom: theme.spacing(4),
+  boxShadow: theme.shadows[4],
+}));
 
 export const Result = ({ result }: Props) => {
   const { bbox, image } = result;
@@ -37,7 +45,7 @@ export const Result = ({ result }: Props) => {
   };
 
   return (
-    <Grid item ref={containerRef}>
+    <Container item ref={containerRef}>
       <Box
         sx={{ cursor: 'zoom-in', display: 'inline-flex' }}
         onClick={showPreview}>
@@ -65,6 +73,6 @@ export const Result = ({ result }: Props) => {
           <SaveImage image={image} bbox={bbox} />
         </Grid>
       </Grid>
-    </Grid>
+    </Container>
   );
 };

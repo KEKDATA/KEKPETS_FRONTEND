@@ -15,14 +15,15 @@ import { model } from './model';
 import { Tail } from './tail';
 import { Type } from './type';
 
-const SettingsContainer = styled(Grid)`
-  height: 100vh;
-  transition: height 0.2s ease-out;
+const SettingsContainer = styled(Grid)(({ theme }) => ({
+  height: '100vh',
+  transition: 'height 02.s ease-out',
 
-  &[data-search-params-exist='true'] {
-    height: 150px;
-  }
-`;
+  '&[data-search-params-exist]': {
+    height: 150,
+    border: `1px solid ${theme.palette.common.black}`,
+  },
+}));
 
 const DogContainer = styled('div')`
   position: relative;
