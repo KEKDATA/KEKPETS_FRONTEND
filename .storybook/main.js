@@ -1,25 +1,23 @@
 const path = require('path');
 
-const resolve = item => {
-  return path.join(__dirname, '../', item);
-};
 module.exports = {
   stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: ['@storybook/addon-links', '@storybook/addon-essentials'],
-  viteFinal(config, { configType }) {
-    // customize the Vite config here
-    Object.assign(config.resolve.alias, {
-      api: resolve('src/api'),
-      contracts: resolve('src/contracts'),
-      features: resolve('src/features'),
-      shared: resolve('src/shared'),
-      models: resolve('src/models'),
-      pages: resolve('src/pages'),
-      typings: resolve('src/typings'),
-      assets: resolve('src/assets'),
-    });
-    config.define = { 'process.env.NODE_DEBUG': 'false' };
-    // return the customized config
+  core: {
+    builder: 'webpack5',
+  },
+  webpackFinal: async (config, { configType }) => {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      api: path.resolve(__dirname, '../src/api'),
+      features: path.resolve(__dirname, '../src/features'),
+      shared: path.resolve(__dirname, '../src/shared'),
+      models: path.resolve(__dirname, '../src/models'),
+      pages: path.resolve(__dirname, '../src/pages'),
+      typings: path.resolve(__dirname, '../src/typings'),
+      assets: path.resolve(__dirname, '../src/assets'),
+    };
+
     return config;
   },
 };
