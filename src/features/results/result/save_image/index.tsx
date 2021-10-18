@@ -8,10 +8,14 @@ import Tooltip from '@mui/material/Tooltip';
 import { styled } from '@mui/material/styles';
 
 import { sleep } from 'shared/lib/dom/sleep';
+import { useIsMobile } from 'shared/lib/screen_type/is_mobile';
 
 import { BBox } from 'shared/ui/bbox';
 import { BBoxContainer } from 'shared/ui/bbox_container';
 import { ImageView } from 'shared/ui/image_view';
+
+import { getButtonSize } from '../lib/button_size';
+import { getIconSize } from '../lib/icon_size';
 
 interface Props {
   image: string;
@@ -25,6 +29,8 @@ const ImageToSaveContainer = styled('div')`
 `;
 
 export const SaveImage = ({ image, bbox }: Props) => {
+  const isMobile = useIsMobile();
+
   const [isImageDisplayed, setImageDisplayedStatus] = useState(false);
 
   const refImage = useRef<HTMLDivElement>(null);
@@ -51,7 +57,7 @@ export const SaveImage = ({ image, bbox }: Props) => {
         useCORS: true,
       });
 
-      let a = document.createElement('a');
+      const a = document.createElement('a');
       a.href = canvas.toDataURL('image/png');
       a.download = `${uuidv4()}.png`;
       a.click();
@@ -63,14 +69,18 @@ export const SaveImage = ({ image, bbox }: Props) => {
     setImageDisplayedStatus(false);
   };
 
+  const sizeButton = getButtonSize({ isMobile });
+  const sizeIcon = getIconSize({ isMobile });
+
   return (
     <>
       <Tooltip title="Сохранить изображение">
         <Fab
           color="primary"
           aria-label="Сохранить изображение"
-          onClick={handleSave}>
-          <FileDownloadIcon />
+          onClick={handleSave}
+          size={sizeButton}>
+          <FileDownloadIcon fontSize={sizeIcon} />
         </Fab>
       </Tooltip>
       {isImageDisplayed && (

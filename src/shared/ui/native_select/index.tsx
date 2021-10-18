@@ -3,18 +3,16 @@ import React from 'react';
 import Box from '@mui/material/Box';
 import MuiFormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import MuiSelect, { SelectChangeEvent } from '@mui/material/Select';
+import MuiNativeSelect from '@mui/material/NativeSelect';
 import { styled } from '@mui/material/styles';
 
 import { SelectValues } from 'shared/typings/select';
 
 interface Props {
   label: string;
-  handleChange: (event: SelectChangeEvent) => void;
+  handleChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
   items: SelectValues;
   value: string;
-  isNative?: boolean;
   isError?: boolean;
   isRequired?: boolean;
 }
@@ -23,7 +21,7 @@ const FormControl = styled(MuiFormControl)`
   background-color: white;
 `;
 
-export const Select = ({
+export const NativeSelect = ({
   value,
   label,
   handleChange,
@@ -33,23 +31,26 @@ export const Select = ({
 }: Props) => {
   return (
     <Box sx={{ minWidth: 150 }}>
-      <FormControl
-        sx={{ m: 1, minWidth: 150 }}
-        error={isError}
-        variant="filled"
-        required={isRequired}>
-        <InputLabel id={label}>{label}</InputLabel>
-        <MuiSelect
-          labelId={label}
+      <FormControl fullWidth error={isError} required={isRequired}>
+        <InputLabel
+          variant="standard"
+          htmlFor={label}
+          sx={{ paddingLeft: '6px', paddingTop: '4px' }}>
+          {label}
+        </InputLabel>
+        <MuiNativeSelect
+          inputProps={{
+            name: label,
+            id: label,
+          }}
           value={value}
-          label={label}
           onChange={handleChange}>
           {items.map(({ text, value }) => (
-            <MenuItem key={value} value={value}>
+            <option key={value} value={value}>
               {text}
-            </MenuItem>
+            </option>
           ))}
-        </MuiSelect>
+        </MuiNativeSelect>
       </FormControl>
     </Box>
   );

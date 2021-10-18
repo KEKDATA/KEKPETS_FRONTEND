@@ -6,6 +6,8 @@ import { styled } from '@mui/material/styles';
 
 import { SaveImage } from 'features/results/result/save_image';
 
+import { useIsMobile } from 'shared/lib/screen_type/is_mobile';
+
 import { ImagePreview } from 'shared/ui/image_preview';
 
 import { Result as ResultType } from 'shared/typings/results';
@@ -25,10 +27,15 @@ const Container = styled(Grid)(({ theme }) => ({
   backgroundColor: theme.palette.common.white,
   marginBottom: theme.spacing(4),
   boxShadow: theme.shadows[4],
+  [theme.breakpoints.down('sm')]: {
+    width: '90%',
+  },
 }));
 
 export const Result = ({ result }: Props) => {
   const { bbox, image } = result;
+
+  const isMobile = useIsMobile();
 
   const { isImageLoaded, containerRef } = useImageLoadedStatus({
     image,
@@ -47,12 +54,12 @@ export const Result = ({ result }: Props) => {
   return (
     <Container item ref={containerRef}>
       <Box
-        sx={{ cursor: 'zoom-in', display: 'inline-flex' }}
+        sx={{ cursor: 'zoom-in', display: 'inline-flex', width: '100%' }}
         onClick={showPreview}>
         <PetView
           image={image}
           bbox={bbox}
-          width={500}
+          width={isMobile ? '100%' : 500}
           isImageLoaded={isImageLoaded}
         />
         <ImagePreview open={previewVisible} onClose={hidePreview}>

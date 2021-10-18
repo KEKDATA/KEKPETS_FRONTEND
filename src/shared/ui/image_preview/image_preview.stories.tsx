@@ -1,4 +1,3 @@
-import { Story } from '@storybook/react';
 import faker from 'faker';
 import React, { useState } from 'react';
 
@@ -11,17 +10,24 @@ import { ImagePreview } from 'shared/ui/image_preview/index';
 export default {
   component: ImagePreview,
   title: 'ImagePreview',
+  argTypes: {
+    isImageLoaded: {
+      control: {
+        type: 'boolean',
+      },
+    },
+  },
 };
 
-const Template: Story = () => {
+interface Args {
+  isImageLoaded: boolean;
+}
+
+export const Default = (args: Args) => {
   const [open, setOpen] = useState(false);
 
   const Pet = (
-    <PetView
-      image={faker.image.imageUrl()}
-      bbox={'0.2,0.2,0.2,0.2'}
-      isImageLoaded={false}
-    />
+    <PetView image={faker.image.imageUrl()} bbox="0.2,0.2,0.2,0.2" {...args} />
   );
 
   return (
@@ -38,4 +44,6 @@ const Template: Story = () => {
   );
 };
 
-export const Default = Template.bind({});
+Default.args = {
+  isImageLoaded: true,
+};
