@@ -4,7 +4,7 @@ import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 
-import sadParrotGif from './sad_parrot.gif';
+import sadDog from './sad_bubz.jpg';
 
 export const NotFound = () => {
   return (
@@ -14,7 +14,7 @@ export const NotFound = () => {
       flexDirection="column"
       alignItems="center">
       <Grid item>
-        <img src={sadParrotGif} loading="lazy" alt="Грустный попугай" />
+        <img src={sadDog} loading="lazy" alt="Грустный попугай" />
       </Grid>
       <Grid item>
         <Typography variant="h5" component="p" align="center" gutterBottom>
@@ -23,8 +23,7 @@ export const NotFound = () => {
       </Grid>
       <Grid item>
         <Button variant="contained" href="/">
-          {' '}
-          Давай попробуем еще раз{' '}
+          Давай попробуем еще раз
         </Button>
       </Grid>
     </Grid>
