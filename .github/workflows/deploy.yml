@@ -1,0 +1,34 @@
+name: Build and Deploy to GitHub Pages
+on:
+  push:
+    branches: ['master']
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+          cache: 'yarn'
+      - run: yarn install
+      - run: |
+          echo "API_URL=${{ env.API_URL }}">.env.production
+          echo "PATH_PREFIX=${{ env.PATH_PREFIX }}">>.env.production
+          echo "SITE_URL=${{ env.SITE_URL }}">>.env.production
+        env:
+          API_URL: "https://somedomain.com"
+          PATH_PREFIX: "/KEKPETS_PUBLIC"
+          SITE_URL: "https://kekdata.github.io"
+      - run: yarn run build
+        env:
+          PREFIX_PATHS: true
+      - name: Deploy to GitHub Pages
+        if: success()
+        uses: crazy-max/ghaction-github-pages@v2
+        with:
+          target_branch: gh-pages
+          build_dir: public
+          repo: KEKDATA/KEKPETS_PUBLIC
+        env:
+          GITHUB_TOKEN: ${{ secrets.KEKPETS_PUBLIC_TOKEN }}

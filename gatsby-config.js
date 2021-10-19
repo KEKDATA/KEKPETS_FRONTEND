@@ -1,6 +1,11 @@
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
+
 module.exports = {
+  pathPrefix: process.env.PATH_PREFIX,
   siteMetadata: {
-    siteUrl: `https://www.yourdomain.tld`,
+    siteUrl: process.env.SITE_URL || `https://localhost`,
   },
   plugins: [
     {
