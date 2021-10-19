@@ -17,13 +17,13 @@ import { Theme } from 'features/theme';
 
 makeFakeServer();
 
+const fonts =
+  'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap';
+
 const Search: React.FC<PageProps> = () => {
   useGate(searchModel.SearchGate);
 
   useGoBackSearch();
-
-  const fonts =
-    'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap';
 
   return (
     <Theme>
