@@ -1,8 +1,7 @@
 import { useStore } from 'effector-react';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { colorSchemeModeModel } from 'shared/models/color_scheme_mode';
 
-import { useMediaQuery } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 import dayBackground from './img/day_background_square.svg';
@@ -63,13 +62,7 @@ const DarkIcon = styled(Icon)`
 `;
 
 export const ThemeSwitch = () => {
-  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
-
   const isDark = useStore(colorSchemeModeModel.$isDarkTheme);
-
-  useEffect(() => {
-    colorSchemeModeModel.darkThemeChanged(prefersDarkMode);
-  }, [prefersDarkMode]);
 
   const label = isDark ? swithToLightLabel : switchToDarkLabel;
 
