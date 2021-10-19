@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
+import { grey } from '@mui/material/colors';
 import { styled } from '@mui/material/styles';
 
 import { SaveImage } from 'features/results/result/save_image';
@@ -23,7 +24,8 @@ interface Props {
 
 const Container = styled(Grid)(({ theme }) => ({
   padding: theme.spacing(4),
-  backgroundColor: theme.palette.common.white,
+  backgroundColor:
+    theme.palette.mode === 'dark' ? grey[800] : theme.palette.common.white,
   marginBottom: theme.spacing(4),
   boxShadow: theme.shadows[4],
   width: '90%',

@@ -15,6 +15,7 @@ import { BBoxContainer } from 'shared/ui/bbox_container';
 import { ImageView } from 'shared/ui/image_view';
 
 import { getButtonSize } from '../lib/button_size';
+import { useFabColor } from '../lib/fab_color';
 import { getIconSize } from '../lib/icon_size';
 
 interface Props {
@@ -29,6 +30,8 @@ const ImageToSaveContainer = styled('div')`
 `;
 
 export const SaveImage = ({ image, bbox }: Props) => {
+  const fabColor = useFabColor();
+
   const isMobile = useIsMobile();
 
   const [isImageDisplayed, setImageDisplayedStatus] = useState(false);
@@ -76,7 +79,7 @@ export const SaveImage = ({ image, bbox }: Props) => {
     <>
       <Tooltip title="Сохранить изображение">
         <Fab
-          color="primary"
+          color={fabColor}
           aria-label="Сохранить изображение"
           onClick={handleSave}
           size={sizeButton}>
