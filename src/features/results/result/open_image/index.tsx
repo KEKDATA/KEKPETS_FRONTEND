@@ -7,6 +7,7 @@ import Tooltip from '@mui/material/Tooltip';
 import { useIsMobile } from 'shared/lib/screen_type/is_mobile';
 
 import { getButtonSize } from '../lib/button_size';
+import { useFabColor } from '../lib/fab_color';
 import { getIconSize } from '../lib/icon_size';
 
 interface Props {
@@ -14,6 +15,7 @@ interface Props {
 }
 
 export const OpenImage = ({ image }: Props) => {
+  const fabColor = useFabColor();
   const isMobile = useIsMobile();
 
   const sizeButton = getButtonSize({ isMobile });
@@ -22,7 +24,7 @@ export const OpenImage = ({ image }: Props) => {
   return (
     <Tooltip title="Открыть изображение в новой вкладке">
       <Fab
-        color="primary"
+        color={fabColor}
         aria-label="Открыть изображение в новой вкладке"
         target="_blank"
         href={image}

@@ -4,6 +4,7 @@ import { searchModel } from 'shared/models/search';
 import { setupPageToSearchParams } from 'features/pagination/lib/setup_page_to_search_params';
 
 import { isBrowser } from 'shared/lib/browser/is_browser';
+import { scrollToTop } from 'shared/lib/scroll/to_top';
 import { pushSearchParams } from 'shared/lib/url/push_search_params';
 import { getSearchParams } from 'shared/lib/url/search_params';
 
@@ -40,13 +41,12 @@ sample({
   target: searchModel.getSearchResultsFx,
 });
 
-sample({
-  clock: searchParamsReceived,
-  fn: searchParams =>
-    pushSearchParams({
-      url: PagesPaths.Search,
-      queryString: searchParams,
-    }),
+searchParamsReceived.watch(searchParams => {
+  pushSearchParams({
+    url: PagesPaths.Search,
+    queryString: searchParams,
+  });
+  scrollToTop();
 });
 
 export const paginationModel = { pageSelected, $page };

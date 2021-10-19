@@ -9,6 +9,7 @@ import Tooltip from '@mui/material/Tooltip';
 import { useIsMobile } from 'shared/lib/screen_type/is_mobile';
 
 import { getButtonSize } from '../lib/button_size';
+import { useFabColor } from '../lib/fab_color';
 import { getIconSize } from '../lib/icon_size';
 
 interface Props {
@@ -16,6 +17,7 @@ interface Props {
 }
 
 export const CopyImageUrl = ({ image }: Props) => {
+  const fabColor = useFabColor();
   const isMobile = useIsMobile();
 
   const [showSuccessAlert, setSuccessAlertStatus] = useState(false);
@@ -36,7 +38,7 @@ export const CopyImageUrl = ({ image }: Props) => {
     <>
       <Tooltip title="Копировать ссылку на изображение">
         <Fab
-          color="primary"
+          color={fabColor}
           aria-label="Копировать ссылку на изображение"
           onClick={handleCopy}
           size={sizeButton}>

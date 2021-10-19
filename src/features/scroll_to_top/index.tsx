@@ -7,6 +7,8 @@ import { styled } from '@mui/material/styles';
 import { isBrowser } from 'shared/lib/browser/is_browser';
 import { scrollToTop } from 'shared/lib/scroll/to_top';
 
+import { useToTopColor } from './lib/to_top_color';
+
 interface Props {
   scrollPositionThreshold: number;
 }
@@ -18,6 +20,7 @@ const ToTop = styled(Fab)`
 `;
 
 export const ScrollToTop = ({ scrollPositionThreshold }: Props) => {
+  const fabColor = useToTopColor();
   const [isVisible, setVisibleStatus] = useState(false);
 
   useEffect(() => {
@@ -40,7 +43,7 @@ export const ScrollToTop = ({ scrollPositionThreshold }: Props) => {
 
   return (
     <ToTop
-      color="primary"
+      color={fabColor}
       aria-label="На верх страницы"
       onClick={scrollToTop}
       size="small">

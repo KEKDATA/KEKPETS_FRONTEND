@@ -7,7 +7,11 @@ import Stack from '@mui/material/Stack';
 
 import { paginationModel } from 'features/pagination/model';
 
+import { usePaginationColor } from './lib/pagination_color';
+
 export const Pagination = () => {
+  const color = usePaginationColor();
+
   const paginationCount = useStore(searchModel.$count);
   const page = useStore(paginationModel.$page);
 
@@ -24,7 +28,7 @@ export const Pagination = () => {
       <MuiPagination
         page={page}
         count={paginationCount}
-        color="primary"
+        color={color}
         size="large"
         onChange={handleChange}
       />

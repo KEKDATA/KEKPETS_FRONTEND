@@ -22,6 +22,7 @@ const Button = styled(MuiButton)(({ theme }) => ({
     marginLeft: theme.spacing(1),
   },
   borderRadius: theme.shape.borderRadius,
+  color: theme.palette.common.white,
 }));
 
 export const Submit = () => {
