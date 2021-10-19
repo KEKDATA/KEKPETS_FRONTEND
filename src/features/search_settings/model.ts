@@ -2,7 +2,6 @@ import { combine, createEvent, createStore, sample } from 'effector';
 import { searchModel } from 'shared/models/search';
 
 import { pushSearchParams } from 'shared/lib/url/push_search_params';
-import { getUrlWithQs } from 'shared/lib/url/with_qs';
 
 import { PagesPaths } from 'shared/enums/pages_paths';
 import { SearchSettingsFieldsKeys } from 'shared/enums/search_settings_fields/keys';

@@ -19,11 +19,13 @@ const SettingsContainer = styled(Grid)(({ theme }) => ({
   backgroundColor:
     theme.palette.mode === 'dark' ? theme.palette.common.black : blue[200],
   '&[data-search-params-exist="true"]': {
-    minHeight: 280,
-    height: 280,
+    minHeight: 320,
+    height: 320,
+    paddingBottom: theme.spacing(4),
     [theme.breakpoints.up('sm')]: {
       height: 150,
       minHeight: 'auto',
+      paddingBottom: 0,
     },
   },
 }));
@@ -47,7 +49,10 @@ export const SearchSettings = () => {
       container
       flexDirection="column"
       alignItems="center"
-      justifyContent="center"
+      justifyContent={{
+        xs: isSearchParamsExist ? 'flex-end' : 'center',
+        sm: 'center',
+      }}
       alignContent="center"
       data-search-params-exist={isSearchParamsExist}>
       {!isSearchParamsExist && (

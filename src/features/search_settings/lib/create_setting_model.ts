@@ -19,7 +19,7 @@ export const createSettingModel = ({
       searchModel.$searchSettingsFieldsFromUrl.updates,
       (state, searchSettingsFromUrl) => {
         if (!searchSettingsFromUrl || !searchSettingsFromUrl[settingType]) {
-          return state;
+          return defaultValue;
         }
 
         const optionValueFromUrl = searchSettingsFromUrl[settingType];

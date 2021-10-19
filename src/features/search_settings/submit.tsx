@@ -37,7 +37,7 @@ export const Submit = () => {
       variant="contained"
       size="large"
       disabled={isDisabledForm}
-      endIcon={<PetsIcon />}>
+      endIcon={<PetsIcon sx={{ marginTop: '-5px' }} />}>
       <Typography
         variant="subtitle1"
         sx={{ fontWeight: theme.typography.fontWeightBold }}>

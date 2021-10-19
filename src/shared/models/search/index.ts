@@ -7,13 +7,13 @@ import {
 } from 'effector';
 import { createGate } from 'effector-react';
 import { condition } from 'patronum';
+import { api } from 'requests/index';
 import { getSearchSettingsFields } from 'shared/models/search/lib/search_settings_fields';
 
 import { getQueryString } from 'shared/lib/url/query_string';
 
 import { SearchSettingsFieldsKeys } from 'shared/enums/search_settings_fields/keys';
 
-import { api } from '../../../requests/index';
 import { getFieldsKeysFromUrl } from './lib/fields_keys_from_url';
 import { isSearchParamsExist } from './lib/is_search_params_exist';
 import { requiredSettingsIncluded } from './lib/required_settings_included';
@@ -33,7 +33,10 @@ const resultsReceived = searchResultsReceived.map(response => response.results);
 
 const $searchSettingsFieldsFromUrl = createStore<null | SearchSettingsFormUrl>(
   null,
-).on([SearchGate.open, getSearchResultsFx.pending], getSearchSettingsFields);
+).on(
+  [SearchGate.open, getSearchResultsFx.pending, searchParamsNotFounded],
+  getSearchSettingsFields,
+);
 
 const $isSearchParamsExist = createStore(false)
   .on(searchParamsNotFounded, () => false)
@@ -76,4 +79,5 @@ export const searchModel = {
   countReceived,
   resultsReceived,
   getSearchResultsFx,
+  searchParamsNotFounded,
 };
