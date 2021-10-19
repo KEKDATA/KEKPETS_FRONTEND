@@ -4,6 +4,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import { searchModel } from 'shared/models/search';
 
+import { Container } from '@mui/material';
 import CssBaseline from '@mui/material/CssBaseline';
 
 import { Pagination } from 'features/pagination';
@@ -33,8 +34,10 @@ const Search: React.FC<PageProps> = () => {
       <ThemeSwitch />
       <CssBaseline />
       <SearchSettings />
-      <Results />
-      <Pagination />
+      <Container maxWidth="lg">
+        <Results />
+        <Pagination />
+      </Container>
       <ScrollToTop scrollPositionThreshold={700} />
     </ThemeProvider>
   );

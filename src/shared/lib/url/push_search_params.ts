@@ -1,3 +1,5 @@
+import { navigate } from 'gatsby';
+
 import { isBrowser } from 'shared/lib/browser/is_browser';
 import { getUrlWithQs } from 'shared/lib/url/with_qs';
 
@@ -11,9 +13,7 @@ export const pushSearchParams = ({ url, queryString }: Arguments) => {
     return null;
   }
 
-  window.history.pushState(
-    '',
-    '',
+  navigate(
     getUrlWithQs({
       url,
       queryString,

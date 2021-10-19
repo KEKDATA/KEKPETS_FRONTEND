@@ -7,7 +7,12 @@ export const BBoxContainer: FC = props => {
 
   return (
     <Box
-      sx={{ position: 'relative', display: 'inline-flex', overflow: 'hidden' }}>
+      sx={{
+        position: 'relative',
+        display: 'inline-flex',
+        overflow: 'hidden',
+        borderRadius: 1,
+      }}>
       {children}
     </Box>
   );
