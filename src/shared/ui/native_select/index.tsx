@@ -45,6 +45,7 @@ export const NativeSelect = ({
           }}
           value={value}
           onChange={handleChange}>
+          <option value="">Не выбрано</option>
           {items.map(({ text, value }) => (
             <option key={value} value={value}>
               {text}

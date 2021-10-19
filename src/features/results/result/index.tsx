@@ -12,7 +12,6 @@ import { ImagePreview } from 'shared/ui/image_preview';
 
 import { Result as ResultType } from 'shared/typings/results';
 
-import { Characteristics } from './characteristics';
 import { CopyImageUrl } from './copy_image_url';
 import { OpenImage } from './open_image';
 import { PetView } from './pet_view';
@@ -67,9 +66,6 @@ export const Result = ({ result }: Props) => {
         </ImagePreview>
       </Box>
       <Grid container spacing={2}>
-        <Grid item>
-          <Characteristics />
-        </Grid>
         <Grid item>
           <OpenImage image={image} />
         </Grid>
