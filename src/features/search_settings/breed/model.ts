@@ -1,4 +1,4 @@
-import { createEvent, restore, sample } from 'effector';
+import { createEvent, createStore, sample } from 'effector';
 
 import { SearchSettingsFieldsKeys } from 'shared/enums/search_settings_fields/keys';
 
@@ -10,12 +10,20 @@ const { $value, valueChanged } = createSettingModel({
   settingType: SearchSettingsFieldsKeys.Breed,
 });
 
+/**
+ * @todo Пересмотреть подход к работе с данными в автокомплите
+ */
+
 const autoCompleteValueChanged = createEvent<string>();
 
-const $autoCompleteValue = restore<string | null>(
-  autoCompleteValueChanged,
-  null,
-);
+const $autoCompleteValue = createStore<string | null>(null)
+  .on(autoCompleteValueChanged, (_, value) => value)
+  .on(
+    $value.updates,
+    (_, selectedValue) =>
+      searchSettingsOptions.breeds.find(({ value }) => selectedValue === value)
+        .text,
+  );
 
 sample({
   clock: autoCompleteValueChanged,
