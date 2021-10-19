@@ -4,7 +4,7 @@ import React from 'react';
 import PetsIcon from '@mui/icons-material/Pets';
 import MuiButton from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { styled } from '@mui/material/styles';
+import { styled, useTheme } from '@mui/material/styles';
 
 import { model } from './model';
 
@@ -16,11 +16,18 @@ const Button = styled(MuiButton)(({ theme }) => ({
     opacity: 0.9,
   },
   marginTop: theme.spacing(1),
-  borderRadius: 10,
+  marginLeft: 0,
+  [theme.breakpoints.up('sm')]: {
+    marginTop: 0,
+    marginLeft: theme.spacing(1),
+  },
+  borderRadius: theme.shape.borderRadius,
 }));
 
 export const Submit = () => {
   const isDisabledForm = useStore(model.$isDisabledForm);
+
+  const theme = useTheme();
 
   return (
     <Button
@@ -30,7 +37,9 @@ export const Submit = () => {
       size="large"
       disabled={isDisabledForm}
       endIcon={<PetsIcon />}>
-      <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
+      <Typography
+        variant="subtitle1"
+        sx={{ fontWeight: theme.typography.fontWeightBold }}>
         Найти питомца
       </Typography>
     </Button>

@@ -1,6 +1,8 @@
 import { useStore } from 'effector-react';
 import React from 'react';
 
+import { useTheme } from '@mui/material';
+
 import { useIsMobile } from 'shared/lib/screen_type/is_mobile';
 
 import { NativeSelect } from 'shared/ui/native_select';
@@ -13,6 +15,9 @@ import { searchSettingsOptions } from 'shared/stubs/search_settings_options';
 import { typeModel } from './model';
 
 export const Type = () => {
+  const theme = useTheme();
+  const { borderRadius } = theme.shape;
+
   const value = useStore(typeModel.$value);
 
   const isMobile = useIsMobile();
@@ -24,7 +29,7 @@ export const Type = () => {
         label={SearchSettingsFieldsTranslates.Type}
         onChangeValue={typeModel.valueChanged}
         items={searchSettingsOptions.types}
-        borderRadius="10px 10px 0 0"
+        borderRadius={`${borderRadius}px ${borderRadius}px 0 0`}
       />
     );
   }

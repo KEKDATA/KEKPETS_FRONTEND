@@ -6,8 +6,6 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import { styled } from '@mui/material/styles';
 
-import { useIsMobile } from 'shared/lib/screen_type/is_mobile';
-
 import { AnimatedDog } from 'shared/ui/animated_dog';
 
 import { model } from './model';
@@ -28,15 +26,6 @@ const SettingsContainer = styled(Grid)(({ theme }) => ({
   },
 }));
 
-const SettingsGrid = styled(Grid)(({ theme }) => ({
-  flexDirection: 'column',
-  [theme.breakpoints.up('sm')]: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-}));
-
 const DogContainer = styled('div')`
   position: relative;
   margin: -160px 0 -60px 0;
@@ -44,7 +33,6 @@ const DogContainer = styled('div')`
 
 export const SearchSettings = () => {
   const isSearchParamsExist = useStore(searchModel.$isSearchParamsExist);
-  const isMobile = useIsMobile();
 
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -67,12 +55,17 @@ export const SearchSettings = () => {
       )}
       <Container maxWidth="lg">
         <form onSubmit={handleSubmit}>
-          <SettingsGrid container rowSpacing={isMobile ? 0.2 : 1}>
+          <Grid
+            container
+            rowSpacing={{ xs: 0.2, sm: 1 }}
+            flexDirection={{ xs: 'column', sm: 'row' }}
+            alignItems={{ sm: 'center ' }}
+            justifyContent={{ sm: 'center ' }}>
             <SettingsGroups />
-            <Grid item marginLeft={isMobile ? 0 : 1}>
+            <Grid item>
               <Submit />
             </Grid>
-          </SettingsGrid>
+          </Grid>
         </form>
       </Container>
     </SettingsContainer>
