@@ -12,17 +12,21 @@ jobs:
           node-version: '14'
           cache: 'yarn'
       - run: yarn install
-      - run: yarn run build
+      - run: echo "API_URL=${{ env.API_URL }}\nPATH_PREFIX=${{ env.PATH_PREFIX }}\nSITE_URL=${{ env.SITE_URL }}">.env.production
         env:
           API_URL: "https://somedomain.com"
-          PATH_PREFIX: /${{ github.event.repository.name }}
-          PREFIX_PATHS: true
+          PATH_PREFIX: "/KEKPETS_PUBLIC"
           SITE_URL: "https://KEKDATA.github.io"
+      - run: cat .env.production
+      - run: yarn run build
+        env:
+          PREFIX_PATHS: true
       - name: Deploy to GitHub Pages
         if: success()
         uses: crazy-max/ghaction-github-pages@v2
         with:
           target_branch: gh-pages
           build_dir: public
+          repo: KEKDATA/KEKPETS_PUBLIC
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
