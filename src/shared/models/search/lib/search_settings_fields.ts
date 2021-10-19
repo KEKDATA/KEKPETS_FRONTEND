@@ -36,7 +36,7 @@ export const getSearchSettingsFields = () => {
     return null;
   }
 
-  let settings: SearchSettingsFormUrl = {};
+  const settings: SearchSettingsFormUrl = {};
 
   (
     Object.entries(fieldsKeysFromUrl) as Array<
@@ -62,8 +62,8 @@ export const getSearchSettingsFields = () => {
     /**
      * @fixme Typescript
      */
-    // @ts-ignore
     settings[key] = {
+      // @ts-ignore
       key,
       ...selectedOption,
     };
