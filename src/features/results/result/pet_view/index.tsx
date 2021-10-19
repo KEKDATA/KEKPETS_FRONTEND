@@ -20,9 +20,7 @@ const Container = styled('div')`
 `;
 
 const Skeleton = styled(MuiSkeleton)(({ theme }) => ({
-  [theme.breakpoints.down('sm')]: {
-    height: 200,
-  },
+  height: 200,
   [theme.breakpoints.up('sm')]: {
     width: 500,
     height: 300,

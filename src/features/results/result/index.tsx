@@ -26,8 +26,9 @@ const Container = styled(Grid)(({ theme }) => ({
   backgroundColor: theme.palette.common.white,
   marginBottom: theme.spacing(4),
   boxShadow: theme.shadows[4],
-  [theme.breakpoints.down('sm')]: {
-    width: '90%',
+  width: '90%',
+  [theme.breakpoints.up('sm')]: {
+    width: 'auto',
   },
 }));
 

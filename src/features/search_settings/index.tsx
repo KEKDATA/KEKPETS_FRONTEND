@@ -19,20 +19,17 @@ const SettingsContainer = styled(Grid)(({ theme }) => ({
   transition: 'height 0.2s ease-out',
 
   '&[data-search-params-exist="true"]': {
-    [theme.breakpoints.down('sm')]: {
-      height: 'auto',
-      minHeight: 280,
-    },
+    minHeight: 280,
+    height: 280,
     [theme.breakpoints.up('sm')]: {
       height: 150,
+      minHeight: 'auto',
     },
   },
 }));
 
 const SettingsGrid = styled(Grid)(({ theme }) => ({
-  [theme.breakpoints.down('sm')]: {
-    flexDirection: 'column',
-  },
+  flexDirection: 'column',
   [theme.breakpoints.up('sm')]: {
     flexDirection: 'row',
     alignItems: 'center',
