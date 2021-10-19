@@ -1,7 +1,7 @@
 name: Build and Deploy to GitHub Pages
 on:
   push:
-    branches: ['feature/deploy']
+    branches: ['master']
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -19,8 +19,7 @@ jobs:
         env:
           API_URL: "https://somedomain.com"
           PATH_PREFIX: "/KEKPETS_PUBLIC"
-          SITE_URL: "https://KEKDATA.github.io"
-      - run: cat .env.production
+          SITE_URL: "https://kekdata.github.io"
       - run: yarn run build
         env:
           PREFIX_PATHS: true
