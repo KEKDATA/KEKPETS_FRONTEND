@@ -22,9 +22,11 @@ const FormControl = styled(MuiFormControl)(
   ({
     theme: {
       palette: { mode, common },
+      shape: { borderRadius },
     },
   }) => ({
     backgroundColor: mode === 'dark' ? common.black : common.white,
+    borderRadius: `${borderRadius}px ${borderRadius}px 0 0`,
   }),
 );
 

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+import { Card, CardContent } from '@mui/material';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import { grey } from '@mui/material/colors';
@@ -22,16 +23,9 @@ interface Props {
   result: ResultType;
 }
 
-const Container = styled(Grid)(({ theme }) => ({
-  padding: theme.spacing(4),
+const Container = styled(Card)(({ theme }) => ({
   backgroundColor:
     theme.palette.mode === 'dark' ? grey[800] : theme.palette.common.white,
-  marginBottom: theme.spacing(4),
-  boxShadow: theme.shadows[4],
-  width: '90%',
-  [theme.breakpoints.up('sm')]: {
-    width: 'auto',
-  },
 }));
 
 export const Result = ({ result }: Props) => {
@@ -54,31 +48,35 @@ export const Result = ({ result }: Props) => {
   };
 
   return (
-    <Container item ref={containerRef}>
-      <Box
-        sx={{ cursor: 'zoom-in', display: 'inline-flex', width: '100%' }}
-        onClick={showPreview}>
-        <PetView
-          image={image}
-          bbox={bbox}
-          width={isMobile ? '100%' : 500}
-          isImageLoaded={isImageLoaded}
-        />
-        <ImagePreview open={previewVisible} onClose={hidePreview}>
-          <PetView image={image} bbox={bbox} isImageLoaded={isImageLoaded} />
-        </ImagePreview>
-      </Box>
-      <Grid container spacing={2}>
-        <Grid item>
-          <OpenImage image={image} />
-        </Grid>
-        <Grid item>
-          <CopyImageUrl image={image} />
-        </Grid>
-        <Grid item>
-          <SaveImage image={image} bbox={bbox} />
-        </Grid>
-      </Grid>
-    </Container>
+    <Grid item>
+      <Container ref={containerRef}>
+        <CardContent>
+          <Box
+            sx={{ cursor: 'zoom-in', display: 'inline-flex', width: '100%' }}
+            onClick={showPreview}>
+            <PetView
+              image={image}
+              bbox={bbox}
+              width={isMobile ? '100%' : 500}
+              isImageLoaded={isImageLoaded}
+            />
+          </Box>
+          <ImagePreview open={previewVisible} onClose={hidePreview}>
+            <PetView image={image} bbox={bbox} isImageLoaded={isImageLoaded} />
+          </ImagePreview>
+          <Grid container spacing={2}>
+            <Grid item>
+              <OpenImage image={image} />
+            </Grid>
+            <Grid item>
+              <CopyImageUrl image={image} />
+            </Grid>
+            <Grid item>
+              <SaveImage image={image} bbox={bbox} />
+            </Grid>
+          </Grid>
+        </CardContent>
+      </Container>
+    </Grid>
   );
 };
