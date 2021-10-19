@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Skeleton from '@mui/material/Skeleton';
+import MuiSkeleton from '@mui/material/Skeleton';
 import { styled } from '@mui/material/styles';
 
 import { BBox } from 'shared/ui/bbox';
@@ -11,24 +11,26 @@ interface Props {
   image: string;
   bbox: string;
   isImageLoaded: boolean;
-  width?: number;
+  width?: number | string;
 }
 
 const Container = styled('div')`
   margin: 8px 0;
+  width: 100%;
 `;
+
+const Skeleton = styled(MuiSkeleton)(({ theme }) => ({
+  height: 200,
+  [theme.breakpoints.up('sm')]: {
+    width: 500,
+    height: 300,
+  },
+}));
 
 export const PetView = ({ image, bbox, width, isImageLoaded }: Props) => {
   return (
     <Container>
-      {!isImageLoaded && (
-        <Skeleton
-          variant="rectangular"
-          animation="wave"
-          width={500}
-          height={300}
-        />
-      )}
+      {!isImageLoaded && <Skeleton variant="rectangular" animation="wave" />}
       {isImageLoaded && (
         <BBoxContainer>
           <ImageView url={image} loading="lazy" width={width} />

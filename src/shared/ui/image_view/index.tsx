@@ -2,7 +2,7 @@ import React from 'react';
 
 interface Props {
   url: string;
-  width?: number;
+  width?: number | string;
   alt?: string;
   loading?: 'lazy' | 'eager';
 }

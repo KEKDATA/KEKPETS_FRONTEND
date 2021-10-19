@@ -6,11 +6,18 @@ import Fab from '@mui/material/Fab';
 import Snackbar from '@mui/material/Snackbar';
 import Tooltip from '@mui/material/Tooltip';
 
+import { useIsMobile } from 'shared/lib/screen_type/is_mobile';
+
+import { getButtonSize } from '../lib/button_size';
+import { getIconSize } from '../lib/icon_size';
+
 interface Props {
   image: string;
 }
 
 export const CopyImageUrl = ({ image }: Props) => {
+  const isMobile = useIsMobile();
+
   const [showSuccessAlert, setSuccessAlertStatus] = useState(false);
 
   const handleCopy = () => {
@@ -22,14 +29,18 @@ export const CopyImageUrl = ({ image }: Props) => {
     setSuccessAlertStatus(false);
   };
 
+  const sizeButton = getButtonSize({ isMobile });
+  const sizeIcon = getIconSize({ isMobile });
+
   return (
     <>
       <Tooltip title="Копировать ссылку на изображение">
         <Fab
           color="primary"
           aria-label="Копировать ссылку на изображение"
-          onClick={handleCopy}>
-          <ContentCopyIcon />
+          onClick={handleCopy}
+          size={sizeButton}>
+          <ContentCopyIcon fontSize={sizeIcon} />
         </Fab>
       </Tooltip>
       <Snackbar

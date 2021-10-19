@@ -4,19 +4,30 @@ import ImageIcon from '@mui/icons-material/Image';
 import Fab from '@mui/material/Fab';
 import Tooltip from '@mui/material/Tooltip';
 
+import { useIsMobile } from 'shared/lib/screen_type/is_mobile';
+
+import { getButtonSize } from '../lib/button_size';
+import { getIconSize } from '../lib/icon_size';
+
 interface Props {
   image: string;
 }
 
 export const OpenImage = ({ image }: Props) => {
+  const isMobile = useIsMobile();
+
+  const sizeButton = getButtonSize({ isMobile });
+  const sizeIcon = getIconSize({ isMobile });
+
   return (
     <Tooltip title="Открыть изображение в новой вкладке">
       <Fab
         color="primary"
         aria-label="Открыть изображение в новой вкладке"
         target="_blank"
-        href={image}>
-        <ImageIcon />
+        href={image}
+        size={sizeButton}>
+        <ImageIcon fontSize={sizeIcon} />
       </Fab>
     </Tooltip>
   );

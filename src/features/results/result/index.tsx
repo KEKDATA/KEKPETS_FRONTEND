@@ -6,11 +6,12 @@ import { styled } from '@mui/material/styles';
 
 import { SaveImage } from 'features/results/result/save_image';
 
+import { useIsMobile } from 'shared/lib/screen_type/is_mobile';
+
 import { ImagePreview } from 'shared/ui/image_preview';
 
 import { Result as ResultType } from 'shared/typings/results';
 
-import { Characteristics } from './characteristics';
 import { CopyImageUrl } from './copy_image_url';
 import { OpenImage } from './open_image';
 import { PetView } from './pet_view';
@@ -25,10 +26,16 @@ const Container = styled(Grid)(({ theme }) => ({
   backgroundColor: theme.palette.common.white,
   marginBottom: theme.spacing(4),
   boxShadow: theme.shadows[4],
+  width: '90%',
+  [theme.breakpoints.up('sm')]: {
+    width: 'auto',
+  },
 }));
 
 export const Result = ({ result }: Props) => {
   const { bbox, image } = result;
+
+  const isMobile = useIsMobile();
 
   const { isImageLoaded, containerRef } = useImageLoadedStatus({
     image,
@@ -47,12 +54,12 @@ export const Result = ({ result }: Props) => {
   return (
     <Container item ref={containerRef}>
       <Box
-        sx={{ cursor: 'zoom-in', display: 'inline-flex' }}
+        sx={{ cursor: 'zoom-in', display: 'inline-flex', width: '100%' }}
         onClick={showPreview}>
         <PetView
           image={image}
           bbox={bbox}
-          width={500}
+          width={isMobile ? '100%' : 500}
           isImageLoaded={isImageLoaded}
         />
         <ImagePreview open={previewVisible} onClose={hidePreview}>
@@ -60,9 +67,6 @@ export const Result = ({ result }: Props) => {
         </ImagePreview>
       </Box>
       <Grid container spacing={2}>
-        <Grid item>
-          <Characteristics />
-        </Grid>
         <Grid item>
           <OpenImage image={image} />
         </Grid>

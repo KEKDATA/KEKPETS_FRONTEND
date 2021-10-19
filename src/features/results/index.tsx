@@ -12,6 +12,8 @@ import { Result } from './result';
 const ResultsContainer = styled('div')`
   position: relative;
   min-height: 80vh;
+  justify-content: center;
+  display: flex;
 `;
 
 const ResultsGrid = styled(Grid)(({ theme }) => ({
