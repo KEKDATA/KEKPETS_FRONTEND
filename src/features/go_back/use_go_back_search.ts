@@ -5,7 +5,7 @@ import { getSearchParams } from 'shared/lib/url/search_params';
 
 export const useGoBackSearch = () => {
   useEffect(() => {
-    window.addEventListener('popstate', () => {
+    const handleGoBack = () => {
       const searchParams = getSearchParams().toString();
 
       if (searchParams.length === 0) {
@@ -13,6 +13,12 @@ export const useGoBackSearch = () => {
       }
 
       searchModel.getSearchResultsFx(searchParams.toString());
-    });
+    };
+
+    window.addEventListener('popstate', handleGoBack);
+
+    return () => {
+      window.removeEventListener('popstate', handleGoBack);
+    };
   }, []);
 };
