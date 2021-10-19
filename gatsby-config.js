@@ -1,7 +1,5 @@
 module.exports = {
-  siteMetadata: {
-    siteUrl: `https://www.yourdomain.tld`,
-  },
+  pathPrefix: process.env.PATH_PREFIX,
   plugins: [
     {
       resolve: `gatsby-plugin-emotion`,
