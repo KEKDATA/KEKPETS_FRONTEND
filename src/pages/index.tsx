@@ -24,15 +24,16 @@ const Search: React.FC<PageProps> = () => {
 
   useGoBackSearch();
 
+  const fonts =
+    'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap';
+
   return (
     <ThemeProvider>
       <Helmet>
         <meta charSet="utf-8" />
         <title>KEKPETS</title>
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-        />
+        <link rel="preload" href={fonts} as="style" />
+        <link rel="stylesheet" href={fonts} />
       </Helmet>
       <ThemeSwitch />
       <CssBaseline />
