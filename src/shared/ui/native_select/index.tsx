@@ -18,9 +18,15 @@ interface Props {
   isRequired?: boolean;
 }
 
-const FormControl = styled(MuiFormControl)`
-  background-color: white;
-`;
+const FormControl = styled(MuiFormControl)(
+  ({
+    theme: {
+      palette: { mode, common },
+    },
+  }) => ({
+    backgroundColor: mode === 'dark' ? common.black : common.white,
+  }),
+);
 
 const notSelectedValue = 'not_selected';
 
