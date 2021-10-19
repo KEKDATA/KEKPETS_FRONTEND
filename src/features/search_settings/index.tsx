@@ -4,6 +4,7 @@ import { searchModel } from 'shared/models/search';
 
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
+import { blue } from '@mui/material/colors';
 import { styled } from '@mui/material/styles';
 
 import { AnimatedDog } from 'shared/ui/animated_dog';
@@ -15,7 +16,8 @@ import { Submit } from './submit';
 const SettingsContainer = styled(Grid)(({ theme }) => ({
   height: '100vh',
   transition: 'height 0.2s ease-out',
-
+  backgroundColor:
+    theme.palette.mode === 'dark' ? theme.palette.common.black : blue[200],
   '&[data-search-params-exist="true"]': {
     minHeight: 280,
     height: 280,

@@ -18,8 +18,8 @@ const Container = styled('div')(({ theme }) => ({
   width: 32,
   height: 32,
   borderRadius: '10px',
-  right: 10,
-  top: 10,
+  right: 20,
+  top: 20,
   backgroundImage: `url(${
     theme.palette.mode === 'dark' ? nightBackground : dayBackground
   })`,
@@ -32,23 +32,33 @@ const Icon = styled('div')`
   width: 20px;
   height: 20px;
   position: absolute;
-
-  bottom: 0;
+  visibility: hidden;
 
   background-position: 50%;
   background-size: cover;
 
-  &[data-dark-mode='false'] {
-    left: -1px;
-    bottom: -1px;
-    border-radius: 50%;
-    box-shadow: 0 0 5px rgb(0 0 0 / 25%), inset 0 0 10px hsl(0deg 0% 100% / 50%);
-    background-image: url(${smile});
-  }
+  transition: transform 1s;
+`;
 
-  &[data-dark-mode='true'] {
-    right: 0;
-    background-image: url(${nightMark});
+const LightIcon = styled(Icon)`
+  border-radius: 50%;
+  box-shadow: 0 0 5px rgb(0 0 0 / 25%), inset 0 0 10px hsl(0deg 0% 100% / 50%);
+  background-image: url(${smile});
+  transform: translate3d(-20px, 40px, 0);
+
+  &[data-show='true'] {
+    visibility: visible;
+    transform: translate3d(0, 12px, 6px);
+  }
+`;
+
+const DarkIcon = styled(Icon)`
+  background-image: url(${nightMark});
+  transform: translate3d(30px, 35px, 0);
+
+  &[data-show='true'] {
+    visibility: visible;
+    transform: translate3d(12px, 12px, 0);
   }
 `;
 
@@ -67,7 +77,8 @@ export const ThemeSwitch = () => {
     <Container
       aria-label={label}
       onClick={colorSchemeModeModel.darkThemeToggled}>
-      <Icon data-dark-mode={isDark} />
+      <DarkIcon data-show={isDark} />
+      <LightIcon data-show={!isDark} />
     </Container>
   );
 };

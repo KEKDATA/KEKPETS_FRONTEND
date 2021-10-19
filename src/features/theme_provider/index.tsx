@@ -2,7 +2,7 @@ import { useStore } from 'effector-react';
 import React, { FC, useMemo } from 'react';
 import { colorSchemeModeModel } from 'shared/models/color_scheme_mode';
 
-import { blue, grey, orange } from '@mui/material/colors';
+import { grey, lightBlue, orange } from '@mui/material/colors';
 import {
   createTheme,
   ThemeProvider as MuiThemeProvider,
@@ -18,7 +18,7 @@ export const ThemeProvider: FC = ({ children }) => {
           styleOverrides: {
             body: {
               backgroundColor: `${
-                isDarkMode ? grey[900] : blue[600]
+                isDarkMode ? grey[900] : lightBlue[50]
               } !important`,
               minHeight: '100vh',
             },

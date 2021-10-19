@@ -5,7 +5,6 @@ import { Helmet } from 'react-helmet';
 import { searchModel } from 'shared/models/search';
 
 import CssBaseline from '@mui/material/CssBaseline';
-import { styled } from '@mui/material/styles';
 
 import { Pagination } from 'features/pagination';
 import { Results } from 'features/results';
@@ -17,16 +16,6 @@ import { ThemeSwitch } from 'features/theme_switch';
 import makeFakeServer from '../requests/fake';
 
 makeFakeServer();
-
-const Content = styled('div')(
-  ({
-    theme: {
-      palette: { mode, common },
-    },
-  }) => ({
-    backgroundColor: mode === 'dark' ? common.black : common.white,
-  }),
-);
 
 const Search: React.FC<PageProps> = () => {
   useGate(searchModel.SearchGate);
@@ -44,10 +33,8 @@ const Search: React.FC<PageProps> = () => {
       <ThemeSwitch />
       <CssBaseline />
       <SearchSettings />
-      <Content>
-        <Results />
-        <Pagination />
-      </Content>
+      <Results />
+      <Pagination />
       <ScrollToTop scrollPositionThreshold={700} />
     </ThemeProvider>
   );
