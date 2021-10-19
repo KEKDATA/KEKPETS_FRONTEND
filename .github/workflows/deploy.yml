@@ -12,7 +12,9 @@ jobs:
           node-version: '14'
           cache: 'yarn'
       - run: yarn install
-      - run: echo "API_URL=${{ env.API_URL }}\nPATH_PREFIX=${{ env.PATH_PREFIX }}\nSITE_URL=${{ env.SITE_URL }}">.env.production
+      - run: echo -n "API_URL=${{ env.API_URL }}">.env.production \
+              echo -n "PATH_PREFIX=${{ env.PATH_PREFIX }}">>.env.production \
+              echo -n "SITE_URL=${{ env.SITE_URL }}">>.env.production
         env:
           API_URL: "https://somedomain.com"
           PATH_PREFIX: "/KEKPETS_PUBLIC"
@@ -29,4 +31,4 @@ jobs:
           build_dir: public
           repo: KEKDATA/KEKPETS_PUBLIC
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.KEKPETS_PUBLIC_TOKEN }}
