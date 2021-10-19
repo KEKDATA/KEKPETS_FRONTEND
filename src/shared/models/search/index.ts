@@ -34,7 +34,12 @@ const resultsReceived = searchResultsReceived.map(response => response.results);
 const $searchSettingsFieldsFromUrl = createStore<null | SearchSettingsFormUrl>(
   null,
 ).on(
-  [SearchGate.open, getSearchResultsFx.pending, searchParamsNotFounded],
+  [
+    SearchGate.open,
+    getSearchResultsFx.done,
+    getSearchResultsFx.fail,
+    searchParamsNotFounded,
+  ],
   getSearchSettingsFields,
 );
 

@@ -1,13 +1,4 @@
-const breeds = [
-  {
-    value: 'alabai',
-    text: 'Алабай',
-  },
-  {
-    value: 'laika',
-    text: 'Лайка',
-  },
-];
+import { breeds } from './breeds';
 
 const colors = [
   {

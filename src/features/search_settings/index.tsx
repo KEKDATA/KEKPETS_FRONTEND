@@ -19,12 +19,10 @@ const SettingsContainer = styled(Grid)(({ theme }) => ({
   backgroundColor:
     theme.palette.mode === 'dark' ? theme.palette.common.black : blue[200],
   '&[data-search-params-exist="true"]': {
-    minHeight: 320,
-    height: 320,
+    height: 370,
     paddingBottom: theme.spacing(4),
     [theme.breakpoints.up('sm')]: {
-      height: 150,
-      minHeight: 'auto',
+      height: 250,
       paddingBottom: 0,
     },
   },

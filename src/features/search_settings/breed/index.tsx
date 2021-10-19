@@ -1,9 +1,9 @@
 import { useStore } from 'effector-react';
-import React from 'react';
+import React, { useState } from 'react';
 
-import { SelectChangeEvent } from '@mui/material/Select';
-
-import { Select } from 'shared/ui/select';
+import MuiAutocomplete from '@mui/material/Autocomplete';
+import MuiTextField from '@mui/material/TextField';
+import { styled } from '@mui/material/styles';
 
 import { SearchSettingsFieldsTranslates } from 'shared/enums/search_settings_fields/translates';
 
@@ -11,19 +11,62 @@ import { searchSettingsOptions } from 'shared/stubs/search_settings_options';
 
 import { breedModel } from './model';
 
-export const Breed = () => {
-  const value = useStore(breedModel.$value);
+const normalizedOptions = searchSettingsOptions.breeds.map(({ text }) => text);
 
-  const handleChange = (event: SelectChangeEvent) => {
-    breedModel.valueChanged(event.target.value);
-  };
+const Autocomplete = styled(MuiAutocomplete)(
+  ({
+    theme: {
+      breakpoints,
+      spacing,
+      shape: { borderRadius },
+      palette: { mode, common },
+    },
+  }) => ({
+    marginTop: spacing(0.2),
+    borderRadius: `0, 0, ${borderRadius}px, ${borderRadius}px`,
+    backgroundColor: mode === 'dark' ? common.black : common.white,
+    width: '100%',
+    [breakpoints.up('sm')]: {
+      width: 482,
+    },
+  }),
+);
+
+const TextField = styled(MuiTextField)(
+  ({
+    theme: {
+      palette: { mode, common },
+    },
+  }) => ({
+    '& .MuiFilledInput-root': {
+      background: mode === 'dark' ? common.black : common.white,
+    },
+  }),
+);
+
+export const Breed = () => {
+  const [inputValue, setInputValue] = useState('');
+  const value = useStore(breedModel.$autoCompleteValue);
 
   return (
-    <Select
+    <Autocomplete
       value={value}
-      label={SearchSettingsFieldsTranslates.Breed}
-      handleChange={handleChange}
-      items={searchSettingsOptions.breeds}
+      onChange={(_, newValue: string | null) => {
+        breedModel.autoCompleteValueChanged(newValue);
+      }}
+      inputValue={inputValue}
+      onInputChange={(_, newInputValue) => {
+        setInputValue(newInputValue);
+      }}
+      options={normalizedOptions}
+      renderInput={params => (
+        <TextField
+          {...params}
+          variant="filled"
+          label={SearchSettingsFieldsTranslates.Breed}
+          color="primary"
+        />
+      )}
     />
   );
 };

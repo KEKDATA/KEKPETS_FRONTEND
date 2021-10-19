@@ -1,9 +1,9 @@
 import { useStore } from 'effector-react';
 import React from 'react';
-import { colorSchemeModeModel } from 'shared/models/color_scheme_mode';
 
 import { styled } from '@mui/material/styles';
 
+import { colorSchemeModeModel } from '../model';
 import dayBackground from './img/day_background_square.svg';
 import nightBackground from './img/night_background_square.svg';
 import nightMark from './img/night_mark.svg';

@@ -1,12 +1,13 @@
 import { useStore } from 'effector-react';
 import React, { FC, useMemo } from 'react';
-import { colorSchemeModeModel } from 'shared/models/color_scheme_mode';
 
 import { grey, lightBlue, orange } from '@mui/material/colors';
 import {
   createTheme,
   ThemeProvider as MuiThemeProvider,
 } from '@mui/material/styles';
+
+import { colorSchemeModeModel } from '../model';
 
 export const ThemeProvider: FC = ({ children }) => {
   const isDarkMode = useStore(colorSchemeModeModel.$isDarkTheme);

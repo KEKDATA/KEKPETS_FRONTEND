@@ -16,11 +16,6 @@ const Button = styled(MuiButton)(({ theme }) => ({
     opacity: 0.9,
   },
   marginTop: theme.spacing(1),
-  marginLeft: 0,
-  [theme.breakpoints.up('sm')]: {
-    marginTop: 0,
-    marginLeft: theme.spacing(1),
-  },
   borderRadius: theme.shape.borderRadius,
   color: theme.palette.common.white,
 }));

@@ -26,7 +26,10 @@ const FormControl = styled(MuiFormControl)(
     },
   }) => ({
     backgroundColor: mode === 'dark' ? common.black : common.white,
-    borderRadius: `${borderRadius}px ${borderRadius}px 0 0`,
+    borderRadius,
+    '& > div': {
+      backgroundColor: mode === 'dark' ? common.black : common.white,
+    },
   }),
 );
 
