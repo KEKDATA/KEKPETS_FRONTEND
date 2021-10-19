@@ -2,6 +2,7 @@ import { useStore } from 'effector-react';
 import React from 'react';
 import { searchModel } from 'shared/models/search';
 
+import { Box } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import { styled } from '@mui/material/styles';
 
@@ -15,10 +16,6 @@ const ResultsContainer = styled('div')`
   justify-content: center;
   display: flex;
 `;
-
-const ResultsGrid = styled(Grid)(({ theme }) => ({
-  marginTop: theme.spacing(4),
-}));
 
 export const Results = () => {
   const results = useStore(searchModel.$results);
@@ -47,17 +44,19 @@ export const Results = () => {
 
   return (
     <ResultsContainer>
-      <ResultsGrid
-        rowSpacing={3}
-        container
-        flexDirection="column"
-        justifyContent="center"
-        alignContent="center"
-        flexWrap="wrap">
-        {results.map(result => (
-          <Result key={result.id} result={result} />
-        ))}
-      </ResultsGrid>
+      <Box sx={{ mt: 4 }}>
+        <Grid
+          rowSpacing={3}
+          container
+          flexDirection="column"
+          justifyContent="center"
+          alignContent="center"
+          flexWrap="wrap">
+          {results.map(result => (
+            <Result key={result.id} result={result} />
+          ))}
+        </Grid>
+      </Box>
     </ResultsContainer>
   );
 };
