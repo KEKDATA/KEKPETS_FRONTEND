@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 
-import { SelectChangeEvent } from '@mui/material/Select';
-
 import { Select } from '../index';
 
 export default {
@@ -51,12 +49,7 @@ export const Default = (args: Args) => {
   const [value, setValue] = useState('');
 
   return (
-    <Select
-      {...args}
-      items={items}
-      value={value}
-      handleChange={(event: SelectChangeEvent) => setValue(event.target.value)}
-    />
+    <Select {...args} items={items} value={value} onChangeValue={setValue} />
   );
 };
 

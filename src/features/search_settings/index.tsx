@@ -70,7 +70,7 @@ export const SearchSettings = () => {
       )}
       <Container maxWidth="lg">
         <form onSubmit={handleSubmit}>
-          <SettingsGrid container rowSpacing={1}>
+          <SettingsGrid container rowSpacing={isMobile ? 0.2 : 1}>
             <SettingsGroups />
             <Grid item marginLeft={isMobile ? 0 : 1}>
               <Submit />

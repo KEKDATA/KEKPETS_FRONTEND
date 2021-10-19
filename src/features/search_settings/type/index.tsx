@@ -1,8 +1,6 @@
 import { useStore } from 'effector-react';
 import React from 'react';
 
-import { SelectChangeEvent } from '@mui/material/Select';
-
 import { useIsMobile } from 'shared/lib/screen_type/is_mobile';
 
 import { NativeSelect } from 'shared/ui/native_select';
@@ -20,31 +18,22 @@ export const Type = () => {
   const isMobile = useIsMobile();
 
   if (isMobile) {
-    const handleChangeNative = (
-      event: React.ChangeEvent<HTMLSelectElement>,
-    ) => {
-      typeModel.valueChanged(event.target.value);
-    };
-
     return (
       <NativeSelect
         value={value}
         label={SearchSettingsFieldsTranslates.Type}
-        handleChange={handleChangeNative}
+        onChangeValue={typeModel.valueChanged}
         items={searchSettingsOptions.types}
+        borderRadius="10px 10px 0 0"
       />
     );
   }
-
-  const handleChange = (event: SelectChangeEvent) => {
-    typeModel.valueChanged(event.target.value);
-  };
 
   return (
     <Select
       value={value}
       label={SearchSettingsFieldsTranslates.Type}
-      handleChange={handleChange}
+      onChangeValue={typeModel.valueChanged}
       items={searchSettingsOptions.types}
       isRequired
     />

@@ -11,7 +11,7 @@ import { SelectValues } from 'shared/typings/select';
 
 interface Props {
   label: string;
-  handleChange: (event: SelectChangeEvent) => void;
+  onChangeValue: (value: string) => void;
   items: SelectValues;
   value: string;
   isError?: boolean;
@@ -25,11 +25,14 @@ const FormControl = styled(MuiFormControl)`
 export const Select = ({
   value,
   label,
-  handleChange,
+  onChangeValue,
   items,
   isError,
   isRequired,
 }: Props) => {
+  const handleChange = (event: SelectChangeEvent) =>
+    onChangeValue(event.target.value);
+
   return (
     <Box sx={{ minWidth: 150 }}>
       <FormControl

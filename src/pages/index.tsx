@@ -5,7 +5,7 @@ import { Helmet } from 'react-helmet';
 import { searchModel } from 'shared/models/search';
 
 import CssBaseline from '@mui/material/CssBaseline';
-import { styled } from '@mui/material/styles';
+import { createTheme, styled, ThemeProvider } from '@mui/material/styles';
 
 import { Pagination } from 'features/pagination';
 import { Results } from 'features/results';
@@ -17,6 +17,14 @@ import '../styles.css';
 
 makeFakeServer();
 
+const theme = createTheme({
+  palette: {
+    secondary: {
+      main: '#f26e36',
+    },
+  },
+});
+
 const Content = styled('div')`
   background-color: aliceblue;
   display: flex;
@@ -27,7 +35,7 @@ const Search: React.FC<PageProps> = () => {
   useGate(searchModel.SearchGate);
 
   return (
-    <main>
+    <ThemeProvider theme={theme}>
       <Helmet>
         <meta charSet="utf-8" />
         <title>KEKPETS</title>
@@ -43,7 +51,7 @@ const Search: React.FC<PageProps> = () => {
         <Pagination />
       </Content>
       <ScrollToTop scrollPositionThreshold={700} />
-    </main>
+    </ThemeProvider>
   );
 };
 

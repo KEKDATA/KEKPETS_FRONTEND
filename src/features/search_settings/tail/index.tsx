@@ -1,8 +1,6 @@
 import { useStore } from 'effector-react';
 import React from 'react';
 
-import { SelectChangeEvent } from '@mui/material/Select';
-
 import { useIsMobile } from 'shared/lib/screen_type/is_mobile';
 
 import { NativeSelect } from 'shared/ui/native_select';
@@ -20,31 +18,22 @@ export const Tail = () => {
   const isMobile = useIsMobile();
 
   if (isMobile) {
-    const handleChangeNative = (
-      event: React.ChangeEvent<HTMLSelectElement>,
-    ) => {
-      tailModel.valueChanged(event.target.value);
-    };
-
     return (
       <NativeSelect
         value={value}
         label={SearchSettingsFieldsTranslates.Tail}
-        handleChange={handleChangeNative}
+        onChangeValue={tailModel.valueChanged}
         items={searchSettingsOptions.tails}
+        borderRadius="0 0 10px 10px"
       />
     );
   }
-
-  const handleChange = (event: SelectChangeEvent) => {
-    tailModel.valueChanged(event.target.value);
-  };
 
   return (
     <Select
       value={value}
       label={SearchSettingsFieldsTranslates.Tail}
-      handleChange={handleChange}
+      onChangeValue={tailModel.valueChanged}
       items={searchSettingsOptions.tails}
     />
   );
