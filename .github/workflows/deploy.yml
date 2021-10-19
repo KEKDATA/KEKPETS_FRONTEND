@@ -2,8 +2,6 @@ name: Build and Deploy to GitHub Pages
 on:
   push:
     branches: ['feature/deploy']
-  pull_request:
-    branches: ['master']
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -19,6 +17,7 @@ jobs:
           API_URL: "https://somedomain.com"
           PATH_PREFIX: /${{ github.event.repository.name }}
           PREFIX_PATHS: true
+          SITE_URL: "https://KEKDATA.github.io"
       - name: Deploy to GitHub Pages
         if: success()
         uses: crazy-max/ghaction-github-pages@v2
