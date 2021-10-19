@@ -1,3 +1,9 @@
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
+
+console.log('PATH_PREFIX', process.env.PATH_PREFIX);
+
 module.exports = {
   pathPrefix: process.env.PATH_PREFIX,
   siteMetadata: {
