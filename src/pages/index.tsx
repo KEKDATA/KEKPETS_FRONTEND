@@ -6,6 +6,7 @@ import { searchModel } from 'shared/models/search';
 
 import CssBaseline from '@mui/material/CssBaseline';
 
+import { useGoBackSearch } from 'features/go_back/use_go_back_search';
 import { Pagination } from 'features/pagination';
 import { Results } from 'features/results';
 import { ScrollToTop } from 'features/scroll_to_top';
@@ -19,6 +20,8 @@ makeFakeServer();
 
 const Search: React.FC<PageProps> = () => {
   useGate(searchModel.SearchGate);
+
+  useGoBackSearch();
 
   return (
     <ThemeProvider>
