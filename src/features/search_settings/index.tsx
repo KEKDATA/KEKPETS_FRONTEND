@@ -1,17 +1,18 @@
 import { useStore } from 'effector-react';
 import React from 'react';
-import { searchModel } from 'shared/models/search';
 
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import { blue } from '@mui/material/colors';
 import { styled } from '@mui/material/styles';
 
+import { searchModel } from 'entities/search';
+
 import { AnimatedDog } from 'shared/ui/animated_dog';
 
 import { model } from './model';
 import { SettingsGroups } from './settings_groups';
-import { Submit } from './submit';
+import { Submit } from './ui/submit';
 
 const SettingsContainer = styled(Grid)(({ theme }) => ({
   height: '100vh',
@@ -35,6 +36,7 @@ const DogContainer = styled('div')`
 
 export const SearchSettings = () => {
   const isSearchParamsExist = useStore(searchModel.$isSearchParamsExist);
+  const isDisabledForm = useStore(model.$isDisabledForm);
 
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -68,7 +70,7 @@ export const SearchSettings = () => {
             justifyContent={{ sm: 'center ' }}>
             <SettingsGroups />
             <Grid item>
-              <Submit />
+              <Submit isDisabled={isDisabledForm} />
             </Grid>
           </Grid>
         </form>

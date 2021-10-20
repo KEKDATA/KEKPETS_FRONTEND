@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
-import { searchModel } from 'shared/models/search';
+
+import { searchModel } from 'entities/search';
 
 import { getSearchParams } from 'shared/lib/url/search_params';
 

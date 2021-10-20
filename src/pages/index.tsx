@@ -3,10 +3,11 @@ import { PageProps } from 'gatsby';
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import makeFakeServer from 'requests/fake';
-import { searchModel } from 'shared/models/search';
 
 import { Container } from '@mui/material';
 import CssBaseline from '@mui/material/CssBaseline';
+
+import { searchModel } from 'entities/search';
 
 import { useGoBackSearch } from 'features/go_back/use_go_back_search';
 import { Pagination } from 'features/pagination';

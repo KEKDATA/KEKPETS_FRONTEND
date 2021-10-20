@@ -1,17 +1,18 @@
 import { combine, createEvent, createStore, sample } from 'effector';
-import { searchModel } from 'shared/models/search';
+
+import { breedModel } from 'entities/breed/model';
+import { colorModel } from 'entities/color/model/model';
+import { searchModel } from 'entities/search';
+import { tailModel } from 'entities/tail/model';
+import { typeModel } from 'entities/type/model';
+
+import { PagesPaths } from 'constants/pages_paths';
+import { SearchSettingsFieldsKeys } from 'constants/search_settings_fields/keys';
 
 import { pushSearchParams } from 'shared/lib/url/push_search_params';
 
-import { PagesPaths } from 'shared/enums/pages_paths';
-import { SearchSettingsFieldsKeys } from 'shared/enums/search_settings_fields/keys';
-
-import { breedModel } from './breed/model';
-import { colorModel } from './color/model';
 import { getQueryBySelectedSettings } from './lib/get_query_by_selected_settings';
 import { isSettingExist } from './lib/is_setting_exist';
-import { tailModel } from './tail/model';
-import { typeModel } from './type/model';
 
 const formSubmitted = createEvent();
 

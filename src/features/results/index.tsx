@@ -1,14 +1,15 @@
 import { useStore } from 'effector-react';
 import React from 'react';
-import { searchModel } from 'shared/models/search';
 
 import { Box } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import { styled } from '@mui/material/styles';
 
-import { ResultsLoader } from './loader';
-import { NotFound } from './not_found';
+import { searchModel } from 'entities/search';
+
 import { Result } from './result';
+import { ResultsLoader } from './ui/loader';
+import { NotFound } from './ui/not_found';
 
 const ResultsContainer = styled('div')`
   position: relative;
