@@ -3,10 +3,10 @@ import React, { memo } from 'react';
 
 import Grid from '@mui/material/Grid';
 
-import { BreedAutocomplete, breedModel } from '../../entity/breed';
-import { ColorSelect, colorModel } from '../../entity/color';
-import { tailModel, TailSelect } from '../../entity/tail';
-import { typeModel, TypeSelect } from '../../entity/type';
+import { BreedAutocomplete, breedModel } from 'entity/breed';
+import { ColorSelect, colorModel } from 'entity/color';
+import { tailModel, TailSelect } from 'entity/tail';
+import { typeModel, TypeSelect } from 'entity/type';
 
 export const SettingsGroups = memo(
   () => {

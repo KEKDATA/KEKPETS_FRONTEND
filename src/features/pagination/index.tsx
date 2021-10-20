@@ -4,7 +4,8 @@ import React from 'react';
 import MuiPagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 
-import { searchModel } from '../../entity/search';
+import { searchModel } from 'entity/search';
+
 import { usePaginationColor } from './lib/pagination_color';
 import { paginationModel } from './model';
 
