@@ -16,7 +16,7 @@
     "baseUrl": ".",
     "paths": {
       "requests/*": ["./src/requests/*"],
-      "entities/*": ["./src/entities/*"],
+      "entity/*": ["./src/entity/*"],
       "contracts/*": ["./src/contracts/*"],
       "features/*": ["./src/features/*"],
       "constants/*": ["./src/constants/*"],

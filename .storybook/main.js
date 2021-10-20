@@ -10,7 +10,7 @@ module.exports = {
     config.resolve.alias = {
       ...config.resolve.alias,
       requests: path.resolve(__dirname, '../src/requests'),
-      entities: path.resolve(__dirname, '../src/entities'),
+      entity: path.resolve(__dirname, '../src/entity'),
       constants: path.resolve(__dirname, '../src/constants'),
       features: path.resolve(__dirname, '../src/features'),
       shared: path.resolve(__dirname, '../src/shared'),

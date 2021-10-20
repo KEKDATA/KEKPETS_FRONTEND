@@ -6,8 +6,6 @@ import Grid from '@mui/material/Grid';
 import { grey } from '@mui/material/colors';
 import { styled } from '@mui/material/styles';
 
-import { SaveImage } from 'features/results/result/save_image';
-
 import { useIsMobile } from 'shared/lib/screen_type/is_mobile';
 
 import { CopyButton } from 'shared/ui/copy_button';
@@ -17,6 +15,7 @@ import { Result as ResultType } from 'shared/typings/results';
 
 import { OpenImage } from './open_image';
 import { PetView } from './pet_view';
+import { SaveImage } from './save_image';
 import { useImageLoadedStatus } from './use_image_loaded_status';
 
 interface Props {

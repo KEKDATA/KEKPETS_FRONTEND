@@ -1,8 +1,8 @@
 import { createEvent, createStore } from 'effector';
 
-import { searchModel } from 'entities/search';
-
 import { SearchSettingsFieldsKeys } from 'constants/search_settings_fields/keys';
+
+import { searchModel } from '../../../entity/search';
 
 interface Arguments {
   settingType: SearchSettingsFieldsKeys;

@@ -10,7 +10,7 @@
   "importOrder": [
     "^@mui/(.*)$",
     "^api/(.*)$",
-    "^entities/(.*)$",
+    "^entity/(.*)$",
     "^constants/(.*)$",
     "^contracts/(.*)$",
     "^features/(.*)$",

@@ -7,14 +7,14 @@ import makeFakeServer from 'requests/fake';
 import { Container } from '@mui/material';
 import CssBaseline from '@mui/material/CssBaseline';
 
-import { searchModel } from 'entities/search';
-
 import { useGoBackSearch } from 'features/go_back/use_go_back_search';
 import { Pagination } from 'features/pagination';
 import { Results } from 'features/results';
 import { ScrollToTop } from 'features/scroll_to_top';
 import { SearchSettings } from 'features/search_settings';
 import { Theme } from 'features/theme';
+
+import { searchModel } from '../entity/search';
 
 makeFakeServer();
 

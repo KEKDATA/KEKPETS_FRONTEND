@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 
-import { searchModel } from 'entities/search';
-
 import { getSearchParams } from 'shared/lib/url/search_params';
+
+import { searchModel } from '../../entity/search';
 
 export const useGoBackSearch = () => {
   useEffect(() => {

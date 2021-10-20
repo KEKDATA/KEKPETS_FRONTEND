@@ -6,10 +6,9 @@ import Grid from '@mui/material/Grid';
 import { blue } from '@mui/material/colors';
 import { styled } from '@mui/material/styles';
 
-import { searchModel } from 'entities/search';
-
 import { AnimatedDog } from 'shared/ui/animated_dog';
 
+import { searchModel } from '../../entity/search';
 import { model } from './model';
 import { SettingsGroups } from './settings_groups';
 import { Submit } from './ui/submit';

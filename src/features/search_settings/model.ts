@@ -1,16 +1,15 @@
 import { combine, createEvent, createStore, sample } from 'effector';
 
-import { breedModel } from 'entities/breed';
-import { colorModel } from 'entities/color';
-import { searchModel } from 'entities/search';
-import { tailModel } from 'entities/tail';
-import { typeModel } from 'entities/type';
-
 import { PagesPaths } from 'constants/pages_paths';
 import { SearchSettingsFieldsKeys } from 'constants/search_settings_fields/keys';
 
 import { pushSearchParams } from 'shared/lib/url/push_search_params';
 
+import { breedModel } from '../../entity/breed';
+import { colorModel } from '../../entity/color';
+import { searchModel } from '../../entity/search';
+import { tailModel } from '../../entity/tail';
+import { typeModel } from '../../entity/type';
 import { getQueryBySelectedSettings } from './lib/get_query_by_selected_settings';
 import { isSettingExist } from './lib/is_setting_exist';
 
