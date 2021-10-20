@@ -16,7 +16,7 @@ interface Props {
   onChange: (value: string) => void;
 }
 
-export const TypeSelect = ({ value, onChange }: Props) => {
+export const AnimalTypeSelect = ({ value, onChange }: Props) => {
   const theme = useTheme();
   const { borderRadius } = theme.shape;
 

@@ -25,6 +25,10 @@ const fieldsConfig = [
   },
 ];
 
+/**
+ * Собираем из урла параметры поиска, которые мы считаем валидными
+ * валидные - это те, которые может пользователь задать через интерфейс
+ */
 export const getSearchSettingsFields = () => {
   const fieldsKeysFromUrl = getFieldsKeysFromUrl();
   const isRequiredSettingsIncluded = requiredSettingsIncluded({

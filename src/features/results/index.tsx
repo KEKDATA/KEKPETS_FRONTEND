@@ -20,6 +20,7 @@ const ResultsContainer = styled('div')`
 
 export const Results = () => {
   const results = useStore(searchModel.$results);
+  const resultsNotFound = useStore(searchModel.$resultsNotFound);
   const isFetching = useStore(searchModel.getSearchResultsFx.pending);
   const isSearchParamsExist = useStore(searchModel.$isSearchParamsExist);
 
@@ -35,7 +36,7 @@ export const Results = () => {
     );
   }
 
-  if (!results) {
+  if (resultsNotFound) {
     return (
       <ResultsContainer>
         <NotFound />

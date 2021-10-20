@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import Fab from '@mui/material/Fab';
 import { styled } from '@mui/material/styles';
 
-import { isBrowser } from 'shared/lib/browser/is_browser';
+import { useBelowViewPosition } from 'entity/below_view_position/use_element_visible';
+
 import { scrollToTop } from 'shared/lib/scroll/to_top';
 
 import { useToTopColor } from './lib/to_top_color';
@@ -21,21 +22,7 @@ const ToTop = styled(Fab)`
 
 export const ScrollToTop = ({ scrollPositionThreshold }: Props) => {
   const fabColor = useToTopColor();
-  const [isVisible, setVisibleStatus] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => {
-      if (!isBrowser) {
-        return null;
-      }
-
-      setVisibleStatus(scrollPositionThreshold < window.scrollY);
-    };
-
-    document.addEventListener('scroll', onScroll);
-
-    return () => document.removeEventListener('scroll', onScroll);
-  }, [scrollPositionThreshold]);
+  const { isVisible } = useBelowViewPosition({ scrollPositionThreshold });
 
   if (!isVisible) {
     return null;

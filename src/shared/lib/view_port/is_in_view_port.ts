@@ -1,6 +1,6 @@
 import { isBrowser } from 'shared/lib/browser/is_browser';
 
-export const checkIsInViewPort = (
+export const checkIsElementInViewPort = (
   element: HTMLElement,
   percentVisible: number,
 ) => {

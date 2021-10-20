@@ -30,13 +30,13 @@ const Skeleton = styled(MuiSkeleton)(({ theme }) => ({
 export const PetView = ({ image, bbox, width, isImageLoaded }: Props) => {
   return (
     <Container>
-      {!isImageLoaded && <Skeleton variant="rectangular" animation="wave" />}
       {isImageLoaded && (
         <BBoxContainer>
           <ImageView url={image} loading="lazy" width={width} />
           <BBox coordinates={bbox} />
         </BBoxContainer>
       )}
+      {!isImageLoaded && <Skeleton variant="rectangular" animation="wave" />}
     </Container>
   );
 };

@@ -10,6 +10,8 @@ import { sleep } from 'shared/lib/dom/sleep';
 
 import { ImageView } from 'shared/ui/image_view';
 
+import dogeDance from './doge_dance.gif';
+
 interface Props {
   image: string;
   fabColor: 'default' | 'primary';
@@ -23,6 +25,16 @@ const ImageToSaveContainer = styled('div')`
   z-index: -1;
 `;
 
+const LoadingIcon = styled('img')`
+  width: 35px;
+  border-radius: 50%;
+`;
+
+/**
+ * Подобный подход к конвертированию в canvas не нужен,
+ * если изображение будет на том же хосте, что и приложение
+ * Но с текущих реалиях необходимо конвертировать
+ */
 export const SaveImage = ({ image, sizeIcon, sizeButton, fabColor }: Props) => {
   const [isImageDisplayed, setImageDisplayedStatus] = useState(false);
 
@@ -73,7 +85,15 @@ export const SaveImage = ({ image, sizeIcon, sizeButton, fabColor }: Props) => {
           aria-label="Сохранить изображение"
           onClick={handleSave}
           size={sizeButton}>
-          <FileDownloadIcon fontSize={sizeIcon} />
+          {isImageDisplayed ? (
+            <LoadingIcon
+              src={dogeDance}
+              loading="lazy"
+              alt="Загружаем изображение"
+            />
+          ) : (
+            <FileDownloadIcon fontSize={sizeIcon} />
+          )}
         </Fab>
       </Tooltip>
       {isImageDisplayed && (

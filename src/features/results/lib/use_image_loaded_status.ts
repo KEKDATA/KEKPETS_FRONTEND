@@ -1,12 +1,17 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { loadImage } from 'shared/lib/image/load';
-import { checkIsInViewPort } from 'shared/lib/view_port/is_in_view_port';
+import { checkIsElementInViewPort } from 'shared/lib/view_port/is_in_view_port';
 
 interface Props {
   image: string;
 }
 
+/**
+ * Для загрузки изображений которые в вью порте пользователя
+ * Самописная реализация взамен loading lazy изображения для ui скелетонов изображений
+ * Без скелетонов будет скачек изображений банально что выглядит не корректно по ui
+ */
 export const useImageLoadedStatus = ({ image }: Props) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -17,12 +22,15 @@ export const useImageLoadedStatus = ({ image }: Props) => {
       await loadImage(image);
 
       setImageLoadedStatus(true);
-    } catch (err) {
+    } catch (error) {
       setImageLoadedStatus(false);
 
-      console.error(err);
+      console.error(error);
     }
 
+    /**
+     * Ивент нам не нужен после загрузки изображения
+     */
     document.removeEventListener('scroll', loadImageInViewPort);
   };
 
@@ -31,7 +39,7 @@ export const useImageLoadedStatus = ({ image }: Props) => {
       return;
     }
 
-    const isInViewPort = checkIsInViewPort(containerRef.current, 10);
+    const isInViewPort = checkIsElementInViewPort(containerRef.current, 10);
 
     if (!isInViewPort) {
       return;
@@ -51,6 +59,10 @@ export const useImageLoadedStatus = ({ image }: Props) => {
       passive: true,
     });
 
+    /**
+     * Если компонент удален из DOM, то и лисенер снимаем
+     * Например, если пользователь ушел с экрана с результатами на первичный без результатов
+     */
     return () => {
       document.removeEventListener('scroll', loadImageInViewPort);
     };

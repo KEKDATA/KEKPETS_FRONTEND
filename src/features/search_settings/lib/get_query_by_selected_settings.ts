@@ -10,6 +10,10 @@ interface Arguments {
   page: string;
 }
 
+/**
+ * Нормализуем объект в строку подобную серч параметрам урла
+ * { hello: 'world', kekdata: 'strong' } -> hellow=world&kekdata=strong
+ */
 export const getQueryBySelectedSettings = (settings: Arguments) =>
   getQueryString(
     Object.fromEntries(

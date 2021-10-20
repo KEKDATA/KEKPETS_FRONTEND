@@ -3,22 +3,28 @@ import React, { memo } from 'react';
 
 import Grid from '@mui/material/Grid';
 
+import { animalTypeModel, AnimalTypeSelect } from 'entity/animal_type';
 import { BreedAutocomplete, breedModel } from 'entity/breed';
 import { ColorSelect, colorModel } from 'entity/color';
 import { tailModel, TailSelect } from 'entity/tail';
-import { typeModel, TypeSelect } from 'entity/type';
 
+/**
+ * Набор параметров для управления поиском
+ */
 export const SettingsGroups = memo(
   () => {
     const colorValue = useStore(colorModel.$value);
     const breedValue = useStore(breedModel.$autoCompleteValue);
     const tailValue = useStore(tailModel.$value);
-    const typeValue = useStore(typeModel.$value);
+    const animalTypeValue = useStore(animalTypeModel.$value);
 
     return (
       <>
         <Grid item>
-          <TypeSelect value={typeValue} onChange={typeModel.valueChanged} />
+          <AnimalTypeSelect
+            value={animalTypeValue}
+            onChange={animalTypeModel.valueChanged}
+          />
         </Grid>
         <Grid item>
           <ColorSelect value={colorValue} onChange={colorModel.valueChanged} />

@@ -25,6 +25,9 @@ const countReceived = searchResultsReceived.map(response => response.count);
 
 const resultsReceived = searchResultsReceived.map(response => response.results);
 
+/**
+ * Сущность содержащая параметры настроек серча указанных в урле
+ */
 const $searchSettingsFieldsFromUrl = createStore<null | SearchSettingsFormUrl>(
   null,
 ).on(
@@ -37,6 +40,11 @@ const $searchSettingsFieldsFromUrl = createStore<null | SearchSettingsFormUrl>(
   getSearchSettingsFields,
 );
 
+/**
+ * По флоу работы с адресной строкой, в момент фетча запроса
+ * мы уже имеем в адресной строке параметры поиска
+ * Данное хранилище необходимо для отображения ui под выдачу результатов
+ */
 const $isSearchParamsExist = createStore(false)
   .on(searchParamsNotFounded, () => false)
   .on(getSearchResultsFx.pending, () => true);
@@ -49,6 +57,16 @@ const $results = createStore(null)
   .on(resultsReceived, (_, results) => results)
   .reset(searchParamsNotFounded);
 
+const $resultsNotFound = $results.map(
+  results => !results || results.length === 0,
+);
+
+/**
+ * При открытии страницы поиска сработает данный ивент
+ * Имеем два состояния ивента
+ * Мы нашли обязательные параметры в урле
+ * В урле не было обнаружено ожидаемых параметров
+ */
 const fieldsFromSearchParsed = sample({
   clock: SearchGate.open,
   fn: () => {
@@ -66,6 +84,11 @@ const fieldsFromSearchParsed = sample({
   },
 });
 
+/**
+ * Если мы нашли обязательные параметры, то выполняем запрос на получение результатов поиска
+ * Если мы не нашли, то отработает логика по сценарию, который включает отмену запроса
+ * и показ только формы настроек поиска, без выдачи результатов
+ */
 condition({
   source: fieldsFromSearchParsed,
   if: isSearchParamsExist,
@@ -78,6 +101,7 @@ export const searchModel = {
   $searchSettingsFieldsFromUrl,
   $isSearchParamsExist,
   $count,
+  $resultsNotFound,
   $results,
   countReceived,
   resultsReceived,

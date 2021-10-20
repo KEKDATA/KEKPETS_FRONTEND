@@ -1,4 +1,4 @@
-import { createEvent, createStore, guard, sample } from 'effector';
+import { createEvent, restore, sample } from 'effector';
 
 import { searchModel } from 'entity/search';
 
@@ -11,11 +11,22 @@ import { PagesPaths } from 'shared/constants/pages_paths';
 
 import { setupPageToSearchParams } from './lib/setup_page_to_search_params';
 
-const pageSelected = createEvent<string>();
+const defaultPage = 1;
 
-const initialState = isBrowser ? Number(getSearchParams().get('page')) || 1 : 1;
-const $page = createStore(initialState);
+const pageSelected = createEvent<number>();
 
+/**
+ * getSearchParams содержит DOM API, на момент рендера Gatsby работа с этим апи невозможна
+ */
+const initialState =
+  (isBrowser && Number(getSearchParams().get('page'))) || defaultPage;
+const $page = restore(pageSelected, initialState);
+
+/**
+ * Работа ивента возможна при наличии DOM API
+ * Выполнение ивента сигнализирует об успешной обработке серч параметров урла
+ * после смены номера страницы
+ */
 const searchParamsReceived = sample({
   clock: pageSelected,
   fn: page => {
@@ -24,24 +35,25 @@ const searchParamsReceived = sample({
     }
 
     const searchParams = getSearchParams();
-    const withPage = setupPageToSearchParams(searchParams, page);
+    const withPage = setupPageToSearchParams(searchParams, page.toString());
 
     return withPage.toString();
   },
 });
 
-guard({
-  clock: searchParamsReceived,
-  source: pageSelected.map(Number),
-  filter: Boolean,
-  target: $page,
-});
-
+/**
+ * С актуальными серч параметрами формируем запрос для получения новых результатов
+ */
 sample({
   clock: searchParamsReceived,
   target: searchModel.getSearchResultsFx,
 });
 
+/**
+ * Сайд-эффекты для обновления:
+ * серч параметров урла
+ * скрола к топу страницы
+ */
 searchParamsReceived.watch(searchParams => {
   pushSearchParams({
     url: PagesPaths.Search,

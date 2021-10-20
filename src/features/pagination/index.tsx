@@ -19,8 +19,16 @@ export const Pagination = () => {
     return null;
   }
 
-  const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
-    paginationModel.pageSelected(value.toString());
+  const handleChange = (_, selectedPage: number) => {
+    /**
+     * Гвард если пользователь выберет такую же страницу повторно (ui позволяет)
+     * То мы не выполняем дальнейшую логику по работе с апи и URL
+     */
+    if (page === selectedPage) {
+      return;
+    }
+
+    paginationModel.pageSelected(selectedPage);
   };
 
   return (

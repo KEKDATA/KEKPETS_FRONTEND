@@ -9,6 +9,9 @@ interface Arguments {
   defaultValue?: string;
 }
 
+/**
+ * Базовый хендлер по созданию модели для опции поиска
+ */
 export const createSettingModel = ({
   settingType,
   defaultValue = '',
@@ -17,6 +20,11 @@ export const createSettingModel = ({
   const $value = createStore(defaultValue)
     .on(valueChanged, (_, changedValue) => changedValue)
     .on(
+      /**
+       * Изменяем значение хранилища серч сетинга в случае обновления параметров поиска
+       * Например, если пользователь откроет сразу страницу с набором параметров в урле
+       * Мы их запишем чтобы человек их повторно не выставлял в интерфейсе
+       */
       searchModel.$searchSettingsFieldsFromUrl.updates,
       (state, searchSettingsFromUrl) => {
         if (!searchSettingsFromUrl || !searchSettingsFromUrl[settingType]) {

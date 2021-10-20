@@ -1,12 +1,13 @@
-import { combine, createEvent, createStore, sample } from 'effector';
+import { combine, createEvent, sample } from 'effector';
 
+import { animalTypeModel } from 'entity/animal_type';
 import { breedModel } from 'entity/breed';
 import { colorModel } from 'entity/color';
 import { searchModel } from 'entity/search';
 import { tailModel } from 'entity/tail';
-import { typeModel } from 'entity/type';
 
 import { pushSearchParams } from 'shared/lib/url/push_search_params';
+import { getSearchParams } from 'shared/lib/url/search_params';
 
 import { PagesPaths } from 'shared/constants/pages_paths';
 import { SearchSettingsFieldsKeys } from 'shared/constants/search_settings_fields/keys';
@@ -16,21 +17,38 @@ import { isSettingExist } from './lib/is_setting_exist';
 
 const formSubmitted = createEvent();
 
+/**
+ * В случае если один из обязательный поле для заполнения не заполнен,
+ * то на уровне ui дизейблим форму поиска
+ */
 const $isDisabledForm = combine({
-  type: typeModel.$value,
+  type: animalTypeModel.$value,
 }).map(
   requiredSettings => !Object.values(requiredSettings).every(isSettingExist),
 );
 
+const defaultPage = '1';
+
+/**
+ * Собираем в единую сущность значения элементов формы поиска
+ * Для последующих операций, например, с апи при сабмите формы
+ */
 const $settingsQueryString = combine({
-  [SearchSettingsFieldsKeys.Type]: typeModel.$value,
+  [SearchSettingsFieldsKeys.Type]: animalTypeModel.$value,
   [SearchSettingsFieldsKeys.Tail]: tailModel.$value,
   [SearchSettingsFieldsKeys.Color]: colorModel.$value,
   [SearchSettingsFieldsKeys.Breed]: breedModel.$value,
-}).map(settings => getQueryBySelectedSettings({ ...settings, page: '1' }));
+}).map(settings =>
+  getQueryBySelectedSettings({
+    ...settings,
+    page: getSearchParams().get('page') || defaultPage,
+  }),
+);
 
-const $isSubmittedForm = createStore(false).on(formSubmitted, () => true);
-
+/**
+ * Обновляем урл поиска после сабмита формы
+ * с актуальными значениями выбранными пользователем
+ */
 sample({
   source: $settingsQueryString,
   clock: formSubmitted,
@@ -42,6 +60,9 @@ sample({
   },
 });
 
+/**
+ * При сабмите формы выполняем запрос с параметрами поиска выбранными пользователем
+ */
 sample({
   source: $settingsQueryString,
   clock: formSubmitted,
@@ -52,5 +73,4 @@ export const model = {
   formSubmitted,
   $isDisabledForm,
   $settingsQueryString,
-  $isSubmittedForm,
 };
