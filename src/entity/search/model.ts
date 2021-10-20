@@ -9,9 +9,9 @@ import { createGate } from 'effector-react';
 import { condition } from 'patronum';
 import { api } from 'requests/index';
 
-import { SearchSettingsFieldsKeys } from 'constants/search_settings_fields/keys';
-
 import { getQueryString } from 'shared/lib/url/query_string';
+
+import { SearchSettingsFieldsKeys } from 'shared/constants/search_settings_fields/keys';
 
 import { getFieldsKeysFromUrl } from './lib/fields_keys_from_url';
 import { isSearchParamsExist } from './lib/is_search_params_exist';

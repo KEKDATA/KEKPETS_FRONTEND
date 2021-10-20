@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 
 import Box from '@mui/material/Box';
 
-import { PetView } from 'features/results/result/pet_view';
+import { PetView } from 'features/results/result/ui/pet_view';
 
 import { ImagePreview } from 'shared/ui/image_preview/index';
 

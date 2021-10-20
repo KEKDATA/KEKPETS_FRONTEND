@@ -1,6 +1,6 @@
-import { SearchSettingsFieldsKeys } from 'constants/search_settings_fields/keys';
-
 import { searchSettingsOptionsMocks } from 'shared/mocks/search_settings_options';
+
+import { SearchSettingsFieldsKeys } from 'shared/constants/search_settings_fields/keys';
 
 import { SearchSettingsFormUrl } from '../types';
 import { getFieldsKeysFromUrl } from './fields_keys_from_url';

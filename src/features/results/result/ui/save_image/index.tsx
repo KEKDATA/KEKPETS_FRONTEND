@@ -15,8 +15,8 @@ import { BBox } from 'shared/ui/bbox';
 import { BBoxContainer } from 'shared/ui/bbox_container';
 import { ImageView } from 'shared/ui/image_view';
 
-import { getButtonSize } from '../lib/button_size';
-import { getIconSize } from '../lib/icon_size';
+import { getButtonSize } from '../../lib/button_size';
+import { getIconSize } from '../../lib/icon_size';
 
 interface Props {
   image: string;

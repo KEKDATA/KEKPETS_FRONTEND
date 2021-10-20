@@ -1,4 +1,4 @@
-import { SearchSettingsFieldsKeys } from 'constants/search_settings_fields/keys';
+import { SearchSettingsFieldsKeys } from 'shared/constants/search_settings_fields/keys';
 
 export interface SearchSettingsFormUrl {
   [SearchSettingsFieldsKeys.Type]?: {

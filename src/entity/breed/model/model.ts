@@ -1,10 +1,10 @@
 import { createEvent, createStore, sample } from 'effector';
 
-import { SearchSettingsFieldsKeys } from 'constants/search_settings_fields/keys';
-
 import { createSettingModel } from 'shared/lib/creators/setting_model';
 
 import { searchSettingsOptionsMocks } from 'shared/mocks/search_settings_options';
+
+import { SearchSettingsFieldsKeys } from 'shared/constants/search_settings_fields/keys';
 
 const { $value, valueChanged } = createSettingModel({
   settingType: SearchSettingsFieldsKeys.Breed,

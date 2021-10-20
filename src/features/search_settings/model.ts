@@ -6,10 +6,10 @@ import { searchModel } from 'entity/search';
 import { tailModel } from 'entity/tail';
 import { typeModel } from 'entity/type';
 
-import { PagesPaths } from 'constants/pages_paths';
-import { SearchSettingsFieldsKeys } from 'constants/search_settings_fields/keys';
-
 import { pushSearchParams } from 'shared/lib/url/push_search_params';
+
+import { PagesPaths } from 'shared/constants/pages_paths';
+import { SearchSettingsFieldsKeys } from 'shared/constants/search_settings_fields/keys';
 
 import { getQueryBySelectedSettings } from './lib/get_query_by_selected_settings';
 import { isSettingExist } from './lib/is_setting_exist';

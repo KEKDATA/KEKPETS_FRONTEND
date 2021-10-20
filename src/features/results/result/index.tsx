@@ -13,9 +13,9 @@ import { ImagePreview } from 'shared/ui/image_preview';
 
 import { Result as ResultType } from 'shared/typings/results';
 
-import { OpenImage } from './open_image';
-import { PetView } from './pet_view';
-import { SaveImage } from './save_image';
+import { OpenImage } from './ui/open_image';
+import { PetView } from './ui/pet_view';
+import { SaveImage } from './ui/save_image';
 import { useImageLoadedStatus } from './use_image_loaded_status';
 
 interface Props {

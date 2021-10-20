@@ -1,4 +1,4 @@
-import { SearchSettingsFieldsKeys } from 'constants/search_settings_fields/keys';
+import { SearchSettingsFieldsKeys } from 'shared/constants/search_settings_fields/keys';
 
 interface Arguments {
   searchSettings: { [key: string]: string };
@@ -11,8 +11,7 @@ export const requiredSettingsIncluded = ({
 }: Arguments) => {
   let isIncluded = true;
 
-  for (let i = 0; i < requiredSettings.length; i += 1) {
-    const requiredSetting = requiredSettings[i];
+  for (const requiredSetting of requiredSettings) {
     const isRequiredSettingFounded = Boolean(searchSettings[requiredSetting]);
 
     if (!isRequiredSettingFounded) {

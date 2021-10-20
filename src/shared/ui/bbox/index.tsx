@@ -13,7 +13,10 @@ const Shape = styled('div')(({ theme }) => ({
     duration: theme.transitions.duration.short,
   }),
 
-  '&:hover, &:focus-visible': {
+  '&:hover': {
+    outline: `9999px solid ${alpha(theme.palette.common.black, 0.7)}`,
+  },
+  '&:focus-visible': {
     outline: `9999px solid ${alpha(theme.palette.common.black, 0.7)}`,
   },
 }));

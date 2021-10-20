@@ -1,7 +1,7 @@
-import { SearchSettingsFieldsKeys } from 'constants/search_settings_fields/keys';
-
 import { isBrowser } from 'shared/lib/browser/is_browser';
 import { getSearchParams } from 'shared/lib/url/search_params';
+
+import { SearchSettingsFieldsKeys } from 'shared/constants/search_settings_fields/keys';
 
 export const getFieldsKeysFromUrl = () => {
   const searchSettings = Object.values(SearchSettingsFieldsKeys);

@@ -4,9 +4,9 @@ import MuiAutocomplete from '@mui/material/Autocomplete';
 import MuiTextField from '@mui/material/TextField';
 import { styled } from '@mui/material/styles';
 
-import { SearchSettingsFieldsTranslates } from 'constants/search_settings_fields/translates';
-
 import { searchSettingsOptionsMocks } from 'shared/mocks/search_settings_options';
+
+import { SearchSettingsFieldsTranslates } from 'shared/constants/search_settings_fields/translates';
 
 interface Props {
   value: string;
