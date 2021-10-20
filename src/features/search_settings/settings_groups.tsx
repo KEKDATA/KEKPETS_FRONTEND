@@ -1,27 +1,36 @@
+import { useStore } from 'effector-react';
 import React, { memo } from 'react';
 
 import Grid from '@mui/material/Grid';
 
-import { Breed } from './breed';
-import { Color } from './color';
-import { Tail } from './tail';
-import { Type } from './type';
+import { BreedAutocomplete, breedModel } from 'entities/breed';
+import { ColorSelect, colorModel } from 'entities/color';
+import { tailModel, TailSelect } from 'entities/tail';
+import { typeModel, TypeSelect } from 'entities/type';
 
 export const SettingsGroups = memo(
   () => {
+    const colorValue = useStore(colorModel.$value);
+    const breedValue = useStore(breedModel.$autoCompleteValue);
+    const tailValue = useStore(tailModel.$value);
+    const typeValue = useStore(typeModel.$value);
+
     return (
       <>
         <Grid item>
-          <Type />
+          <TypeSelect value={typeValue} onChange={typeModel.valueChanged} />
         </Grid>
         <Grid item>
-          <Color />
+          <ColorSelect value={colorValue} onChange={colorModel.valueChanged} />
         </Grid>
         <Grid item>
-          <Tail />
+          <TailSelect value={tailValue} onChange={tailModel.valueChanged} />
         </Grid>
         <Grid container justifyContent="center">
-          <Breed />
+          <BreedAutocomplete
+            value={breedValue}
+            onChange={breedModel.autoCompleteValueChanged}
+          />
         </Grid>
       </>
     );

@@ -1,9 +1,10 @@
 import { useStore } from 'effector-react';
 import React from 'react';
-import { searchModel } from 'shared/models/search';
 
 import MuiPagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
+
+import { searchModel } from 'entities/search';
 
 import { paginationModel } from 'features/pagination/model';
 

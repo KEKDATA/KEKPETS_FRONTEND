@@ -16,8 +16,10 @@
     "baseUrl": ".",
     "paths": {
       "requests/*": ["./src/requests/*"],
+      "entities/*": ["./src/entities/*"],
       "contracts/*": ["./src/contracts/*"],
       "features/*": ["./src/features/*"],
+      "constants/*": ["./src/constants/*"],
       "shared/*": ["./src/shared/*"],
       "models/*": ["./src/models/*"],
       "pages/*": ["./src/pages/*"],

@@ -1,5 +1,8 @@
 import { createEvent, createStore, guard, sample } from 'effector';
-import { searchModel } from 'shared/models/search';
+
+import { searchModel } from 'entities/search';
+
+import { PagesPaths } from 'constants/pages_paths';
 
 import { setupPageToSearchParams } from 'features/pagination/lib/setup_page_to_search_params';
 
@@ -7,8 +10,6 @@ import { isBrowser } from 'shared/lib/browser/is_browser';
 import { scrollToTop } from 'shared/lib/scroll/to_top';
 import { pushSearchParams } from 'shared/lib/url/push_search_params';
 import { getSearchParams } from 'shared/lib/url/search_params';
-
-import { PagesPaths } from 'shared/enums/pages_paths';
 
 const pageSelected = createEvent<string>();
 

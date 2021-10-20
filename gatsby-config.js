@@ -28,7 +28,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
-        icon: 'src/images/favicon.svg',
+        icon: 'src/shared/assets/icons/favicon.svg',
       },
     },
     'gatsby-transformer-remark',
@@ -39,7 +39,7 @@ module.exports = {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'images',
-        path: './src/images/',
+        path: './src/shared/assets',
       },
       __key: 'images',
     },
