@@ -1,8 +1,9 @@
 ### Установка
 
 - Node.js (LTS) https://nodejs.org/en/
-- Выполнить в корне проекта `npm install`
-- Запустить локально `npm start`
+- yarn https://classic.yarnpkg.com/lang/en/docs/install/#mac-stable (либо под вашу ось)
+- Выполнить в корне проекта `yarn install`
+- Запустить локально `yarn start`
 
 ### Запуск в докере
 ```
