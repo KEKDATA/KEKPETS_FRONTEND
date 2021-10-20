@@ -6,6 +6,7 @@ import { colorModel } from 'entity/color';
 import { searchModel } from 'entity/search';
 import { tailModel } from 'entity/tail';
 
+import { isBrowser } from 'shared/lib/browser/is_browser';
 import { pushSearchParams } from 'shared/lib/url/push_search_params';
 import { getSearchParams } from 'shared/lib/url/search_params';
 
@@ -41,7 +42,7 @@ const $settingsQueryString = combine({
 }).map(settings =>
   getQueryBySelectedSettings({
     ...settings,
-    page: getSearchParams().get('page') || defaultPage,
+    page: (isBrowser && getSearchParams().get('page')) || defaultPage,
   }),
 );
 
