@@ -1,4 +1,3 @@
-import html2canvas from 'html2canvas';
 import React, { useRef, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -8,19 +7,17 @@ import Tooltip from '@mui/material/Tooltip';
 import { styled } from '@mui/material/styles';
 
 import { sleep } from 'shared/lib/dom/sleep';
-import { useIsMobile } from 'shared/lib/screen_type/is_mobile';
-import { useFabColor } from 'shared/lib/theme/fab_color';
 
 import { BBox } from 'shared/ui/bbox';
 import { BBoxContainer } from 'shared/ui/bbox_container';
 import { ImageView } from 'shared/ui/image_view';
 
-import { getButtonSize } from '../../lib/button_size';
-import { getIconSize } from '../../lib/icon_size';
-
 interface Props {
   image: string;
   bbox: string;
+  fabColor: 'default' | 'primary';
+  sizeButton: 'small' | 'medium';
+  sizeIcon: 'small' | 'medium';
 }
 
 const ImageToSaveContainer = styled('div')`
@@ -29,11 +26,13 @@ const ImageToSaveContainer = styled('div')`
   z-index: -1;
 `;
 
-export const SaveImage = ({ image, bbox }: Props) => {
-  const fabColor = useFabColor();
-
-  const isMobile = useIsMobile();
-
+export const SaveImage = ({
+  image,
+  bbox,
+  sizeIcon,
+  sizeButton,
+  fabColor,
+}: Props) => {
   const [isImageDisplayed, setImageDisplayedStatus] = useState(false);
 
   const refImage = useRef<HTMLDivElement>(null);
@@ -45,17 +44,20 @@ export const SaveImage = ({ image, bbox }: Props) => {
      */
     setImageDisplayedStatus(true);
 
-    /**
-     * Ждем немного пока в дом залетит набор нод с изображением и Bbox
-     */
-    await sleep(500);
-
-    if (!refImage.current) {
-      return;
-    }
-
     try {
-      const canvas = await html2canvas(refImage.current, {
+      const html2canvas = await import('html2canvas');
+
+      /**
+       * Ждем немного пока в дом залетит набор нод с изображением и Bbox
+       */
+      await sleep(500);
+
+      if (!refImage.current) {
+        setImageDisplayedStatus(false);
+        return;
+      }
+
+      const canvas = await html2canvas.default(refImage.current, {
         allowTaint: true,
         useCORS: true,
       });
@@ -71,9 +73,6 @@ export const SaveImage = ({ image, bbox }: Props) => {
 
     setImageDisplayedStatus(false);
   };
-
-  const sizeButton = getButtonSize({ isMobile });
-  const sizeIcon = getIconSize({ isMobile });
 
   return (
     <>

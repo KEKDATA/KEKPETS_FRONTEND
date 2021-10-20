@@ -6,8 +6,8 @@ import Fab from '@mui/material/Fab';
 import Snackbar from '@mui/material/Snackbar';
 import Tooltip from '@mui/material/Tooltip';
 
-import { getButtonSize } from 'features/results/result/lib/button_size';
-import { getIconSize } from 'features/results/result/lib/icon_size';
+import { getButtonSize } from 'features/results/lib/button_size';
+import { getIconSize } from 'features/results/lib/icon_size';
 
 import { useIsMobile } from 'shared/lib/screen_type/is_mobile';
 import { useFabColor } from 'shared/lib/theme/fab_color';

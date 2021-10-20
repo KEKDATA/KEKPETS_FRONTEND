@@ -1,22 +1,27 @@
 import React, { useState } from 'react';
 
-import { Card, CardContent } from '@mui/material';
 import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
 import Grid from '@mui/material/Grid';
 import { grey } from '@mui/material/colors';
 import { styled } from '@mui/material/styles';
 
+import { getButtonSize } from 'features/results/lib/button_size';
+import { getIconSize } from 'features/results/lib/icon_size';
+
 import { useIsMobile } from 'shared/lib/screen_type/is_mobile';
+import { useFabColor } from 'shared/lib/theme/fab_color';
 
 import { CopyButton } from 'shared/ui/copy_button';
 import { ImagePreview } from 'shared/ui/image_preview';
 
 import { Result as ResultType } from 'shared/typings/results';
 
+import { useImageLoadedStatus } from './lib/use_image_loaded_status';
 import { OpenImage } from './ui/open_image';
 import { PetView } from './ui/pet_view';
 import { SaveImage } from './ui/save_image';
-import { useImageLoadedStatus } from './use_image_loaded_status';
 
 interface Props {
   result: ResultType;
@@ -30,6 +35,7 @@ const Container = styled(Card)(({ theme }) => ({
 export const Result = ({ result }: Props) => {
   const { bbox, image } = result;
 
+  const fabColor = useFabColor();
   const isMobile = useIsMobile();
 
   const { isImageLoaded, containerRef } = useImageLoadedStatus({
@@ -45,6 +51,9 @@ export const Result = ({ result }: Props) => {
   const hidePreview = () => {
     setPreviewVisible(false);
   };
+
+  const sizeButton = getButtonSize({ isMobile });
+  const sizeIcon = getIconSize({ isMobile });
 
   return (
     <Grid item>
@@ -65,7 +74,12 @@ export const Result = ({ result }: Props) => {
           </ImagePreview>
           <Grid container spacing={2}>
             <Grid item>
-              <OpenImage image={image} />
+              <OpenImage
+                image={image}
+                fabColor={fabColor}
+                sizeButton={sizeButton}
+                sizeIcon={sizeIcon}
+              />
             </Grid>
             <Grid item>
               <CopyButton
@@ -74,7 +88,13 @@ export const Result = ({ result }: Props) => {
               />
             </Grid>
             <Grid item>
-              <SaveImage image={image} bbox={bbox} />
+              <SaveImage
+                image={image}
+                bbox={bbox}
+                fabColor={fabColor}
+                sizeButton={sizeButton}
+                sizeIcon={sizeIcon}
+              />
             </Grid>
           </Grid>
         </CardContent>
