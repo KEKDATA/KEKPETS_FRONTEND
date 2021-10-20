@@ -9,13 +9,13 @@ import { styled } from '@mui/material/styles';
 
 import { sleep } from 'shared/lib/dom/sleep';
 import { useIsMobile } from 'shared/lib/screen_type/is_mobile';
+import { useFabColor } from 'shared/lib/theme/fab_color';
 
 import { BBox } from 'shared/ui/bbox';
 import { BBoxContainer } from 'shared/ui/bbox_container';
 import { ImageView } from 'shared/ui/image_view';
 
 import { getButtonSize } from '../lib/button_size';
-import { useFabColor } from '../lib/fab_color';
 import { getIconSize } from '../lib/icon_size';
 
 interface Props {

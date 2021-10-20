@@ -6,24 +6,25 @@ import Fab from '@mui/material/Fab';
 import Snackbar from '@mui/material/Snackbar';
 import Tooltip from '@mui/material/Tooltip';
 
-import { useIsMobile } from 'shared/lib/screen_type/is_mobile';
+import { getButtonSize } from 'features/results/result/lib/button_size';
+import { getIconSize } from 'features/results/result/lib/icon_size';
 
-import { getButtonSize } from '../lib/button_size';
-import { useFabColor } from '../lib/fab_color';
-import { getIconSize } from '../lib/icon_size';
+import { useIsMobile } from 'shared/lib/screen_type/is_mobile';
+import { useFabColor } from 'shared/lib/theme/fab_color';
 
 interface Props {
-  image: string;
+  textToCopy: string;
+  label: string;
 }
 
-export const CopyImageUrl = ({ image }: Props) => {
+export const CopyButton = ({ textToCopy, label }: Props) => {
   const fabColor = useFabColor();
   const isMobile = useIsMobile();
 
   const [showSuccessAlert, setSuccessAlertStatus] = useState(false);
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(image);
+    navigator.clipboard.writeText(textToCopy);
     setSuccessAlertStatus(true);
   };
 
@@ -36,10 +37,10 @@ export const CopyImageUrl = ({ image }: Props) => {
 
   return (
     <>
-      <Tooltip title="Копировать ссылку на изображение">
+      <Tooltip title={label}>
         <Fab
           color={fabColor}
-          aria-label="Копировать ссылку на изображение"
+          aria-label={label}
           onClick={handleCopy}
           size={sizeButton}>
           <ContentCopyIcon fontSize={sizeIcon} />

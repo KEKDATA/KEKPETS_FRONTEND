@@ -5,9 +5,9 @@ import Fab from '@mui/material/Fab';
 import Tooltip from '@mui/material/Tooltip';
 
 import { useIsMobile } from 'shared/lib/screen_type/is_mobile';
+import { useFabColor } from 'shared/lib/theme/fab_color';
 
 import { getButtonSize } from '../lib/button_size';
-import { useFabColor } from '../lib/fab_color';
 import { getIconSize } from '../lib/icon_size';
 
 interface Props {

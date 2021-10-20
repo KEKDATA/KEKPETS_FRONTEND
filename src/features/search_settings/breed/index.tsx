@@ -23,7 +23,7 @@ const Autocomplete = styled(MuiAutocomplete)(
     },
   }) => ({
     marginTop: spacing(0.2),
-    borderRadius: `0, 0, ${borderRadius}px, ${borderRadius}px`,
+    borderRadius,
     backgroundColor: mode === 'dark' ? common.black : common.white,
     width: '100%',
     [breakpoints.up('sm')]: {

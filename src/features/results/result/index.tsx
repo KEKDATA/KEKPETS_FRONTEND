@@ -10,11 +10,11 @@ import { SaveImage } from 'features/results/result/save_image';
 
 import { useIsMobile } from 'shared/lib/screen_type/is_mobile';
 
+import { CopyButton } from 'shared/ui/copy_button';
 import { ImagePreview } from 'shared/ui/image_preview';
 
 import { Result as ResultType } from 'shared/typings/results';
 
-import { CopyImageUrl } from './copy_image_url';
 import { OpenImage } from './open_image';
 import { PetView } from './pet_view';
 import { useImageLoadedStatus } from './use_image_loaded_status';
@@ -69,7 +69,10 @@ export const Result = ({ result }: Props) => {
               <OpenImage image={image} />
             </Grid>
             <Grid item>
-              <CopyImageUrl image={image} />
+              <CopyButton
+                textToCopy={image}
+                label="Копировать ссылку на изображение"
+              />
             </Grid>
             <Grid item>
               <SaveImage image={image} bbox={bbox} />
