@@ -1,4 +1,3 @@
-import { useStore } from 'effector-react';
 import React from 'react';
 
 import { useTheme } from '@mui/material';
@@ -12,13 +11,14 @@ import { searchSettingsOptionsMocks } from 'shared/mocks/search_settings_options
 import { NativeSelect } from 'shared/ui/native_select';
 import { Select } from 'shared/ui/select';
 
-import { typeModel } from './model';
+interface Props {
+  value: string;
+  onChange: (value: string) => void;
+}
 
-export const Type = () => {
+export const TypeSelect = ({ value, onChange }: Props) => {
   const theme = useTheme();
   const { borderRadius } = theme.shape;
-
-  const value = useStore(typeModel.$value);
 
   const isMobile = useIsMobile();
 
@@ -27,7 +27,7 @@ export const Type = () => {
       <NativeSelect
         value={value}
         label={SearchSettingsFieldsTranslates.Type}
-        onChangeValue={typeModel.valueChanged}
+        onChangeValue={onChange}
         items={searchSettingsOptionsMocks.types}
         borderRadius={`${borderRadius}px ${borderRadius}px 0 0`}
       />
@@ -38,7 +38,7 @@ export const Type = () => {
     <Select
       value={value}
       label={SearchSettingsFieldsTranslates.Type}
-      onChangeValue={typeModel.valueChanged}
+      onChangeValue={onChange}
       items={searchSettingsOptionsMocks.types}
       isRequired
     />

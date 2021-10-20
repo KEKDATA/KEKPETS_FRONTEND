@@ -1,4 +1,3 @@
-import { useStore } from 'effector-react';
 import React, { useState } from 'react';
 
 import MuiAutocomplete from '@mui/material/Autocomplete';
@@ -9,7 +8,10 @@ import { SearchSettingsFieldsTranslates } from 'constants/search_settings_fields
 
 import { searchSettingsOptionsMocks } from 'shared/mocks/search_settings_options';
 
-import { breedModel } from './model';
+interface Props {
+  value: string;
+  onChange: (value: string) => void;
+}
 
 const normalizedOptions = searchSettingsOptionsMocks.breeds.map(
   ({ text }) => text,
@@ -46,15 +48,14 @@ const TextField = styled(MuiTextField)(
   }),
 );
 
-export const Breed = () => {
+export const BreedAutocomplete = ({ value, onChange }: Props) => {
   const [inputValue, setInputValue] = useState('');
-  const value = useStore(breedModel.$autoCompleteValue);
 
   return (
     <Autocomplete
       value={value}
       onChange={(_, newValue: string | null) => {
-        breedModel.autoCompleteValueChanged(newValue);
+        onChange(newValue);
       }}
       inputValue={inputValue}
       onInputChange={(_, newInputValue) => {

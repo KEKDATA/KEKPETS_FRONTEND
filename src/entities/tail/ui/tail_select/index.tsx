@@ -1,4 +1,3 @@
-import { useStore } from 'effector-react';
 import React from 'react';
 
 import { SearchSettingsFieldsTranslates } from 'constants/search_settings_fields/translates';
@@ -10,11 +9,12 @@ import { searchSettingsOptionsMocks } from 'shared/mocks/search_settings_options
 import { NativeSelect } from 'shared/ui/native_select';
 import { Select } from 'shared/ui/select';
 
-import { tailModel } from './model';
+interface Props {
+  value: string;
+  onChange: (value: string) => void;
+}
 
-export const Tail = () => {
-  const value = useStore(tailModel.$value);
-
+export const TailSelect = ({ value, onChange }: Props) => {
   const isMobile = useIsMobile();
 
   if (isMobile) {
@@ -22,7 +22,7 @@ export const Tail = () => {
       <NativeSelect
         value={value}
         label={SearchSettingsFieldsTranslates.Tail}
-        onChangeValue={tailModel.valueChanged}
+        onChangeValue={onChange}
         items={searchSettingsOptionsMocks.tails}
       />
     );
@@ -32,7 +32,7 @@ export const Tail = () => {
     <Select
       value={value}
       label={SearchSettingsFieldsTranslates.Tail}
-      onChangeValue={tailModel.valueChanged}
+      onChangeValue={onChange}
       items={searchSettingsOptionsMocks.tails}
     />
   );

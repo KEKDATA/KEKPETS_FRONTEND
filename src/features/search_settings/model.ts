@@ -1,10 +1,10 @@
 import { combine, createEvent, createStore, sample } from 'effector';
 
-import { breedModel } from 'entities/breed/model';
-import { colorModel } from 'entities/color/model/model';
+import { breedModel } from 'entities/breed';
+import { colorModel } from 'entities/color';
 import { searchModel } from 'entities/search';
-import { tailModel } from 'entities/tail/model';
-import { typeModel } from 'entities/type/model';
+import { tailModel } from 'entities/tail';
+import { typeModel } from 'entities/type';
 
 import { PagesPaths } from 'constants/pages_paths';
 import { SearchSettingsFieldsKeys } from 'constants/search_settings_fields/keys';
