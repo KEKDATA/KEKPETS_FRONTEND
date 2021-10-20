@@ -18,13 +18,15 @@ const autoCompleteValueChanged = createEvent<string>();
 
 const $autoCompleteValue = createStore<string | null>(null)
   .on(autoCompleteValueChanged, (_, value) => value)
-  .on(
-    $value.updates,
-    (_, selectedValue) =>
-      searchSettingsOptionsMocks.breeds.find(
-        ({ value }) => selectedValue === value,
-      ).text,
-  );
+  .on($value.updates, (prev, selectedValue) => {
+    if (!selectedValue) {
+      return null;
+    }
+
+    return searchSettingsOptionsMocks.breeds.find(
+      ({ value }) => selectedValue === value,
+    ).text;
+  });
 
 sample({
   clock: autoCompleteValueChanged,

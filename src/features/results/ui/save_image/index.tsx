@@ -8,13 +8,10 @@ import { styled } from '@mui/material/styles';
 
 import { sleep } from 'shared/lib/dom/sleep';
 
-import { BBox } from 'shared/ui/bbox';
-import { BBoxContainer } from 'shared/ui/bbox_container';
 import { ImageView } from 'shared/ui/image_view';
 
 interface Props {
   image: string;
-  bbox: string;
   fabColor: 'default' | 'primary';
   sizeButton: 'small' | 'medium';
   sizeIcon: 'small' | 'medium';
@@ -26,13 +23,7 @@ const ImageToSaveContainer = styled('div')`
   z-index: -1;
 `;
 
-export const SaveImage = ({
-  image,
-  bbox,
-  sizeIcon,
-  sizeButton,
-  fabColor,
-}: Props) => {
+export const SaveImage = ({ image, sizeIcon, sizeButton, fabColor }: Props) => {
   const [isImageDisplayed, setImageDisplayedStatus] = useState(false);
 
   const refImage = useRef<HTMLDivElement>(null);
@@ -87,10 +78,7 @@ export const SaveImage = ({
       </Tooltip>
       {isImageDisplayed && (
         <ImageToSaveContainer ref={refImage}>
-          <BBoxContainer>
-            <ImageView url={image} loading="lazy" width={500} />
-            <BBox coordinates={bbox} />
-          </BBoxContainer>
+          <ImageView url={image} loading="lazy" width={500} />
         </ImageToSaveContainer>
       )}
     </>

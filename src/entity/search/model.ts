@@ -1,10 +1,4 @@
-import {
-  createEffect,
-  createEvent,
-  createStore,
-  restore,
-  sample,
-} from 'effector';
+import { createEffect, createEvent, createStore, sample } from 'effector';
 import { createGate } from 'effector-react';
 import { condition } from 'patronum';
 import { api } from 'requests/index';
@@ -47,9 +41,13 @@ const $isSearchParamsExist = createStore(false)
   .on(searchParamsNotFounded, () => false)
   .on(getSearchResultsFx.pending, () => true);
 
-const $count = restore(countReceived, null);
+const $count = createStore(null)
+  .on(countReceived, (_, count) => count)
+  .reset(searchParamsNotFounded);
 
-const $results = restore(resultsReceived, null);
+const $results = createStore(null)
+  .on(resultsReceived, (_, results) => results)
+  .reset(searchParamsNotFounded);
 
 const fieldsFromSearchParsed = sample({
   clock: SearchGate.open,

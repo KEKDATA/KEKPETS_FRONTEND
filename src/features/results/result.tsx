@@ -90,7 +90,6 @@ export const Result = ({ result }: Props) => {
             <Grid item>
               <SaveImage
                 image={image}
-                bbox={bbox}
                 fabColor={fabColor}
                 sizeButton={sizeButton}
                 sizeIcon={sizeIcon}
