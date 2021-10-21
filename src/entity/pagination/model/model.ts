@@ -1,4 +1,4 @@
-import { createEvent, restore, sample } from 'effector';
+import { createEvent, forward, restore, sample } from 'effector';
 
 import { searchModel } from 'entity/search';
 
@@ -14,6 +14,7 @@ import { setupPageToSearchParams } from './lib/setup_page_to_search_params';
 const defaultPage = 1;
 
 const pageSelected = createEvent<number>();
+const pageToSearchParamsSent = createEvent<number>();
 
 /**
  * getSearchParams содержит DOM API, на момент рендера Gatsby работа с этим апи невозможна
@@ -23,12 +24,26 @@ const initialState =
 const $page = restore(pageSelected, initialState);
 
 /**
+ * Для консистенции с другими данными для поиска приводим к такому же типу - стринге
+ */
+const $pageForSearch = $page.map(String);
+
+/**
+ * Для более удобного разделения сущностей
+ * Например, при тестировании
+ */
+forward({
+  from: pageSelected,
+  to: pageToSearchParamsSent,
+});
+
+/**
  * Работа ивента возможна при наличии DOM API
  * Выполнение ивента сигнализирует об успешной обработке серч параметров урла
  * после смены номера страницы
  */
 const searchParamsReceived = sample({
-  clock: pageSelected,
+  clock: pageToSearchParamsSent,
   fn: page => {
     if (!isBrowser) {
       return '';
@@ -62,4 +77,8 @@ searchParamsReceived.watch(searchParams => {
   scrollToTop();
 });
 
-export const paginationModel = { pageSelected, $page };
+export const paginationModel = {
+  pageSelected,
+  $page,
+  $pageForSearch,
+};

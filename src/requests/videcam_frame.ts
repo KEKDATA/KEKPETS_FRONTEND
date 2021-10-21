@@ -1,11 +1,9 @@
-import { getUrlWithQs } from 'shared/lib/url/with_qs';
+import { createApiUrl } from 'requests/lib/create_api_url';
 
 import { VidecamFrameResponse } from 'shared/typings/videcam_frame';
 
-import { apiConfig } from './config';
+import { toJSON } from './lib/to_json';
 import { Paths } from './paths';
 
 export const videcamFrame = (params: string): Promise<VidecamFrameResponse> =>
-  apiConfig
-    .get(getUrlWithQs({ url: Paths.videcamframe, queryString: params }))
-    .json();
+  fetch(createApiUrl({ path: Paths.videcamframe, params })).then(toJSON);

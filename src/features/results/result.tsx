@@ -32,6 +32,11 @@ const Container = styled(Card)(({ theme }) => ({
     theme.palette.mode === 'dark' ? grey[800] : theme.palette.common.white,
 }));
 
+const CardImage = styled('div')`
+  margin: 8px 0;
+  width: 100%;
+`;
+
 export const Result = ({ result }: Props) => {
   const { bbox, image } = result;
 
@@ -62,12 +67,14 @@ export const Result = ({ result }: Props) => {
           <Box
             sx={{ cursor: 'zoom-in', display: 'inline-flex', width: '100%' }}
             onClick={showPreview}>
-            <PetView
-              image={image}
-              bbox={bbox}
-              width={isMobile ? '100%' : 500}
-              isImageLoaded={isImageLoaded}
-            />
+            <CardImage>
+              <PetView
+                image={image}
+                bbox={bbox}
+                width={isMobile ? '100%' : 500}
+                isImageLoaded={isImageLoaded}
+              />
+            </CardImage>
           </Box>
           <ImagePreview open={previewVisible} onClose={hidePreview}>
             <PetView image={image} bbox={bbox} isImageLoaded={isImageLoaded} />

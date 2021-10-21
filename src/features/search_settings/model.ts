@@ -3,12 +3,11 @@ import { combine, createEvent, sample } from 'effector';
 import { animalTypeModel } from 'entity/animal_type';
 import { breedModel } from 'entity/breed';
 import { colorModel } from 'entity/color';
+import { paginationModel } from 'entity/pagination';
 import { searchModel } from 'entity/search';
 import { tailModel } from 'entity/tail';
 
-import { isBrowser } from 'shared/lib/browser/is_browser';
 import { pushSearchParams } from 'shared/lib/url/push_search_params';
-import { getSearchParams } from 'shared/lib/url/search_params';
 
 import { PagesPaths } from 'shared/constants/pages_paths';
 import { SearchSettingsFieldsKeys } from 'shared/constants/search_settings_fields/keys';
@@ -28,8 +27,6 @@ const $isDisabledForm = combine({
   requiredSettings => !Object.values(requiredSettings).every(isSettingExist),
 );
 
-const defaultPage = '1';
-
 /**
  * Собираем в единую сущность значения элементов формы поиска
  * Для последующих операций, например, с апи при сабмите формы
@@ -39,12 +36,8 @@ const $settingsQueryString = combine({
   [SearchSettingsFieldsKeys.Tail]: tailModel.$value,
   [SearchSettingsFieldsKeys.Color]: colorModel.$value,
   [SearchSettingsFieldsKeys.Breed]: breedModel.$value,
-}).map(settings =>
-  getQueryBySelectedSettings({
-    ...settings,
-    page: (isBrowser && getSearchParams().get('page')) || defaultPage,
-  }),
-);
+  [SearchSettingsFieldsKeys.Page]: paginationModel.$pageForSearch,
+}).map(getQueryBySelectedSettings);
 
 /**
  * Обновляем урл поиска после сабмита формы

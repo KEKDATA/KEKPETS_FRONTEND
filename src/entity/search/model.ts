@@ -49,7 +49,7 @@ const $isSearchParamsExist = createStore(false)
   .on(searchParamsNotFounded, () => false)
   .on(getSearchResultsFx.pending, () => true);
 
-const $count = createStore(null)
+const $count = createStore<null | number>(null)
   .on(countReceived, (_, count) => count)
   .reset(searchParamsNotFounded);
 

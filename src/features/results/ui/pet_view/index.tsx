@@ -14,11 +14,6 @@ interface Props {
   width?: number | string;
 }
 
-const Container = styled('div')`
-  margin: 8px 0;
-  width: 100%;
-`;
-
 const Skeleton = styled(MuiSkeleton)(({ theme }) => ({
   height: 200,
   [theme.breakpoints.up('sm')]: {
@@ -29,7 +24,7 @@ const Skeleton = styled(MuiSkeleton)(({ theme }) => ({
 
 export const PetView = ({ image, bbox, width, isImageLoaded }: Props) => {
   return (
-    <Container>
+    <>
       {isImageLoaded && (
         <BBoxContainer>
           <ImageView url={image} loading="lazy" width={width} />
@@ -37,6 +32,6 @@ export const PetView = ({ image, bbox, width, isImageLoaded }: Props) => {
         </BBoxContainer>
       )}
       {!isImageLoaded && <Skeleton variant="rectangular" animation="wave" />}
-    </Container>
+    </>
   );
 };
