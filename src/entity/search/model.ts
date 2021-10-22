@@ -5,6 +5,8 @@ import { api } from 'requests/index';
 
 import { getQueryString } from 'shared/lib/url/query_string';
 
+import { Results } from 'shared/typings/results';
+
 import { SearchSettingsFieldsKeys } from 'shared/constants/search_settings_fields/keys';
 
 import { getFieldsKeysFromUrl } from './lib/fields_keys_from_url';
@@ -53,7 +55,7 @@ const $count = createStore<null | number>(null)
   .on(countReceived, (_, count) => count)
   .reset(searchParamsNotFounded);
 
-const $results = createStore(null)
+const $results = createStore<Results | null>(null)
   .on(resultsReceived, (_, results) => results)
   .reset(searchParamsNotFounded);
 
