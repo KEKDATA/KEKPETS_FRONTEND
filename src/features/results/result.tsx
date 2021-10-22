@@ -8,8 +8,6 @@ import Grid from '@mui/material/Grid';
 import { grey } from '@mui/material/colors';
 import { styled } from '@mui/material/styles';
 
-import { DateInfo } from 'features/results/ui/date';
-
 import { useIsMobile } from 'shared/lib/screen_type/is_mobile';
 import { useFabColor } from 'shared/lib/theme/fab_color';
 
@@ -21,6 +19,7 @@ import { Result as ResultType } from 'shared/typings/results';
 import { getButtonSize } from './lib/button_size';
 import { getIconSize } from './lib/icon_size';
 import { useImageLoadedStatus } from './lib/use_image_loaded_status';
+import { DateInfo } from './ui/date';
 import { MapLink } from './ui/map_link';
 import { OpenImage } from './ui/open_image';
 import { PetView } from './ui/pet_view';
