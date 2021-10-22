@@ -1,8 +1,9 @@
 import React from 'react';
 
 import RoomIcon from '@mui/icons-material/Room';
-import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
+import Link from '@mui/material/Link';
+import Typography from '@mui/material/Typography';
+import { styled } from '@mui/material/styles';
 
 import { getGoogleMapLink } from 'shared/lib/map_link/google';
 
@@ -10,18 +11,25 @@ interface Props {
   address: string;
 }
 
+const StyledLink = styled(Link)(({ theme }) => ({
+  margin: theme.spacing(0.7),
+  display: 'flex',
+  width: 'max-content',
+}));
+
 export const MapLink = ({ address }: Props) => {
   return (
-    <Tooltip title="Открыть на карте">
-      <Button
-        size="large"
-        aria-label="Открыть на карте"
-        startIcon={<RoomIcon />}
-        target="_blank"
-        rel="noopener noreferrer"
-        href={getGoogleMapLink(address)}>
+    <StyledLink
+      target="_blank"
+      rel="noopener noreferrer"
+      href={getGoogleMapLink(address)}>
+      <RoomIcon />
+      <Typography
+        sx={{
+          marginLeft: 1,
+        }}>
         {address}
-      </Button>
-    </Tooltip>
+      </Typography>
+    </StyledLink>
   );
 };

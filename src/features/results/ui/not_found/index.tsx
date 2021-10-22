@@ -18,7 +18,7 @@ export const NotFound = () => {
       </Grid>
       <Grid item>
         <Typography variant="h5" component="p" align="center" gutterBottom>
-          К сожалению, мы ничего не нашли
+          Результатов по вашему поиску не обнаружено
         </Typography>
       </Grid>
       <Grid item>
