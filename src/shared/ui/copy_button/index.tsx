@@ -6,21 +6,21 @@ import Fab from '@mui/material/Fab';
 import Snackbar from '@mui/material/Snackbar';
 import Tooltip from '@mui/material/Tooltip';
 
-import { getButtonSize } from 'features/results/lib/button_size';
-import { getIconSize } from 'features/results/lib/icon_size';
-
-import { useIsMobile } from 'shared/lib/screen_type/is_mobile';
-import { useFabColor } from 'shared/lib/theme/fab_color';
-
 interface Props {
   textToCopy: string;
   label: string;
+  fabColor: 'default' | 'primary';
+  sizeButton: 'small' | 'medium';
+  sizeIcon: 'small' | 'medium';
 }
 
-export const CopyButton = ({ textToCopy, label }: Props) => {
-  const fabColor = useFabColor();
-  const isMobile = useIsMobile();
-
+export const CopyButton = ({
+  textToCopy,
+  label,
+  sizeButton,
+  sizeIcon,
+  fabColor,
+}: Props) => {
   const [showSuccessAlert, setSuccessAlertStatus] = useState(false);
 
   const handleCopy = () => {
@@ -31,9 +31,6 @@ export const CopyButton = ({ textToCopy, label }: Props) => {
   const handleCloseBar = () => {
     setSuccessAlertStatus(false);
   };
-
-  const sizeButton = getButtonSize({ isMobile });
-  const sizeIcon = getIconSize({ isMobile });
 
   return (
     <>

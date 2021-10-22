@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 
-import { Divider } from '@mui/material';
+import { Divider, useTheme } from '@mui/material';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -42,6 +42,8 @@ const CardImage = styled('div')`
 export const Result = ({ result }: Props) => {
   const { bbox, image, address, date } = result;
 
+  const theme = useTheme();
+
   const fabColor = useFabColor();
   const isMobile = useIsMobile();
 
@@ -62,6 +64,40 @@ export const Result = ({ result }: Props) => {
   const sizeButton = getButtonSize({ isMobile });
   const sizeIcon = getIconSize({ isMobile });
 
+  const isAddressOrDateExist = address || date;
+
+  const Buttons = useMemo(() => {
+    return (
+      <Grid container spacing={2}>
+        <Grid item>
+          <OpenImage
+            image={image}
+            fabColor={fabColor}
+            sizeButton={sizeButton}
+            sizeIcon={sizeIcon}
+          />
+        </Grid>
+        <Grid item>
+          <CopyButton
+            textToCopy={image}
+            label="Копировать ссылку на изображение"
+            fabColor={fabColor}
+            sizeButton={sizeButton}
+            sizeIcon={sizeIcon}
+          />
+        </Grid>
+        <Grid item>
+          <SaveImage
+            image={image}
+            fabColor={fabColor}
+            sizeButton={sizeButton}
+            sizeIcon={sizeIcon}
+          />
+        </Grid>
+      </Grid>
+    );
+  }, [theme.palette.mode]);
+
   return (
     <Grid item>
       <Container ref={containerRef}>
@@ -81,49 +117,31 @@ export const Result = ({ result }: Props) => {
           <ImagePreview open={previewVisible} onClose={hidePreview}>
             <PetView image={image} bbox={bbox} isImageLoaded={isImageLoaded} />
           </ImagePreview>
-          <Box mb={1}>
-            <Grid container flexDirection="column">
-              {date && (
-                <Grid item>
-                  <Box ml={0.8}>
-                    <DateInfo date={date} />
-                  </Box>
+          {isAddressOrDateExist && (
+            <>
+              <Box mb={1}>
+                <Grid container flexDirection="column">
+                  {date && (
+                    <Grid item>
+                      <Box ml={0.8}>
+                        <DateInfo date={date} />
+                      </Box>
+                    </Grid>
+                  )}
+                  {address && (
+                    <Grid item>
+                      <MapLink address={address} />
+                    </Grid>
+                  )}
                 </Grid>
-              )}
-              {address && (
-                <Grid item>
-                  <MapLink address={address} />
-                </Grid>
-              )}
-            </Grid>
-          </Box>
-          <Divider />
-          <Box ml={0.5} mt={1.5}>
-            <Grid container spacing={2}>
-              <Grid item>
-                <OpenImage
-                  image={image}
-                  fabColor={fabColor}
-                  sizeButton={sizeButton}
-                  sizeIcon={sizeIcon}
-                />
-              </Grid>
-              <Grid item>
-                <CopyButton
-                  textToCopy={image}
-                  label="Копировать ссылку на изображение"
-                />
-              </Grid>
-              <Grid item>
-                <SaveImage
-                  image={image}
-                  fabColor={fabColor}
-                  sizeButton={sizeButton}
-                  sizeIcon={sizeIcon}
-                />
-              </Grid>
-            </Grid>
-          </Box>
+              </Box>
+              <Divider />
+              <Box ml={0.5} mt={2}>
+                {Buttons}
+              </Box>
+            </>
+          )}
+          {!isAddressOrDateExist && Buttons}
         </CardContent>
       </Container>
     </Grid>
