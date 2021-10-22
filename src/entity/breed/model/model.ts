@@ -6,8 +6,11 @@ import { searchSettingsOptionsMocks } from 'shared/mocks/search_settings_options
 
 import { SearchSettingsFieldsKeys } from 'shared/constants/search_settings_fields/keys';
 
+const defaultValue = '';
+
 const { $value, valueChanged } = createSettingModel({
   settingType: SearchSettingsFieldsKeys.Breed,
+  defaultValue,
 });
 
 /**
@@ -32,7 +35,7 @@ sample({
   clock: autoCompleteValueChanged,
   fn: value =>
     searchSettingsOptionsMocks.breeds.find(({ text }) => text === value)
-      ?.value ?? '',
+      ?.value ?? defaultValue,
   target: valueChanged,
 });
 
