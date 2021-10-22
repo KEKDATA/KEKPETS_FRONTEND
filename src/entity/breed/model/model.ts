@@ -31,7 +31,8 @@ const $autoCompleteValue = createStore<string | null>(null)
 sample({
   clock: autoCompleteValueChanged,
   fn: value =>
-    searchSettingsOptionsMocks.breeds.find(({ text }) => text === value).value,
+    searchSettingsOptionsMocks.breeds.find(({ text }) => text === value)
+      ?.value ?? '',
   target: valueChanged,
 });
 
