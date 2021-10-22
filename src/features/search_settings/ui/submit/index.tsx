@@ -19,6 +19,10 @@ const Button = styled(MuiButton)(({ theme }) => ({
   },
   borderRadius: theme.shape.borderRadius,
   color: theme.palette.common.white,
+  marginTop: theme.spacing(1),
+  [theme.breakpoints.up('sm')]: {
+    marginTop: 0,
+  },
 }));
 
 export const Submit = ({ isDisabled }: Props) => {
