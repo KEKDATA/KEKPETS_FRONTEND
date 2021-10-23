@@ -7,9 +7,11 @@ import { searchModel } from 'entity/search';
 export const Pagination = () => {
   const paginationCount = useStore(searchModel.$count);
   const page = useStore(paginationModel.$page);
-  const resultsNotFound = useStore(searchModel.$resultsNotFound);
+  const isResultsWithSomeProblem = useStore(
+    searchModel.$isResultsWithSomeProblem,
+  );
 
-  if (!paginationCount || resultsNotFound) {
+  if (!paginationCount || isResultsWithSomeProblem) {
     return null;
   }
 

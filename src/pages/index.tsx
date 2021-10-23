@@ -10,6 +10,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { searchModel } from 'entity/search';
 
 import { useGoBackSearch } from 'features/go_back/use_go_back_search';
+import { InternetConnectionAlert } from 'features/internet_connection_alert';
 import { Pagination } from 'features/pagination';
 import { Results } from 'features/results';
 import { ScrollToTop } from 'features/scroll_to_top';
@@ -41,6 +42,7 @@ const Search: React.FC<PageProps> = () => {
         <Pagination />
       </Container>
       <ScrollToTop scrollPositionThreshold={700} />
+      <InternetConnectionAlert />
     </Theme>
   );
 };
