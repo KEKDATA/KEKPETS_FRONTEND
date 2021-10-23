@@ -29,9 +29,20 @@ module.exports = {
       resolve: 'gatsby-plugin-manifest',
       options: {
         icon: 'src/shared/assets/icons/favicon.svg',
+        name: `KEKPETS`,
+        short_name: `KEKPETS`,
+        start_url: `/`,
+        background_color: `rgb(144, 202, 249)`,
+        theme_color: `rgb(144, 202, 249)`,
+        display: `standalone`,
       },
     },
-    `gatsby-plugin-offline`,
+    {
+      resolve: `gatsby-plugin-offline`,
+      options: {
+        precachePages: [`/`, `/404`],
+      },
+    },
     'gatsby-transformer-remark',
     'gatsby-plugin-mdx',
     'gatsby-plugin-sharp',
