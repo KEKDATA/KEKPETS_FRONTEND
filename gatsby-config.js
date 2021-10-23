@@ -37,12 +37,6 @@ module.exports = {
         display: `standalone`,
       },
     },
-    {
-      resolve: `gatsby-plugin-offline`,
-      options: {
-        precachePages: [`/`, `/404`],
-      },
-    },
     'gatsby-transformer-remark',
     'gatsby-plugin-mdx',
     'gatsby-plugin-sharp',
