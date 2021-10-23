@@ -1,6 +1,5 @@
-import React, { useMemo, useState } from 'react';
+import React, { useState } from 'react';
 
-import { Divider, useTheme } from '@mui/material';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -8,22 +7,17 @@ import Grid from '@mui/material/Grid';
 import { grey } from '@mui/material/colors';
 import { styled } from '@mui/material/styles';
 
-import { useIsMobile } from 'shared/lib/screen_type/is_mobile';
-import { useFabColor } from 'shared/lib/theme/fab_color';
+import { MainInfo } from 'features/results/ui/main_info';
 
-import { CopyButton } from 'shared/ui/copy_button';
+import { useIsMobile } from 'shared/lib/screen_type/is_mobile';
+
 import { ImagePreview } from 'shared/ui/image_preview';
 
 import { Result as ResultType } from 'shared/typings/results';
 
-import { getButtonSize } from './lib/button_size';
-import { getIconSize } from './lib/icon_size';
 import { useImageLoadedStatus } from './lib/use_image_loaded_status';
-import { DateInfo } from './ui/date';
-import { MapLink } from './ui/map_link';
-import { OpenImage } from './ui/open_image';
+import { ImageControls } from './ui/image_controls';
 import { PetView } from './ui/pet_view';
-import { SaveImage } from './ui/save_image';
 
 interface Props {
   result: ResultType;
@@ -42,9 +36,6 @@ const CardImage = styled('div')`
 export const Result = ({ result }: Props) => {
   const { bbox, image, address, date } = result;
 
-  const theme = useTheme();
-
-  const fabColor = useFabColor();
   const isMobile = useIsMobile();
 
   const { isImageLoaded, containerRef } = useImageLoadedStatus({
@@ -61,42 +52,7 @@ export const Result = ({ result }: Props) => {
     setPreviewVisible(false);
   };
 
-  const sizeButton = getButtonSize({ isMobile });
-  const sizeIcon = getIconSize({ isMobile });
-
-  const isAddressOrDateExist = address || date;
-
-  const Buttons = useMemo(() => {
-    return (
-      <Grid container spacing={2}>
-        <Grid item>
-          <OpenImage
-            image={image}
-            fabColor={fabColor}
-            sizeButton={sizeButton}
-            sizeIcon={sizeIcon}
-          />
-        </Grid>
-        <Grid item>
-          <CopyButton
-            textToCopy={image}
-            label="Копировать ссылку на изображение"
-            fabColor={fabColor}
-            sizeButton={sizeButton}
-            sizeIcon={sizeIcon}
-          />
-        </Grid>
-        <Grid item>
-          <SaveImage
-            image={image}
-            fabColor={fabColor}
-            sizeButton={sizeButton}
-            sizeIcon={sizeIcon}
-          />
-        </Grid>
-      </Grid>
-    );
-  }, [theme.palette.mode]);
+  const isMainInfoExist = address || date;
 
   return (
     <Grid item>
@@ -117,31 +73,10 @@ export const Result = ({ result }: Props) => {
           <ImagePreview open={previewVisible} onClose={hidePreview}>
             <PetView image={image} bbox={bbox} isImageLoaded={isImageLoaded} />
           </ImagePreview>
-          {isAddressOrDateExist && (
-            <>
-              <Box mb={1}>
-                <Grid container flexDirection="column">
-                  {date && (
-                    <Grid item>
-                      <Box ml={0.8}>
-                        <DateInfo date={date} />
-                      </Box>
-                    </Grid>
-                  )}
-                  {address && (
-                    <Grid item>
-                      <MapLink address={address} />
-                    </Grid>
-                  )}
-                </Grid>
-              </Box>
-              <Divider />
-              <Box ml={0.5} mt={2}>
-                {Buttons}
-              </Box>
-            </>
+          {isMainInfoExist && (
+            <MainInfo address={address} date={date} image={image} />
           )}
-          {!isAddressOrDateExist && Buttons}
+          {!isMainInfoExist && <ImageControls image={image} />}
         </CardContent>
       </Container>
     </Grid>
