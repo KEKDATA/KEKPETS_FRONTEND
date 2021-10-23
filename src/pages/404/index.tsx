@@ -37,7 +37,7 @@ const NotFound: React.FC<PageProps> = () => (
         </Link>
       </Grid>
       <Grid item>
-        <img src={happyDogeImage} loading="lazy" />
+        <img src={happyDogeImage} loading="lazy" alt="Счастливая собачка" />
       </Grid>
     </Grid>
   </Container>
