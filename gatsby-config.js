@@ -31,6 +31,7 @@ module.exports = {
         icon: 'src/shared/assets/icons/favicon.svg',
       },
     },
+    `gatsby-plugin-offline`,
     'gatsby-transformer-remark',
     'gatsby-plugin-mdx',
     'gatsby-plugin-sharp',
