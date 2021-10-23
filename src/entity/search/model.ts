@@ -1,4 +1,10 @@
-import { createEffect, createEvent, createStore, sample } from 'effector';
+import {
+  combine,
+  createEffect,
+  createEvent,
+  createStore,
+  sample,
+} from 'effector';
 import { createGate } from 'effector-react';
 import { condition } from 'patronum';
 import { api } from 'requests/index';
@@ -26,6 +32,10 @@ const searchResultsReceived = getSearchResultsFx.doneData;
 const countReceived = searchResultsReceived.map(response => response.count);
 
 const resultsReceived = searchResultsReceived.map(response => response.results);
+
+const $isError = createStore(false)
+  .on(getSearchResultsFx.fail, () => true)
+  .reset(getSearchResultsFx.done);
 
 /**
  * Сущность содержащая параметры настроек серча указанных в урле
@@ -61,6 +71,10 @@ const $results = createStore<Results | null>(null)
 
 const $resultsNotFound = $results.map(
   results => !results || results.length === 0,
+);
+
+const $isResultsWithSomeProblem = combine([$resultsNotFound, $isError]).map(
+  values => values.includes(true),
 );
 
 /**
@@ -99,6 +113,8 @@ condition({
 });
 
 export const searchModel = {
+  $isResultsWithSomeProblem,
+  $isError,
   SearchGate,
   $searchSettingsFieldsFromUrl,
   $isSearchParamsExist,

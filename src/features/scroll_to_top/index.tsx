@@ -4,7 +4,7 @@ import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import Fab from '@mui/material/Fab';
 import { styled } from '@mui/material/styles';
 
-import { useBelowViewPosition } from 'entity/below_view_position/use_element_visible';
+import { useBelowViewPosition } from 'entity/below_view_position';
 
 import { scrollToTop } from 'shared/lib/scroll/to_top';
 

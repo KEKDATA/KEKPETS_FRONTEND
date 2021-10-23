@@ -1,5 +1,5 @@
 import { useStore } from 'effector-react';
-import React from 'react';
+import React, { useMemo } from 'react';
 
 import { Box } from '@mui/material';
 import Grid from '@mui/material/Grid';
@@ -8,6 +8,7 @@ import { styled } from '@mui/material/styles';
 import { searchModel } from 'entity/search';
 
 import { Result } from './result';
+import { Error } from './ui/error';
 import { ResultsLoader } from './ui/loader';
 import { NotFound } from './ui/not_found';
 
@@ -23,42 +24,45 @@ export const Results = () => {
   const resultsNotFound = useStore(searchModel.$resultsNotFound);
   const isFetching = useStore(searchModel.getSearchResultsFx.pending);
   const isSearchParamsExist = useStore(searchModel.$isSearchParamsExist);
+  const isError = useStore(searchModel.$isError);
+
+  const Content = useMemo(() => {
+    switch (true) {
+      case isError: {
+        return <Error />;
+      }
+
+      case isFetching: {
+        return <ResultsLoader />;
+      }
+
+      case resultsNotFound: {
+        return <NotFound />;
+      }
+
+      default: {
+        return (
+          <Box sx={{ mt: 4 }}>
+            <Grid
+              rowSpacing={3}
+              container
+              flexDirection="column"
+              justifyContent="center"
+              alignContent="center"
+              flexWrap="wrap">
+              {results.map(result => (
+                <Result key={result.id} result={result} />
+              ))}
+            </Grid>
+          </Box>
+        );
+      }
+    }
+  }, [isError, isFetching, resultsNotFound]);
 
   if (!isSearchParamsExist) {
     return null;
   }
 
-  if (isFetching) {
-    return (
-      <ResultsContainer>
-        <ResultsLoader />
-      </ResultsContainer>
-    );
-  }
-
-  if (resultsNotFound) {
-    return (
-      <ResultsContainer>
-        <NotFound />
-      </ResultsContainer>
-    );
-  }
-
-  return (
-    <ResultsContainer>
-      <Box sx={{ mt: 4 }}>
-        <Grid
-          rowSpacing={3}
-          container
-          flexDirection="column"
-          justifyContent="center"
-          alignContent="center"
-          flexWrap="wrap">
-          {results.map(result => (
-            <Result key={result.id} result={result} />
-          ))}
-        </Grid>
-      </Box>
-    </ResultsContainer>
-  );
+  return <ResultsContainer>{Content}</ResultsContainer>;
 };
