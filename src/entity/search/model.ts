@@ -25,7 +25,7 @@ const SearchGate = createGate();
 
 const searchParamsNotFounded = createEvent();
 
-const getSearchResultsFx = createEffect(api.videcamFrame);
+const getSearchResultsFx = createEffect(api.search);
 
 const searchResultsReceived = getSearchResultsFx.doneData;
 

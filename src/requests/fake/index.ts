@@ -9,7 +9,7 @@ export default function makeFakeServer() {
     routes() {
       this.urlPrefix = prefixUrl;
 
-      this.get(Paths.videcamframe, getFakeResults);
+      this.get(Paths.Search, getFakeResults);
     },
   });
 }

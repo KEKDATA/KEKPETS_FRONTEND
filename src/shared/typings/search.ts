@@ -1,6 +1,6 @@
 import { Results } from 'shared/typings/results';
 
-export interface VidecamFrameResponse {
+export interface SearchResponse {
   count: number;
   results: Results;
 }

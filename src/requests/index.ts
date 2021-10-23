@@ -1,5 +1,5 @@
-import { videcamFrame } from './videcam_frame';
+import { search } from './search';
 
 export const api = {
-  videcamFrame,
+  search,
 };

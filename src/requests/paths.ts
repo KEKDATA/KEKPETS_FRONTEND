@@ -1,3 +1,3 @@
 export enum Paths {
-  videcamframe = 'videcamframe',
+  Search = 'search',
 }
