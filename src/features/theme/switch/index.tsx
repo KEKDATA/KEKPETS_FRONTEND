@@ -13,6 +13,7 @@ const swithToLightLabel = 'Переключить на светлую тему';
 const switchToDarkLabel = 'Переключить на темную тему';
 
 const Container = styled('div')(({ theme }) => ({
+  zIndex: 1,
   position: 'absolute',
   width: 32,
   height: 32,
