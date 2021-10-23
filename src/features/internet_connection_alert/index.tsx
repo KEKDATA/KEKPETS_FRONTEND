@@ -1,7 +1,8 @@
 import { useStore } from 'effector-react';
 import React from 'react';
 
-import { Alert, Snackbar } from '@mui/material';
+import Alert from '@mui/material/Alert';
+import Snackbar from '@mui/material/Snackbar';
 
 import {
   internetConnectionModel,
