@@ -17,7 +17,7 @@ jobs:
           echo "PATH_PREFIX=${{ env.PATH_PREFIX }}">>.env.production
           echo "SITE_URL=${{ env.SITE_URL }}">>.env.production
         env:
-          API_URL: "https://somedomain.com"
+          API_URL: "https://kekpets.win/api/v1"
           PATH_PREFIX: "/KEKPETS_PUBLIC"
           SITE_URL: "https://kekdata.github.io"
       - run: yarn run build
