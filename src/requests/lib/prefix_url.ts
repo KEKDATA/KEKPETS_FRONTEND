@@ -1,3 +1,3 @@
 import { prefixUrl } from 'shared/constants/prefix_url';
 
-export const apiPrefixUrl = `${prefixUrl}/api/v1`;
+export const apiPrefixUrl = process.env.API_URL || `${prefixUrl}/api/v1`;
