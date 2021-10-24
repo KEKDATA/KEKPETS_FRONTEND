@@ -1,6 +1,6 @@
 export const colors = [
   {
-    value: 'white',
+    value: 'bright',
     text: 'Светлый',
   },
   {
@@ -12,7 +12,7 @@ export const colors = [
     text: 'Рыжий',
   },
   {
-    value: 'multi',
+    value: 'multi_color',
     text: 'Мульти',
   },
 ];
