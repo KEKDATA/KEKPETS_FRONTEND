@@ -1,4 +1,3 @@
-import faker from 'faker';
 import React, { useState } from 'react';
 
 import Box from '@mui/material/Box';
@@ -27,7 +26,11 @@ export const Default = (args: Args) => {
   const [open, setOpen] = useState(false);
 
   const Pet = (
-    <PetView image={faker.image.imageUrl()} bbox="0.2,0.2,0.2,0.2" {...args} />
+    <PetView
+      image="https://media.istockphoto.com/photos/cat-is-looking-at-food-cat-watches-over-the-food-sly-beautiful-gray-picture-id1069968848"
+      bbox="0.2,0.2,0.2,0.2"
+      {...args}
+    />
   );
 
   return (

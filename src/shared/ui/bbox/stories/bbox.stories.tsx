@@ -1,6 +1,5 @@
 import '@storybook/addon-controls';
 import { Story } from '@storybook/react';
-import faker from 'faker';
 import React from 'react';
 
 import { BBox, BBoxProps } from 'shared/ui/bbox';
@@ -30,7 +29,7 @@ const Template: Story<
 > = ({ left, top, width, height }) => {
   return (
     <BBoxContainer>
-      <ImageView url={faker.image.imageUrl()} />
+      <ImageView url="https://media.istockphoto.com/photos/cat-is-looking-at-food-cat-watches-over-the-food-sly-beautiful-gray-picture-id1069968848" />
       <BBox
         coordinates={[
           left.toString(),
