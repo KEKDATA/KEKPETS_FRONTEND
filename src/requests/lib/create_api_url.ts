@@ -1,7 +1,7 @@
-import { prefixUrl } from 'requests/config';
-import { Paths } from 'requests/paths';
-
 import { getUrlWithQs } from 'shared/lib/url/with_qs';
+
+import { Paths } from './paths';
+import { prefixUrl } from './prefix_url';
 
 interface Arguments {
   path: Paths;
