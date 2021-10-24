@@ -15,6 +15,8 @@ import { ImagePreview } from 'shared/ui/image_preview';
 
 import { Result as ResultType } from 'shared/typings/results';
 
+import { prefixUrl } from 'shared/constants/prefix_url';
+
 import { useImageLoadedStatus } from './lib/use_image_loaded_status';
 import { ImageControls } from './ui/image_controls';
 import { PetView } from './ui/pet_view';
@@ -36,10 +38,12 @@ const CardImage = styled('div')`
 export const Result = ({ result }: Props) => {
   const { bbox, image, address, date } = result;
 
+  const imageWithPrefix = `${prefixUrl}${image}`;
+
   const isMobile = useIsMobile();
 
   const { isImageLoaded, containerRef } = useImageLoadedStatus({
-    image,
+    image: imageWithPrefix,
   });
 
   const [previewVisible, setPreviewVisible] = useState(false);
@@ -63,7 +67,7 @@ export const Result = ({ result }: Props) => {
             onClick={showPreview}>
             <CardImage>
               <PetView
-                image={image}
+                image={imageWithPrefix}
                 bbox={bbox}
                 width={isMobile ? '100%' : 500}
                 isImageLoaded={isImageLoaded}
@@ -71,12 +75,16 @@ export const Result = ({ result }: Props) => {
             </CardImage>
           </Box>
           <ImagePreview open={previewVisible} onClose={hidePreview}>
-            <PetView image={image} bbox={bbox} isImageLoaded={isImageLoaded} />
+            <PetView
+              image={imageWithPrefix}
+              bbox={bbox}
+              isImageLoaded={isImageLoaded}
+            />
           </ImagePreview>
           {isMainInfoExist && (
-            <MainInfo address={address} date={date} image={image} />
+            <MainInfo address={address} date={date} image={imageWithPrefix} />
           )}
-          {!isMainInfoExist && <ImageControls image={image} />}
+          {!isMainInfoExist && <ImageControls image={imageWithPrefix} />}
         </CardContent>
       </Container>
     </Grid>
