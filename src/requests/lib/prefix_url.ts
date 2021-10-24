@@ -1,1 +1,3 @@
-export const prefixUrl = process.env.API_URL || 'http://localhost:8000/api/v1';
+import { prefixUrl } from 'shared/constants/prefix_url';
+
+export const apiPrefixUrl = `${prefixUrl}/api/v1`;

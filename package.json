@@ -4,7 +4,7 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "start": "gatsby develop --port 8080",
+    "start": "gatsby develop --port 8081",
     "build": "gatsby build",
     "serve": "gatsby serve",
     "clean": "gatsby clean",

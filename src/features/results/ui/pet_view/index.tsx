@@ -7,6 +7,8 @@ import { BBox } from 'shared/ui/bbox';
 import { BBoxContainer } from 'shared/ui/bbox_container';
 import { ImageView } from 'shared/ui/image_view';
 
+import { prefixUrl } from 'shared/constants/prefix_url';
+
 interface Props {
   image: string;
   bbox: string;
@@ -27,7 +29,11 @@ export const PetView = ({ image, bbox, width, isImageLoaded }: Props) => {
     <>
       {isImageLoaded && (
         <BBoxContainer>
-          <ImageView url={image} loading="lazy" width={width} />
+          <ImageView
+            url={`${prefixUrl}${image}`}
+            loading="lazy"
+            width={width}
+          />
           <BBox coordinates={bbox} />
         </BBoxContainer>
       )}
