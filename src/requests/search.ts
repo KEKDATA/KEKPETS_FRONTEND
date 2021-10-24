@@ -1,9 +1,10 @@
-import { createApiUrl } from 'requests/lib/create_api_url';
-
 import { SearchResponse } from 'shared/typings/search';
 
+import { createApiUrl } from './lib/create_api_url';
+import { Paths } from './lib/paths';
 import { toJSON } from './lib/to_json';
-import { Paths } from './paths';
 
 export const search = (params: string): Promise<SearchResponse> =>
-  fetch(createApiUrl({ path: Paths.Search, params })).then(toJSON);
+  fetch(
+    createApiUrl({ path: Paths.Search, params: `format=json&${params}` }),
+  ).then(toJSON);

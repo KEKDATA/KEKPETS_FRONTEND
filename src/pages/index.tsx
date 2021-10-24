@@ -2,7 +2,6 @@ import { useGate } from 'effector-react';
 import { PageProps } from 'gatsby';
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import makeFakeServer from 'requests/fake';
 
 import { Container } from '@mui/material';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -16,8 +15,6 @@ import { Results } from 'features/results';
 import { ScrollToTop } from 'features/scroll_to_top';
 import { SearchSettings } from 'features/search_settings';
 import { Theme } from 'features/theme';
-
-makeFakeServer();
 
 const fonts =
   'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap';

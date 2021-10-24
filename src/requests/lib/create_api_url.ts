@@ -1,7 +1,7 @@
-import { prefixUrl } from 'requests/config';
-import { Paths } from 'requests/paths';
-
 import { getUrlWithQs } from 'shared/lib/url/with_qs';
+
+import { Paths } from './paths';
+import { apiPrefixUrl } from './prefix_url';
 
 interface Arguments {
   path: Paths;
@@ -10,10 +10,10 @@ interface Arguments {
 
 export const createApiUrl = ({ path, params }: Arguments) => {
   if (!params) {
-    return `${prefixUrl}/${path}`;
+    return `${apiPrefixUrl}/${path}`;
   }
 
-  return `${prefixUrl}/${getUrlWithQs({
+  return `${apiPrefixUrl}/${getUrlWithQs({
     url: path,
     queryString: params,
   })}`;
