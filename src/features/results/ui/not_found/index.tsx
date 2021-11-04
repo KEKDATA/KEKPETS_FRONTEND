@@ -1,3 +1,4 @@
+import { withPrefix } from 'gatsby';
 import React from 'react';
 
 import Button from '@mui/material/Button';
@@ -23,6 +24,8 @@ const Description = styled(Typography)(({ theme }) => ({
 const urlToMainSearch = isBrowser ? window.location.href.split('?')[0] : '/';
 
 export const NotFound = () => {
+  // eslint-disable-next-line no-console
+  console.log(withPrefix('/'));
   return (
     <Grid
       container
