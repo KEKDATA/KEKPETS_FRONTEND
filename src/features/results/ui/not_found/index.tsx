@@ -14,6 +14,12 @@ const Description = styled(Typography)(({ theme }) => ({
       : theme.palette.common.black,
 }));
 
+/**
+ * Так сделано потому что в проде урл основной https://kekdata.github.io/KEKPETS_PUBLIC/
+ * Вырезаем серч параметры и так попадаем на главную
+ */
+const urlToMainSearch = window.location.href.split('?')[0];
+
 export const NotFound = () => {
   return (
     <Grid
@@ -30,7 +36,7 @@ export const NotFound = () => {
         </Description>
       </Grid>
       <Grid item>
-        <Button variant="contained" href="/">
+        <Button variant="contained" href={urlToMainSearch}>
           Давай попробуем еще раз
         </Button>
       </Grid>
