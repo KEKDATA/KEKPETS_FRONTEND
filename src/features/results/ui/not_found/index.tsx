@@ -6,8 +6,6 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
 
-import { isBrowser } from 'shared/lib/browser/is_browser';
-
 import sadDog from './sad_bubz.jpg';
 
 const Description = styled(Typography)(({ theme }) => ({
@@ -17,15 +15,7 @@ const Description = styled(Typography)(({ theme }) => ({
       : theme.palette.common.black,
 }));
 
-/**
- * Так сделано потому что в проде урл основной https://kekdata.github.io/KEKPETS_PUBLIC/
- * Вырезаем серч параметры и так попадаем на главную
- */
-const urlToMainSearch = isBrowser ? window.location.href.split('?')[0] : '/';
-
 export const NotFound = () => {
-  // eslint-disable-next-line no-console
-  console.log(withPrefix('/'));
   return (
     <Grid
       container
@@ -41,7 +31,7 @@ export const NotFound = () => {
         </Description>
       </Grid>
       <Grid item>
-        <Button variant="contained" href={urlToMainSearch}>
+        <Button variant="contained" href={withPrefix('/')}>
           Давай попробуем еще раз
         </Button>
       </Grid>
