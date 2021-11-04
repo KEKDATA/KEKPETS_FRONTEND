@@ -17,6 +17,14 @@ const StyledLink = styled(Link)(({ theme }) => ({
   width: 'max-content',
 }));
 
+const Address = styled(Typography)(({ theme }) => ({
+  marginLeft: 10,
+  textOverflow: 'ellipsis',
+  overflow: 'hidden',
+  maxWidth: 430,
+  whiteSpace: 'nowrap',
+}));
+
 export const MapLink = ({ address }: Props) => {
   return (
     <StyledLink
@@ -24,12 +32,7 @@ export const MapLink = ({ address }: Props) => {
       rel="noopener noreferrer"
       href={getGoogleMapLink(address)}>
       <RoomIcon />
-      <Typography
-        sx={{
-          marginLeft: 1,
-        }}>
-        {address}
-      </Typography>
+      <Address title={address}>{address}</Address>
     </StyledLink>
   );
 };
