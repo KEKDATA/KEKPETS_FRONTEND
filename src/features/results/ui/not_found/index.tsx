@@ -5,6 +5,8 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
 
+import { isBrowser } from 'shared/lib/browser/is_browser';
+
 import sadDog from './sad_bubz.jpg';
 
 const Description = styled(Typography)(({ theme }) => ({
@@ -18,7 +20,7 @@ const Description = styled(Typography)(({ theme }) => ({
  * Так сделано потому что в проде урл основной https://kekdata.github.io/KEKPETS_PUBLIC/
  * Вырезаем серч параметры и так попадаем на главную
  */
-const urlToMainSearch = window.location.href.split('?')[0];
+const urlToMainSearch = isBrowser ? window.location.href.split('?')[0] : '/';
 
 export const NotFound = () => {
   return (
