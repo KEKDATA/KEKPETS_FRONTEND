@@ -2,6 +2,7 @@ import React from 'react';
 
 import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
+import Tooltip from '@mui/material/Tooltip';
 import { styled } from '@mui/material/styles';
 
 import { Result } from 'shared/typings/results';
@@ -40,9 +41,9 @@ export const PolicePhones = ({ ovdPhones }: Props) => {
       <Image src={policeMan} alt="Милый полицейский" />
       <Phones>
         {ovdPhones.map(ovdPhone => (
-          <Phone key={ovdPhone} href={`tel:${ovdPhone}`}>
-            {ovdPhone}
-          </Phone>
+          <Tooltip key={ovdPhone} title="Телефон ближайшего отделения полиции">
+            <Phone href={`tel:${ovdPhone}`}>{ovdPhone}</Phone>
+          </Tooltip>
         ))}
       </Phones>
     </Container>
