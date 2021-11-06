@@ -1,4 +1,4 @@
-import { PageProps } from 'gatsby';
+import { PageProps, withPrefix } from 'gatsby';
 import React from 'react';
 
 import Grid from '@mui/material/Grid';
@@ -30,7 +30,7 @@ const NotFound: React.FC<PageProps> = () => (
         </Typography>
       </Grid>
       <Grid item>
-        <Link href="/">
+        <Link href={withPrefix('/')}>
           <Typography variant="h6" gutterBottom>
             Давай поищем питомцем?
           </Typography>
